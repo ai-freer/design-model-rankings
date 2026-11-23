@@ -1,0 +1,5062 @@
+// 由 node scripts/rankings.js build 生成，请修改 data/snapshots 后重新生成。
+window.RANKINGS_DATA = {
+  "current": {
+    "id": "2026-11-23T16-10Z",
+    "schemaVersion": 1,
+    "checkedAt": "2026-11-24T01:10+09:00",
+    "checkedBy": "Codex · 官方榜单与数据集核验",
+    "summary": "首份核验快照收录 35 个榜单，覆盖前端、视觉设计、3D、文本、生图、改图和视频。",
+    "notes": [
+      "这是首份基线快照。各榜记录官方页面标注的日期或当次读数，官网与数据集日期不一致时分别注明。",
+      "每个榜单按任务与评测方法独立展示。多数榜单收录前 15 名，小榜保留公开行，榜内并列保留官方名次。",
+      "游戏子榜的完整分数表在本次访问中受限。官方前 15 名顺序已核对，只有公开摘要能读取的分数得到二次确认。",
+      "其余候选还包括 DesignArena 的 UI 组件、数据可视化及更多视频子榜，OpenArt 的广告、动画、口型同步，EQ-Bench 的长篇写作等。本快照优先收录与现有创作任务互补、可从官方结果复查的口径。"
+    ],
+    "categories": [
+      {
+        "id": "frontend",
+        "label": "前端能力",
+        "description": "从网页应用整体表现，到特定设计与交付任务。",
+        "representativeBoard": "webdev-overall",
+        "selectionReason": "用同一提示生成网页应用，适合先看前端整体表现。"
+      },
+      {
+        "id": "design",
+        "label": "视觉设计",
+        "description": "品牌、平面、矢量图形和演示文稿",
+        "representativeBoard": "asage-designbench",
+        "selectionReason": "由专业设计师评审品牌、包装与版式，适合判断平面设计交付。"
+      },
+      {
+        "id": "3d",
+        "label": "3D",
+        "description": "交互场景、Blender 作品和从图片生成的 3D 资产",
+        "representativeBoard": "aa-3d",
+        "selectionReason": "比较从文字描述搭建 Three.js 交互场景的成果，适合选择场景生成模型。"
+      },
+      {
+        "id": "text",
+        "label": "文本",
+        "description": "综合对话与创意写作",
+        "representativeBoard": "lmarena-text",
+        "selectionReason": "覆盖多种日常对话任务，适合先看模型的通用文本表现。"
+      },
+      {
+        "id": "image",
+        "label": "生图",
+        "description": "根据文字提示生成图像",
+        "representativeBoard": "arena-t2i",
+        "selectionReason": "覆盖多类文字提示，适合先看通用生图表现。"
+      },
+      {
+        "id": "edit",
+        "label": "改图",
+        "description": "按文字指令修改参考图",
+        "representativeBoard": "lmarena-edit",
+        "selectionReason": "评估按指令修改单张参考图的效果，适合选择修图模型。"
+      },
+      {
+        "id": "video",
+        "label": "视频",
+        "description": "文生视频、图生视频、影视、动态设计和视频编辑",
+        "representativeBoard": "aa-i2v",
+        "selectionReason": "以参考图生成带声音的视频，适合选用需要画面和声音一同交付的模型。"
+      }
+    ],
+    "boards": [
+      {
+        "id": "webdev-overall",
+        "category": "frontend",
+        "title": "Arena WebDev 综合榜",
+        "label": "LMArena WebDev 总榜",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/code/webdev",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/webdev/latest"
+        },
+        "officialDate": "2026-11-22",
+        "coverage": "官方可见前 15 名，非全榜",
+        "method": "双盲对抗：两个模型按同一提示生成 Web 应用，投票后按 Bradley-Terry 得分。官方页标注 1,044,803 票。不同努力档位（如 xHigh 与 High）按官方分行保留。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Fable 5.2 (xHigh)",
+            "provider": "Anthropic",
+            "score": 1822,
+            "ci": "1807–1838",
+            "extra": "2,124 票",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Opus 5.5 (Max)",
+            "provider": "Anthropic",
+            "score": 1820,
+            "ci": "1809–1831",
+            "extra": "5,075 票",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 3,
+            "name": "Claude Sonnet 5.5 (xHigh)",
+            "provider": "Anthropic",
+            "score": 1772,
+            "ci": "1763–1782",
+            "extra": "6,925 票",
+            "modelId": "claude-sonnet-5.5-xhigh"
+          },
+          {
+            "rank": 4,
+            "name": "Gemini 4 Carbon (High)",
+            "provider": "Google",
+            "score": 1769,
+            "ci": "1753–1784",
+            "extra": "2,092 票",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 5,
+            "name": "Gemini 4 Neon (High)",
+            "provider": "Google",
+            "score": 1766,
+            "ci": "1752–1779",
+            "extra": "2,310 票",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 6,
+            "name": "GPT-6 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1764,
+            "ci": "1756–1772",
+            "extra": "9,495 票",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 7,
+            "name": "GPT-6.2 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1759,
+            "ci": "1745–1774",
+            "extra": "2,088 票",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 8,
+            "name": "GPT-6.2 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1755,
+            "ci": "1741–1769",
+            "extra": "2,247 票",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 9,
+            "name": "Qwen4-Max (xHigh)",
+            "provider": "Alibaba",
+            "score": 1752,
+            "ci": "1736–1768",
+            "extra": "1,792 票",
+            "modelId": "qwen4-max"
+          },
+          {
+            "rank": 10,
+            "name": "GPT-6.1 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1744,
+            "ci": "1735–1753",
+            "extra": "6,699 票",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 11,
+            "name": "Claude Fable 5.1 (Max)",
+            "provider": "Anthropic",
+            "score": 1742,
+            "ci": "1735–1750",
+            "extra": "10,764 票",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 12,
+            "name": "Muse Wonder Full (Max)",
+            "provider": "Meta",
+            "score": 1723,
+            "ci": "1709–1738",
+            "extra": "2,051 票",
+            "modelId": "muse-wonder-full"
+          },
+          {
+            "rank": 13,
+            "name": "Claude Sonnet 5.5 (High)",
+            "provider": "Anthropic",
+            "score": 1716,
+            "ci": "1708–1724",
+            "extra": "9,072 票",
+            "modelId": "claude-sonnet-5.5-high"
+          },
+          {
+            "rank": 14,
+            "name": "Gemini 4 Hydrogen (High)",
+            "provider": "Google",
+            "score": 1701,
+            "ci": "1687–1715",
+            "extra": "2,014 票",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 15,
+            "name": "Claude Opus 5 (Max)",
+            "provider": "Anthropic",
+            "score": 1692,
+            "ci": "1686–1698",
+            "extra": "19,440 票",
+            "modelId": "claude-opus-5"
+          }
+        ],
+        "notes": [
+          "区间与单模型票数来自 Arena 官方数据集。"
+        ],
+        "module": "Arena 前端榜",
+        "role": "官方综合榜"
+      },
+      {
+        "id": "webdev-games",
+        "category": "frontend",
+        "title": "游戏开发",
+        "label": "LMArena WebDev 游戏",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/code/webdev/gaming"
+        },
+        "officialDate": "2026-11-22",
+        "coverage": "官方可见前 15 名，非全榜",
+        "method": "WebDev 的游戏子榜，口径与总榜相同但任务不同。官方页标注 288,194 票。不可与总榜或 HTML 子榜加总。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Opus 5.5 (Max)",
+            "provider": "Anthropic",
+            "modelId": "claude-opus-5.5",
+            "score": 1947
+          },
+          {
+            "rank": 2,
+            "name": "Claude Fable 5.2 (xHigh)",
+            "provider": "Anthropic",
+            "modelId": "claude-fable-5.2",
+            "score": 1929
+          },
+          {
+            "rank": 3,
+            "name": "Claude Sonnet 5.5 (xHigh)",
+            "provider": "Anthropic",
+            "modelId": "claude-sonnet-5.5-xhigh",
+            "score": 1895
+          },
+          {
+            "rank": 4,
+            "name": "Qwen4-Max (xHigh)",
+            "provider": "Alibaba",
+            "modelId": "qwen4-max",
+            "score": 1885
+          },
+          {
+            "rank": 5,
+            "name": "Gemini 4 Neon (High)",
+            "provider": "Google",
+            "modelId": "gemini-4-neon",
+            "score": 1867
+          },
+          {
+            "rank": 6,
+            "name": "GPT-6.2 Sol (Max)",
+            "provider": "OpenAI",
+            "modelId": "gpt-6.2-sol",
+            "score": 1860
+          },
+          {
+            "rank": 7,
+            "name": "Gemini 4 Carbon (High)",
+            "provider": "Google",
+            "modelId": "gemini-4-carbon",
+            "score": 1857
+          },
+          {
+            "rank": 8,
+            "name": "GPT-6 Astra (Max)",
+            "provider": "OpenAI",
+            "modelId": "gpt-6-astra",
+            "score": 1850
+          },
+          {
+            "rank": 9,
+            "name": "Claude Fable 5.1 (Max)",
+            "provider": "Anthropic",
+            "modelId": "claude-fable-5.1",
+            "score": 1847
+          },
+          {
+            "rank": 10,
+            "name": "GPT-6.2 Astra (Max)",
+            "provider": "OpenAI",
+            "modelId": "gpt-6.2-astra",
+            "score": 1840
+          },
+          {
+            "rank": 11,
+            "name": "GPT-6.1 Sol (Max)",
+            "provider": "OpenAI",
+            "modelId": "gpt-6.1-sol",
+            "score": 1833
+          },
+          {
+            "rank": 12,
+            "name": "Claude Sonnet 5.5 (High)",
+            "provider": "Anthropic",
+            "modelId": "claude-sonnet-5.5-high",
+            "score": 1826
+          },
+          {
+            "rank": 13,
+            "name": "Muse Wonder Full (Max)",
+            "provider": "Meta",
+            "modelId": "muse-wonder-full",
+            "score": 1799
+          },
+          {
+            "rank": 14,
+            "name": "Gemini 4 Hydrogen (High)",
+            "provider": "Google",
+            "modelId": "gemini-4-hydrogen",
+            "score": 1787
+          },
+          {
+            "rank": 15,
+            "name": "Gemini 4 Argon (High)",
+            "provider": "Google",
+            "modelId": "gemini-4-argon",
+            "score": 1771
+          }
+        ],
+        "notes": [
+          "本次在官方榜单核对了前 15 名顺序、票数及公开摘要可读的第 1、2、3、5、6、12、15 名得分。其余分数保留原始导入值，完整游戏分数表在本次访问中受限。"
+        ],
+        "module": "Arena 前端榜",
+        "role": "任务子榜",
+        "parentBoard": "webdev-overall"
+      },
+      {
+        "id": "webdev-html",
+        "category": "frontend",
+        "title": "HTML",
+        "label": "LMArena WebDev HTML",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/code/webdev/html",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/webdev/latest"
+        },
+        "officialDate": "2026-11-22",
+        "coverage": "官方可见前 15 名，非全榜",
+        "method": "WebDev 的 HTML 子榜。官方页标注 213,902 票。与游戏子榜、总榜的名次不可直接比较得分差并加总。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-6.2 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1851,
+            "ci": "1808–1893",
+            "extra": "331 票",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-6.2 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1847,
+            "ci": "1810–1885",
+            "extra": "371 票",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 3,
+            "name": "Gemini 4 Neon (High)",
+            "provider": "Google",
+            "score": 1806,
+            "ci": "1771–1841",
+            "extra": "397 票",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 4,
+            "name": "GPT-6.1 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1797,
+            "ci": "1775–1819",
+            "extra": "1,125 票",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-6 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1794,
+            "ci": "1776–1813",
+            "extra": "1,765 票",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Fable 5.2 (xHigh)",
+            "provider": "Anthropic",
+            "score": 1779,
+            "ci": "1744–1814",
+            "extra": "381 票",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 7,
+            "name": "Gemini 4 Carbon (High)",
+            "provider": "Google",
+            "score": 1770,
+            "ci": "1718–1823",
+            "extra": "215 票",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 8,
+            "name": "Claude Opus 5.5 (Max)",
+            "provider": "Anthropic",
+            "score": 1766,
+            "ci": "1729–1803",
+            "extra": "326 票",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 9,
+            "name": "Claude Sonnet 5.5 (xHigh)",
+            "provider": "Anthropic",
+            "score": 1761,
+            "ci": "1736–1785",
+            "extra": "903 票",
+            "modelId": "claude-sonnet-5.5-xhigh"
+          },
+          {
+            "rank": 10,
+            "name": "Qwen4-Max (xHigh)",
+            "provider": "Alibaba",
+            "score": 1753,
+            "ci": "1716–1791",
+            "extra": "328 票",
+            "modelId": "qwen4-max"
+          },
+          {
+            "rank": 11,
+            "name": "GPT-6.1 Terra (Max)",
+            "provider": "OpenAI",
+            "score": 1733,
+            "ci": "1711–1756",
+            "extra": "904 票",
+            "modelId": "gpt-6.1-terra"
+          },
+          {
+            "rank": 12,
+            "name": "Gemini 4 Hydrogen (High)",
+            "provider": "Google",
+            "score": 1720,
+            "ci": "1681–1759",
+            "extra": "273 票",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 13,
+            "name": "Muse Wonder Full (Max)",
+            "provider": "Meta",
+            "score": 1718,
+            "ci": "1676–1759",
+            "extra": "253 票",
+            "modelId": "muse-wonder-full"
+          },
+          {
+            "rank": 14,
+            "name": "Claude Sonnet 5.5 (High)",
+            "provider": "Anthropic",
+            "score": 1709,
+            "ci": "1690–1728",
+            "extra": "1,355 票",
+            "modelId": "claude-sonnet-5.5-high"
+          },
+          {
+            "rank": 15,
+            "name": "Claude Fable 5.1 (Max)",
+            "provider": "Anthropic",
+            "score": 1686,
+            "ci": "1667–1705",
+            "extra": "1,276 票",
+            "modelId": "claude-fable-5.1"
+          }
+        ],
+        "notes": [
+          "区间与单模型票数来自 Arena 官方数据集。"
+        ],
+        "module": "Arena 前端榜",
+        "role": "任务子榜",
+        "parentBoard": "webdev-overall"
+      },
+      {
+        "id": "webdev-react",
+        "category": "frontend",
+        "title": "React",
+        "label": "Arena · React",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/code/webdev/react",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/webdev/latest"
+        },
+        "officialDate": "2026-11-22",
+        "coverage": "官方前 15 名（官方数据集 146 条，网页 685,862 票）",
+        "method": "WebDev 针对 React 应用的盲选子榜。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Fable 5.2 (xHigh)",
+            "provider": "Anthropic",
+            "score": 1883,
+            "ci": "1862–1904",
+            "extra": "1,315 票",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Opus 5.5 (Max)",
+            "provider": "Anthropic",
+            "score": 1873,
+            "ci": "1860–1887",
+            "extra": "3,445 票",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 3,
+            "name": "Claude Sonnet 5.5 (xHigh)",
+            "provider": "Anthropic",
+            "score": 1819,
+            "ci": "1808–1830",
+            "extra": "4,463 票",
+            "modelId": "claude-sonnet-5.5-xhigh"
+          },
+          {
+            "rank": 4,
+            "name": "Gemini 4 Carbon (High)",
+            "provider": "Google",
+            "score": 1793,
+            "ci": "1775–1811",
+            "extra": "1,528 票",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 5,
+            "name": "Gemini 4 Neon (High)",
+            "provider": "Google",
+            "score": 1788,
+            "ci": "1770–1805",
+            "extra": "1,451 票",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Fable 5.1 (Max)",
+            "provider": "Anthropic",
+            "score": 1788,
+            "ci": "1778–1797",
+            "extra": "7,140 票",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 7,
+            "name": "Qwen4-Max (xHigh)",
+            "provider": "Alibaba",
+            "score": 1786,
+            "ci": "1765–1807",
+            "extra": "1,024 票",
+            "modelId": "qwen4-max"
+          },
+          {
+            "rank": 8,
+            "name": "GPT-6 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1775,
+            "ci": "1765–1785",
+            "extra": "5,779 票",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 9,
+            "name": "GPT-6.2 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1762,
+            "ci": "1744–1781",
+            "extra": "1,328 票",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 10,
+            "name": "GPT-6.2 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1762,
+            "ci": "1744–1779",
+            "extra": "1,439 票",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 11,
+            "name": "GPT-6.1 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1751,
+            "ci": "1740–1762",
+            "extra": "4,204 票",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 12,
+            "name": "Claude Sonnet 5.5 (High)",
+            "provider": "Anthropic",
+            "score": 1751,
+            "ci": "1741–1760",
+            "extra": "5,869 票",
+            "modelId": "claude-sonnet-5.5-high"
+          },
+          {
+            "rank": 13,
+            "name": "Muse Wonder Full (Max)",
+            "provider": "Meta",
+            "score": 1742,
+            "ci": "1723–1761",
+            "extra": "1,265 票",
+            "modelId": "muse-wonder-full"
+          },
+          {
+            "rank": 14,
+            "name": "Gemini 4 Hydrogen (High)",
+            "provider": "Google",
+            "score": 1723,
+            "ci": "1705–1741",
+            "extra": "1,314 票",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 15,
+            "name": "Claude Opus 5 (Max)",
+            "provider": "Anthropic",
+            "score": 1713,
+            "ci": "1706–1721",
+            "extra": "12,585 票",
+            "modelId": "claude-opus-5"
+          }
+        ],
+        "module": "Arena 前端榜",
+        "role": "任务子榜",
+        "parentBoard": "webdev-overall"
+      },
+      {
+        "id": "arena-image-webdev",
+        "category": "frontend",
+        "title": "截图转前端",
+        "label": "Arena · 截图转前端",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/code/image-to-webdev",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/webdev/latest"
+        },
+        "officialDate": "2026-11-20",
+        "coverage": "官方前 15 名（官方数据集 69 条，网页 218,511 票）",
+        "method": "按输入截图生成 Web 界面，用户比较生成结果。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Opus 5.5 (Max)",
+            "provider": "Anthropic",
+            "score": 1758,
+            "ci": "1740–1777",
+            "extra": "1,421 票",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Sonnet 5.5 (xHigh)",
+            "provider": "Anthropic",
+            "score": 1746,
+            "ci": "1733–1760",
+            "extra": "2,630 票",
+            "modelId": "claude-sonnet-5.5-xhigh"
+          },
+          {
+            "rank": 3,
+            "name": "Claude Fable 5.1 (Max)",
+            "provider": "Anthropic",
+            "score": 1723,
+            "ci": "1711–1734",
+            "extra": "3,741 票",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 4,
+            "name": "GPT-6 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1719,
+            "ci": "1708–1729",
+            "extra": "4,253 票",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-6.1 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1695,
+            "ci": "1682–1707",
+            "extra": "3,043 票",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 6,
+            "name": "Qwen4-Max (xHigh)",
+            "provider": "Alibaba",
+            "score": 1675,
+            "ci": "1659–1691",
+            "extra": "1,488 票",
+            "modelId": "qwen4-max"
+          },
+          {
+            "rank": 7,
+            "name": "GPT-6.1 Terra (Max)",
+            "provider": "OpenAI",
+            "score": 1674,
+            "ci": "1654–1694",
+            "extra": "1,020 票",
+            "modelId": "gpt-6.1-terra"
+          },
+          {
+            "rank": 8,
+            "name": "Claude Opus 5 (Max)",
+            "provider": "Anthropic",
+            "score": 1664,
+            "ci": "1654–1674",
+            "extra": "5,015 票",
+            "modelId": "claude-opus-5"
+          },
+          {
+            "rank": 9,
+            "name": "GPT-6 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1659,
+            "ci": "1649–1669",
+            "extra": "4,050 票",
+            "modelId": "gpt-6-sol"
+          },
+          {
+            "rank": 10,
+            "name": "Qwen3.8-Max (0902)",
+            "provider": "Alibaba",
+            "score": 1639,
+            "ci": "1620–1658",
+            "extra": "1,079 票",
+            "modelId": "qwen3.8-max-0902"
+          },
+          {
+            "rank": 11,
+            "name": "Muse Spark 1.3 (Max)",
+            "provider": "Meta",
+            "score": 1636,
+            "ci": "1627–1644",
+            "extra": "6,850 票",
+            "modelId": "muse-spark-1.3"
+          },
+          {
+            "rank": 12,
+            "name": "Claude Fable 5 (High)",
+            "provider": "Anthropic",
+            "score": 1620,
+            "ci": "1611–1629",
+            "extra": "6,100 票",
+            "modelId": "claude-fable-5"
+          },
+          {
+            "rank": 13,
+            "name": "Hy4",
+            "provider": "Tencent",
+            "score": 1619,
+            "ci": "1603–1634",
+            "extra": "1,495 票",
+            "modelId": "hy4"
+          },
+          {
+            "rank": 14,
+            "name": "Qwen3.8-Max",
+            "provider": "Alibaba",
+            "score": 1615,
+            "ci": "1605–1626",
+            "extra": "4,018 票",
+            "modelId": "qwen3.8-max"
+          },
+          {
+            "rank": 15,
+            "name": "DeepSeek-V4.1-Flash-20260910 (Max)",
+            "provider": "DeepSeek",
+            "score": 1612,
+            "ci": "1589–1635",
+            "extra": "721 票",
+            "modelId": "deepseek-v4.1-flash-20260910"
+          }
+        ],
+        "notes": [
+          "官网显示 2026-11-20，官方数据集记录的发布日期为 2026-11-19。"
+        ],
+        "module": "Arena 前端榜",
+        "role": "独立评测"
+      },
+      {
+        "id": "designarena-agentic",
+        "category": "frontend",
+        "title": "DesignArena 代理任务综合",
+        "label": "DesignArena Overall Agentic",
+        "source": {
+          "name": "DesignArena",
+          "url": "https://www.designarena.ai/leaderboard?section=overall-agentic&tab=overall"
+        },
+        "officialDate": "2026-11-23 23:26 JST",
+        "coverage": "官方可见前 15 名，非全榜",
+        "method": "代理任务综合：Frontend Web App、Full Stack、Agentic Game Dev、Godot、React Native、Android、Slides、Spreadsheet。编程代理在多文件与工具调用中完成，按真实用户偏好汇总为 Bradley-Terry Elo（起点 1200）。表中胜率旁的 ± 为官方标注的标准误差，不是 Elo 分本身的 95% 置信区间。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Opus 5.5 (high)",
+            "provider": "Anthropic",
+            "score": 1456,
+            "extra": "胜率 68.9% ±1.7%，2,846 场（1960W / 886L）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-6 Astra (max)",
+            "provider": "OpenAI",
+            "score": 1408,
+            "extra": "胜率 67.2% ±1.8%，2,567 场（1725W / 842L）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 3,
+            "name": "Claude Fable 5.2",
+            "provider": "Anthropic",
+            "score": 1380,
+            "extra": "胜率 69.2% ±2.1%，1,900 场（1315W / 585L）",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 4,
+            "name": "GPT-6.1 Sol (max)",
+            "provider": "OpenAI",
+            "score": 1374,
+            "extra": "胜率 50.0% ±2.1%，2,245 场（1123W / 1122L）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 5,
+            "name": "Qwen4-Max",
+            "provider": "Alibaba",
+            "score": 1368,
+            "extra": "胜率 62.4% ±1.6%，3,632 场（2267W / 1365L）",
+            "modelId": "qwen4-max"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Fable 5.1",
+            "provider": "Anthropic",
+            "score": 1346,
+            "extra": "胜率 59.6% ±1.3%，5,156 场（3071W / 2085L）",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 7,
+            "name": "GPT-6.2 Astra (max)",
+            "provider": "OpenAI",
+            "score": 1324,
+            "extra": "胜率 65.0% ±2.2%，1,815 场（1179W / 636L）",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 8,
+            "name": "Inkling 2 Small",
+            "provider": "Thinking Machines",
+            "score": 1321,
+            "extra": "胜率 57.3% ±1.1%，7,280 场（4171W / 3109L）",
+            "modelId": "inkling-2-small"
+          },
+          {
+            "rank": 9,
+            "name": "Gemini 4 Carbon",
+            "provider": "Google",
+            "score": 1320,
+            "extra": "胜率 61.1% ±2.8%，1,176 场（719W / 457L）",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 10,
+            "name": "Qwen3.8 Max",
+            "provider": "Alibaba",
+            "score": 1317,
+            "extra": "胜率 61.5% ±6.0%，249 场（153W / 96L）",
+            "modelId": "qwen3.8-max"
+          },
+          {
+            "rank": 11,
+            "name": "Hy4",
+            "provider": "Tencent",
+            "score": 1309,
+            "extra": "胜率 59.8% ±6.3%，234 场（140W / 94L）",
+            "modelId": "hy4"
+          },
+          {
+            "rank": 12,
+            "name": "Kimi K3.1 Pro",
+            "provider": "Moonshot",
+            "score": 1306,
+            "extra": "胜率 59.6% ±1.4%，4,865 场（2898W / 1967L）",
+            "modelId": "kimi-k3.1-pro"
+          },
+          {
+            "rank": 13,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1299,
+            "extra": "胜率 57.4% ±1.7%，3,188 场（1829W / 1359L）",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 14,
+            "name": "DeepSeek-V4.1-Flash (1017)",
+            "provider": "DeepSeek",
+            "score": 1298,
+            "extra": "胜率 47.8% ±4.9%，404 场（193W / 211L）",
+            "modelId": "deepseek-v4.1-flash-1017"
+          },
+          {
+            "rank": 15,
+            "name": "GPT-6.2 Sol",
+            "provider": "OpenAI",
+            "score": 1291,
+            "extra": "胜率 56.3% ±6.4%，229 场（129W / 100L）",
+            "modelId": "gpt-6.2-sol"
+          }
+        ],
+        "module": "设计与交付专项",
+        "role": "跨任务综合榜"
+      },
+      {
+        "id": "da-overall",
+        "category": "frontend",
+        "title": "单轮 HTML 综合",
+        "label": "DesignArena · Overall HTML",
+        "source": {
+          "name": "DesignArena",
+          "url": "https://www.designarena.ai/leaderboard?board=code&section=overall"
+        },
+        "officialDate": "2026-11-23 23:25 JST",
+        "coverage": "收录官方榜单 15 条",
+        "method": "单轮 HTML 任务综合榜，覆盖网站、游戏和其他代码生成的视觉设计。 公开榜按用户偏好用 Bradley–Terry 模型计算 Elo。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-6.2 Sol",
+            "provider": "OpenAI",
+            "score": 1466,
+            "extra": "胜率 66.9% ±2.5%，1,383 场（925W / 458L）",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Fable 5.2",
+            "provider": "Anthropic",
+            "score": 1457,
+            "extra": "胜率 65.9% ±1.9%，2,490 场（1641W / 849L）",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 3,
+            "name": "Gemini 4 Neon",
+            "provider": "Google",
+            "score": 1450,
+            "extra": "胜率 65.5% ±2.2%，1,802 场（1180W / 622L）",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 4,
+            "name": "GPT-6 Astra (xhigh)",
+            "provider": "OpenAI",
+            "score": 1449,
+            "extra": "胜率 64.0% ±0.8%，13,484 场（8633W / 4851L）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-6.2 Astra",
+            "provider": "OpenAI",
+            "score": 1449,
+            "extra": "胜率 64.4% ±2.2%，1,884 场（1214W / 670L）",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 6,
+            "name": "Muse Wonder (max)",
+            "provider": "Meta",
+            "score": 1444,
+            "extra": "胜率 62.4% ±0.9%，10,273 场（6405W / 3868L）",
+            "modelId": "muse-wonder"
+          },
+          {
+            "rank": 7,
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "score": 1442,
+            "extra": "胜率 61.5% ±0.9%，10,324 场（6347W / 3977L）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 8,
+            "name": "Inkling 2 Small",
+            "provider": "Thinking Machines",
+            "score": 1437,
+            "extra": "胜率 62.8% ±1.3%，5,383 场（3381W / 2002L）",
+            "modelId": "inkling-2-small"
+          },
+          {
+            "rank": 9,
+            "name": "Gemini 4 Carbon",
+            "provider": "Google",
+            "score": 1434,
+            "extra": "胜率 63.9% ±1.8%，2,834 场（1810W / 1024L）",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 10,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1416,
+            "extra": "胜率 57.9% ±1.1%，7,740 场（4483W / 3257L）",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 11,
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "score": 1413,
+            "extra": "胜率 56.5% ±1.0%，10,435 场（5891W / 4544L）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 12,
+            "name": "Kimi K3",
+            "provider": "Moonshot",
+            "score": 1405,
+            "extra": "胜率 60.3% ±0.9%，11,474 场（6922W / 4552L）",
+            "modelId": "kimi-k3"
+          },
+          {
+            "rank": 13,
+            "name": "Muse Spark 1.3 Max",
+            "provider": "Meta",
+            "score": 1404,
+            "extra": "胜率 57.8% ±0.5%，35,336 场（20426W / 14910L）",
+            "modelId": "muse-spark-1.3"
+          },
+          {
+            "rank": 14,
+            "name": "Kimi K3.1 Pro",
+            "provider": "Moonshot",
+            "score": 1400,
+            "extra": "胜率 59.4% ±1.1%，7,058 场（4192W / 2866L）",
+            "modelId": "kimi-k3.1-pro"
+          },
+          {
+            "rank": 15,
+            "name": "Muse Ember",
+            "provider": "Meta",
+            "score": 1399,
+            "extra": "胜率 60.6% ±1.5%，4,151 场（2517W / 1634L）",
+            "modelId": "muse-ember"
+          }
+        ],
+        "module": "设计与交付专项",
+        "role": "单轮任务综合榜"
+      },
+      {
+        "id": "da-front",
+        "category": "frontend",
+        "title": "代理式网站设计",
+        "label": "DesignArena · Frontend Web App",
+        "source": {
+          "name": "DesignArena",
+          "url": "https://www.designarena.ai/leaderboard?board=webapps&section=website"
+        },
+        "officialDate": "2026-11-23 23:25 JST",
+        "coverage": "收录官方榜单 15 条",
+        "method": "单独评测编码代理制作网站前端的表现。 公开榜按用户偏好用 Bradley–Terry 模型计算 Elo。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "score": 1310,
+            "extra": "胜率 61.5% ±2.5%，1,411 场（867W / 544L）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 2,
+            "name": "Gemini 4 Argon",
+            "provider": "Google",
+            "score": 1294,
+            "extra": "胜率 52.0% ±3.1%，1,019 场（530W / 489L）",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 3,
+            "name": "GPT-6 Astra (xhigh)",
+            "provider": "OpenAI",
+            "score": 1290,
+            "extra": "胜率 58.8% ±2.2%，1,998 场（1174W / 824L）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 4,
+            "name": "Claude Fable 5.1",
+            "provider": "Anthropic",
+            "score": 1285,
+            "extra": "胜率 56.9% ±2.3%，1,749 场（995W / 754L）",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 5,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1282,
+            "extra": "胜率 56.9% ±2.5%，1,468 场（835W / 633L）",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 6,
+            "name": "Kimi K3",
+            "provider": "Moonshot",
+            "score": 1260,
+            "extra": "胜率 57.0% ±1.7%，3,417 场（1948W / 1469L）",
+            "modelId": "kimi-k3"
+          },
+          {
+            "rank": 7,
+            "name": "Muse Spark 1.3 (xhigh)",
+            "provider": "Meta",
+            "score": 1259,
+            "extra": "胜率 55.8% ±1.2%，6,869 场（3831W / 3038L）",
+            "modelId": "muse-spark-1.3"
+          },
+          {
+            "rank": 8,
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "score": 1254,
+            "extra": "胜率 52.9% ±2.6%，1,441 场（762W / 679L）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 9,
+            "name": "Claude Opus 5",
+            "provider": "Anthropic",
+            "score": 1235,
+            "extra": "胜率 53.1% ±1.9%，2,531 场（1344W / 1187L）",
+            "modelId": "claude-opus-5"
+          },
+          {
+            "rank": 10,
+            "name": "Claude Fable 5",
+            "provider": "Anthropic",
+            "score": 1233,
+            "extra": "胜率 57.0% ±1.6%，3,758 场（2142W / 1616L）",
+            "modelId": "claude-fable-5"
+          },
+          {
+            "rank": 11,
+            "name": "Grok 4.6",
+            "provider": "xAI",
+            "score": 1214,
+            "extra": "胜率 54.2% ±1.1%，7,823 场（4238W / 3585L）",
+            "modelId": "grok-4.6"
+          },
+          {
+            "rank": 12,
+            "name": "GPT-5.6 Sol (xhigh)",
+            "provider": "OpenAI",
+            "score": 1212,
+            "extra": "胜率 50.7% ±1.6%，3,537 场（1792W / 1745L）",
+            "modelId": "gpt-5.6-sol"
+          },
+          {
+            "rank": 13,
+            "name": "Muse Spark 1.2",
+            "provider": "Meta",
+            "score": 1207,
+            "extra": "胜率 51.6% ±1.6%，3,762 场（1942W / 1820L）",
+            "modelId": "muse-spark-1.2"
+          },
+          {
+            "rank": 14,
+            "name": "Claude Sonnet 5",
+            "provider": "Anthropic",
+            "score": 1201,
+            "extra": "胜率 50.6% ±1.2%，6,454 场（3266W / 3188L）",
+            "modelId": "claude-sonnet-5"
+          },
+          {
+            "rank": 15,
+            "name": "Claude Opus 4.8",
+            "provider": "Anthropic",
+            "score": 1197,
+            "extra": "胜率 50.2% ±1.4%，5,138 场（2580W / 2558L）",
+            "modelId": "claude-opus-4.8"
+          }
+        ],
+        "module": "设计与交付专项",
+        "role": "独立评测"
+      },
+      {
+        "id": "contra-fdb",
+        "category": "frontend",
+        "title": "真实网站设计",
+        "label": "Contra Labs · Frontier Design Benchmark",
+        "source": {
+          "name": "Contra Labs × BenchFlow",
+          "url": "https://contralabs.com/frontierdesign/leaderboard"
+        },
+        "officialDate": "2026-11",
+        "coverage": "收录全部 16 个模型，另有 1 个人类基准",
+        "method": "35 名专业设计师针对真实委托网站，盲选两份交付结果。记录专家偏好 Elo。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Gestalt (stealth)",
+            "provider": "未披露",
+            "score": 1931,
+            "extra": "胜率 90%，95% 胜率区间 86–92%",
+            "modelId": "gestalt-stealth"
+          },
+          {
+            "rank": 3,
+            "name": "Claude Fable 5.2",
+            "provider": "Anthropic",
+            "score": 1713,
+            "extra": "胜率 73%，95% 胜率区间 69–76%",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 4,
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "score": 1691,
+            "extra": "胜率 73%，95% 胜率区间 69–76%",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "score": 1668,
+            "extra": "胜率 70%，95% 胜率区间 66–74%",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1667,
+            "extra": "胜率 69%，95% 胜率区间 65–73%",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 7,
+            "name": "Kimi K3.1 Pro",
+            "provider": "Moonshot",
+            "score": 1663,
+            "extra": "胜率 71%，95% 胜率区间 66–74%",
+            "modelId": "kimi-k3.1-pro"
+          },
+          {
+            "rank": 8,
+            "name": "GPT-6 Astra",
+            "provider": "OpenAI",
+            "score": 1638,
+            "extra": "胜率 66%，95% 胜率区间 61–70%",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 9,
+            "name": "Qwen3.8 Max",
+            "provider": "Alibaba",
+            "score": 1434,
+            "extra": "胜率 39%，95% 胜率区间 35–44%",
+            "modelId": "qwen3.8-max"
+          },
+          {
+            "rank": 10,
+            "name": "Kimi K3",
+            "provider": "Moonshot",
+            "score": 1415,
+            "extra": "胜率 40%，95% 胜率区间 35–44%",
+            "modelId": "kimi-k3"
+          },
+          {
+            "rank": 11,
+            "name": "GLM-5.3 Prime",
+            "provider": "Z.ai",
+            "score": 1403,
+            "extra": "胜率 41%，95% 胜率区间 37–45%",
+            "modelId": "glm-5.3-prime"
+          },
+          {
+            "rank": 12,
+            "name": "Gemini 4 Carbon",
+            "provider": "Google",
+            "score": 1366,
+            "extra": "胜率 36%，95% 胜率区间 32–40%",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 13,
+            "name": "Muse Spark 1.3",
+            "provider": "Meta",
+            "score": 1335,
+            "extra": "胜率 31%，95% 胜率区间 27–35%",
+            "modelId": "muse-spark-1.3"
+          },
+          {
+            "rank": 14,
+            "name": "Muse Wonder",
+            "provider": "Meta",
+            "score": 1249,
+            "extra": "胜率 22%，95% 胜率区间 18–25%",
+            "modelId": "muse-wonder"
+          },
+          {
+            "rank": 15,
+            "name": "Grok 4.7",
+            "provider": "xAI",
+            "score": 1247,
+            "extra": "胜率 23%，95% 胜率区间 19–26%",
+            "modelId": "grok-4.7"
+          },
+          {
+            "rank": 16,
+            "name": "Gemini 4 Argon",
+            "provider": "Google",
+            "score": 1221,
+            "extra": "胜率 20%，95% 胜率区间 17–24%",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 17,
+            "name": "DeepSeek V4 Pro",
+            "provider": "DeepSeek",
+            "score": 1121,
+            "extra": "胜率 12%，95% 胜率区间 9–15%",
+            "modelId": "deepseek-v4-pro"
+          }
+        ],
+        "notes": [
+          "人类设计师基准为官方第 2 名，Elo 1,739。模型名次沿用官方原位。",
+          "榜首按官方名称记为 Gestalt (stealth)，其提供商未公开。"
+        ],
+        "module": "设计与交付专项",
+        "role": "独立评测"
+      },
+      {
+        "id": "asage-designbench",
+        "category": "design",
+        "title": "品牌与平面设计",
+        "label": "Asage-DesignBench · 专业设计",
+        "source": {
+          "name": "Asage",
+          "url": "https://www.asage.ai/research/designbench/"
+        },
+        "officialDate": "2026-10",
+        "coverage": "官方总体榜全部 5 条",
+        "method": "10 名品牌与平面设计师双盲比较 50 份真实设计简报，覆盖品牌标识、字体、海报广告、包装与信息图。采用官方总体 Elo 和 95% 区间。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT Image 2",
+            "provider": "OpenAI",
+            "score": 1163,
+            "rankRange": "1–1",
+            "ci": "1133–1190",
+            "extra": "胜率 72%，590 次评审",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 2,
+            "name": "Nano Banana 2 Pro",
+            "provider": "Google",
+            "score": 1041,
+            "rankRange": "2–2",
+            "ci": "1016–1065",
+            "extra": "胜率 56%，596 次评审",
+            "modelId": "nano-banana-2-pro"
+          },
+          {
+            "rank": 3,
+            "name": "Grok Imagine",
+            "provider": "xAI",
+            "score": 980,
+            "rankRange": "3–4",
+            "ci": "956–1005",
+            "extra": "胜率 47%，596 次评审",
+            "modelId": "grok-imagine"
+          },
+          {
+            "rank": 4,
+            "name": "MAI-2.5",
+            "provider": "Microsoft",
+            "score": 963,
+            "rankRange": "3–4",
+            "ci": "937–987",
+            "extra": "胜率 45%，585 次评审",
+            "modelId": "mai-image-2.5"
+          },
+          {
+            "rank": 5,
+            "name": "Krea 2 Large",
+            "provider": "Krea",
+            "score": 854,
+            "rankRange": "5–5",
+            "ci": "828–881",
+            "extra": "胜率 30%，593 次评审",
+            "modelId": "krea-2-large"
+          }
+        ]
+      },
+      {
+        "id": "openart-graphic-design-image",
+        "category": "design",
+        "title": "平面设计偏好",
+        "label": "OpenArt Arena · 平面设计偏好",
+        "source": {
+          "name": "OpenArt Arena",
+          "url": "https://openart.ai/arena/leaderboard#board-graphic-design-image"
+        },
+        "coverage": "官方榜单全部 7 条",
+        "method": "创作者与行业专家按该使用场景作两两偏好评审，采用 OpenArt Arena 公布的分数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT Image 2",
+            "provider": "OpenAI",
+            "score": 1051,
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 2,
+            "name": "Grok Imagine 2.0",
+            "provider": "xAI",
+            "score": 1000,
+            "modelId": "grok-imagine-2.0"
+          },
+          {
+            "rank": 3,
+            "name": "Seedream 5.0 Pro",
+            "provider": "ByteDance",
+            "score": 975,
+            "modelId": "seedream-5.0-pro"
+          },
+          {
+            "rank": 4,
+            "name": "Nano Banana Pro",
+            "provider": "Google",
+            "score": 952,
+            "modelId": "nano-banana-pro"
+          },
+          {
+            "rank": 5,
+            "name": "Nano Banana 2",
+            "provider": "Google",
+            "score": 952,
+            "modelId": "nano-banana-2"
+          },
+          {
+            "rank": 6,
+            "name": "Qwen Image 3.0",
+            "provider": "Alibaba",
+            "score": 936,
+            "modelId": "qwen-image-3.0"
+          },
+          {
+            "rank": 7,
+            "name": "Flux.2 Pro",
+            "provider": "Black Forest Labs",
+            "score": 901,
+            "modelId": "flux.2-pro"
+          }
+        ],
+        "sourceVersion": "v1.0"
+      },
+      {
+        "id": "da-svg",
+        "category": "design",
+        "title": "SVG 图形",
+        "label": "DesignArena · SVG",
+        "source": {
+          "name": "DesignArena",
+          "url": "https://www.designarena.ai/leaderboard/svgs"
+        },
+        "officialDate": "2026-11-23 23:23 JST",
+        "coverage": "收录官方榜单 15 条",
+        "method": "比较模型按提示生成的 SVG 图形。 公开榜按用户偏好用 Bradley–Terry 模型计算 Elo。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Arrow 2 Telos",
+            "provider": "QuiverAI",
+            "score": 1540,
+            "extra": "胜率 76.6% ±2.5%，1,101 场（843W / 258L）",
+            "modelId": "arrow-2-telos"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-6 Astra (xhigh)",
+            "provider": "OpenAI",
+            "score": 1468,
+            "extra": "胜率 68.8% ±2.1%，1,833 场（1261W / 572L）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 3,
+            "name": "Gemini 4 Carbon",
+            "provider": "Google",
+            "score": 1459,
+            "extra": "胜率 69.9% ±3.8%，568 场（397W / 171L）",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 4,
+            "name": "Arrow 2",
+            "provider": "QuiverAI",
+            "score": 1417,
+            "extra": "胜率 66.2% ±1.6%，3,229 场（2139W / 1090L）",
+            "modelId": "arrow-2"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "score": 1392,
+            "extra": "胜率 60.3% ±3.8%，630 场（380W / 250L）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 6,
+            "name": "Gemini 4 Argon",
+            "provider": "Google",
+            "score": 1387,
+            "extra": "胜率 61.9% ±3.5%，721 场（446W / 275L）",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 7,
+            "name": "Kimi K3.1 Pro",
+            "provider": "Moonshot",
+            "score": 1373,
+            "extra": "胜率 61.5% ±3.2%，899 场（553W / 346L）",
+            "modelId": "kimi-k3.1-pro"
+          },
+          {
+            "rank": 8,
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "score": 1371,
+            "extra": "胜率 54.2% ±2.6%，1,407 场（763W / 644L）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 9,
+            "name": "Muse Spark 1.3 Max",
+            "provider": "Meta",
+            "score": 1361,
+            "extra": "胜率 55.0% ±2.6%，1,450 场（798W / 652L）",
+            "modelId": "muse-spark-1.3"
+          },
+          {
+            "rank": 10,
+            "name": "GPT-6.1 Terra",
+            "provider": "OpenAI",
+            "score": 1355,
+            "extra": "胜率 59.1% ±3.7%，694 场（410W / 284L）",
+            "modelId": "gpt-6.1-terra"
+          },
+          {
+            "rank": 11,
+            "name": "Claude Opus 5",
+            "provider": "Anthropic",
+            "score": 1354,
+            "extra": "胜率 58.2% ±2.2%，1,995 场（1161W / 834L）",
+            "modelId": "claude-opus-5"
+          },
+          {
+            "rank": 12,
+            "name": "GPT-5.6 Sol (xhigh)",
+            "provider": "OpenAI",
+            "score": 1353,
+            "extra": "胜率 57.4% ±2.6%，1,426 场（819W / 607L）",
+            "modelId": "gpt-5.6-sol"
+          },
+          {
+            "rank": 13,
+            "name": "GPT-6 Sol",
+            "provider": "OpenAI",
+            "score": 1352,
+            "extra": "胜率 57.1% ±3.0%，1,015 场（580W / 435L）",
+            "modelId": "gpt-6-sol"
+          },
+          {
+            "rank": 14,
+            "name": "Kimi K3",
+            "provider": "Moonshot",
+            "score": 1348,
+            "extra": "胜率 59.7% ±2.7%，1,275 场（761W / 514L）",
+            "modelId": "kimi-k3"
+          },
+          {
+            "rank": 15,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1345,
+            "extra": "胜率 55.3% ±3.8%，666 场（368W / 298L）",
+            "modelId": "claude-sonnet-5.5"
+          }
+        ]
+      },
+      {
+        "id": "da-slides",
+        "category": "design",
+        "title": "演示文稿",
+        "label": "DesignArena · Proprietary Harness Slides",
+        "source": {
+          "name": "DesignArena",
+          "url": "https://www.designarena.ai/leaderboard/slides"
+        },
+        "officialDate": "2026-11-23 23:22 JST",
+        "coverage": "收录官方榜单 13 条",
+        "method": "比较完整产品或代理生成的演示文稿，包括各自的工具和运行环境。 公开榜按用户偏好用 Bradley–Terry 模型计算 Elo。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Playyy",
+            "provider": "Playyy",
+            "score": 1300,
+            "extra": "胜率 63.8% ±3.2%，845 场（539W / 306L）",
+            "modelId": "playyy"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Opus 5.5 (Claude Code)",
+            "provider": "Claude Code",
+            "score": 1293,
+            "extra": "胜率 59.9% ±2.2%，1,884 场（1128W / 756L）",
+            "modelId": "claude-opus-5.5-claude-code"
+          },
+          {
+            "rank": 3,
+            "name": "Gamma 5",
+            "provider": "Gamma",
+            "score": 1257,
+            "extra": "胜率 53.4% ±2.2%，2,027 场（1082W / 945L）",
+            "modelId": "gamma-5"
+          },
+          {
+            "rank": 4,
+            "name": "Moda",
+            "provider": "Moda",
+            "score": 1251,
+            "extra": "胜率 56.9% ±1.3%，5,474 场（3116W / 2358L）",
+            "modelId": "moda"
+          },
+          {
+            "rank": 5,
+            "name": "Replit",
+            "provider": "Replit",
+            "score": 1239,
+            "extra": "胜率 51.0% ±2.3%，1,803 场（920W / 883L）",
+            "modelId": "replit"
+          },
+          {
+            "rank": 6,
+            "name": "Manus 1.6",
+            "provider": "Manus",
+            "score": 1219,
+            "extra": "胜率 50.7% ±1.5%，4,555 场（2311W / 2244L）",
+            "modelId": "manus-1.6"
+          },
+          {
+            "rank": 7,
+            "name": "Claude Opus 4.6 (PPTX)",
+            "provider": "Claude (PPTX)",
+            "score": 1195,
+            "extra": "胜率 45.2% ±2.6%，1,441 场（651W / 790L）",
+            "modelId": "claude-opus-4.6-pptx"
+          },
+          {
+            "rank": 8,
+            "name": "Claude Sonnet 4.6 (PPTX)",
+            "provider": "Claude (PPTX)",
+            "score": 1180,
+            "extra": "胜率 43.9% ±1.4%，4,750 场（2083W / 2667L）",
+            "modelId": "claude-sonnet-4.6-pptx"
+          },
+          {
+            "rank": 9,
+            "name": "Gamma",
+            "provider": "Gamma",
+            "score": 1157,
+            "extra": "胜率 50.9% ±1.3%，5,402 场（2749W / 2653L）",
+            "modelId": "gamma"
+          },
+          {
+            "rank": 10,
+            "name": "Ultramarine",
+            "provider": "Paper Instruments",
+            "score": 1151,
+            "extra": "胜率 36.4% ±3.2%，855 场（311W / 544L）",
+            "modelId": "ultramarine"
+          },
+          {
+            "rank": 11,
+            "name": "Snapdeck",
+            "provider": "Snapdeck",
+            "score": 1078,
+            "extra": "胜率 42.2% ±2.4%，1,575 场（665W / 910L）",
+            "modelId": "snapdeck"
+          },
+          {
+            "rank": 12,
+            "name": "Alai",
+            "provider": "Alai",
+            "score": 1009,
+            "extra": "胜率 29.7% ±3.7%，573 场（170W / 403L）",
+            "modelId": "alai"
+          },
+          {
+            "rank": 13,
+            "name": "SlidesGPT",
+            "provider": "SlidesGPT",
+            "score": 1001,
+            "extra": "胜率 30.4% ±3.2%，782 场（238W / 544L）",
+            "modelId": "slidesgpt"
+          }
+        ]
+      },
+      {
+        "id": "aa-3d",
+        "category": "3d",
+        "title": "3D 场景",
+        "label": "Artificial Analysis AA-3D",
+        "source": {
+          "name": "Artificial Analysis",
+          "url": "https://artificialanalysis.ai/evaluations/aa-3d/"
+        },
+        "coverage": "收录官方榜单 15 条（完整榜 30 条）",
+        "method": "模型在离线沙箱中把文字提纲做成 three.js 交互场景，由招募评审双盲投票得 Elo。官方同时给出名次区间与 95% 置信区间；区间重叠时顺序并未完全确定。GPT-6 Luna (Max) 在全榜中固定为 1000 分锚点，本表未列到该行。",
+        "notes": [
+          "第 2–4 名的官方名次区间均为 2–4，第 5–8 名为 5–8，小分差不应读成稳固排位。"
+        ],
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-6.2 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1318,
+            "rankRange": "1",
+            "ci": "±31（1286–1349）",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Fable 5.2 (Max, Default Fallback)",
+            "provider": "Anthropic",
+            "score": 1271,
+            "rankRange": "2–4",
+            "ci": "±25（1246–1297）",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 3,
+            "name": "GPT-6.2 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1259,
+            "rankRange": "2–4",
+            "ci": "±28（1231–1288）",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 4,
+            "name": "Gemini 4 Neon (Xhigh)",
+            "provider": "Google",
+            "score": 1246,
+            "rankRange": "2–4",
+            "ci": "±31（1215–1278）",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 5,
+            "name": "Claude Sonnet 5.5 (Max, Default Fallback)",
+            "provider": "Anthropic",
+            "score": 1204,
+            "rankRange": "5–8",
+            "ci": "±28（1176–1232）",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Opus 5.5 (Max, Default Fallback)",
+            "provider": "Anthropic",
+            "score": 1202,
+            "rankRange": "5–8",
+            "ci": "±28（1174–1231）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 7,
+            "name": "Gemini 4 Carbon (High)",
+            "provider": "Google",
+            "score": 1200,
+            "rankRange": "5–8",
+            "ci": "±23（1177–1223）",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 8,
+            "name": "Gemini 4 Hydrogen (Xhigh)",
+            "provider": "Google",
+            "score": 1196,
+            "rankRange": "5–9",
+            "ci": "±29（1167–1225）",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 9,
+            "name": "GPT-6 Astra (Max)",
+            "provider": "OpenAI",
+            "score": 1168,
+            "rankRange": "8–10",
+            "ci": "±28（1141–1196）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 10,
+            "name": "Gemini 4 Argon (High)",
+            "provider": "Google",
+            "score": 1147,
+            "rankRange": "9–13",
+            "ci": "±30（1117–1176）",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 11,
+            "name": "Claude Fable 5.1 (Max, Default Fallback)",
+            "provider": "Anthropic",
+            "score": 1139,
+            "rankRange": "10–14",
+            "ci": "±28（1111–1167）",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 12,
+            "name": "GPT-6 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1131,
+            "rankRange": "10–14",
+            "ci": "±27（1104–1159）",
+            "modelId": "gpt-6-sol"
+          },
+          {
+            "rank": 13,
+            "name": "GPT-6.1 Sol (Max)",
+            "provider": "OpenAI",
+            "score": 1121,
+            "rankRange": "10–14",
+            "ci": "±28（1093–1149）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 14,
+            "name": "Kimi K3.1 Pro",
+            "provider": "Moonshot",
+            "score": 1112,
+            "rankRange": "11–14",
+            "ci": "±29（1083–1141）",
+            "modelId": "kimi-k3.1-pro"
+          },
+          {
+            "rank": 15,
+            "name": "Muse Spark 1.3 (Max)",
+            "provider": "Meta",
+            "score": 1032,
+            "rankRange": "15–16",
+            "ci": "±27（1005–1058）",
+            "modelId": "muse-spark-1.3"
+          }
+        ]
+      },
+      {
+        "id": "spline-3d",
+        "category": "3d",
+        "title": "Spline 交互场景",
+        "label": "Spline Arena · 3D",
+        "source": {
+          "name": "Spline Arena",
+          "url": "https://spline.design/arena"
+        },
+        "officialDate": "2026-11-23",
+        "coverage": "官方表格全部 17 条",
+        "method": "模型根据描述制作交互式 3D 场景，用户盲选对比结果。保留官方 Rating 与 ± 区间，同时记录表现、成本和耗时。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Gemini 4 Neon",
+            "provider": "Google",
+            "score": 1630,
+            "extra": "胜/和/负 59% / 17% / 24% · $1.91 · 13m 21s",
+            "ci": "±10（1620–1640）",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Fable 5.2",
+            "provider": "Anthropic",
+            "score": 1625,
+            "extra": "胜/和/负 60% / 16% / 24% · $5.63 · 14m 43s",
+            "ci": "±7（1618–1632）",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 3,
+            "name": "Gemini 4 Argon",
+            "provider": "Google",
+            "score": 1587,
+            "extra": "胜/和/负 58% / 14% / 28% · $2.01 · 16m 9s",
+            "ci": "±5（1582–1592）",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 4,
+            "name": "Gemini 4 Carbon",
+            "provider": "Google",
+            "score": 1587,
+            "extra": "胜/和/负 54% / 17% / 29% · $1.60 · 23m 37s",
+            "ci": "±7（1580–1594）",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-6.2 Astra",
+            "provider": "OpenAI",
+            "score": 1579,
+            "extra": "胜/和/负 52% / 18% / 31% · $1.52 · 3m 27s",
+            "ci": "±8（1571–1587）",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 6,
+            "name": "GPT-6.2 Sol",
+            "provider": "OpenAI",
+            "score": 1577,
+            "extra": "胜/和/负 51% / 18% / 31% · $0.51 · 4m 32s",
+            "ci": "±9（1568–1586）",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 7,
+            "name": "Gemini 4 Hydrogen",
+            "provider": "Google",
+            "score": 1571,
+            "extra": "胜/和/负 52% / 18% / 30% · $0.98 · 7m 2s",
+            "ci": "±7（1564–1578）",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 8,
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "score": 1568,
+            "extra": "胜/和/负 55% / 15% / 30% · $2.27 · 9m 31s",
+            "ci": "±4（1564–1572）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 9,
+            "name": "GPT-6 Astra",
+            "provider": "OpenAI",
+            "score": 1493,
+            "extra": "胜/和/负 43% / 16% / 40% · $3.77 · 5m 29s",
+            "ci": "±4（1489–1497）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 10,
+            "name": "Claude Fable 5.1",
+            "provider": "Anthropic",
+            "score": 1468,
+            "extra": "胜/和/负 39% / 17% / 44% · $4.07 · 10m 32s",
+            "ci": "±5（1463–1473）",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 11,
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "score": 1467,
+            "extra": "胜/和/负 39% / 16% / 45% · $0.49 · 4m 26s",
+            "ci": "±4（1463–1471）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 12,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1450,
+            "extra": "胜/和/负 36% / 17% / 47% · $1.28 · 7m 12s",
+            "ci": "±4（1446–1454）",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 13,
+            "name": "Kimi K3.1 Pro",
+            "provider": "Moonshot",
+            "score": 1420,
+            "extra": "胜/和/负 30% / 19% / 51% · $1.57 · 6m 11s",
+            "ci": "±6（1414–1426）",
+            "modelId": "kimi-k3.1-pro"
+          },
+          {
+            "rank": 14,
+            "name": "Gemini 3.8 Flash",
+            "provider": "Google",
+            "score": 1412,
+            "extra": "胜/和/负 31% / 16% / 53% · $0.54 · 7m 51s",
+            "ci": "±4（1408–1416）",
+            "modelId": "gemini-3.8-flash"
+          },
+          {
+            "rank": 15,
+            "name": "Grok 4.7",
+            "provider": "xAI",
+            "score": 1396,
+            "extra": "胜/和/负 28% / 17% / 55% · $1.62 · 14m 52s",
+            "ci": "±4（1392–1400）",
+            "modelId": "grok-4.7"
+          },
+          {
+            "rank": 16,
+            "name": "GLM 5.3",
+            "provider": "Z.ai",
+            "score": 1348,
+            "extra": "胜/和/负 21% / 18% / 61% · $0.67 · 13m 39s",
+            "ci": "±9（1339–1357）",
+            "modelId": "glm-5.3"
+          },
+          {
+            "rank": 17,
+            "name": "DeepSeek V4 Pro",
+            "provider": "DeepSeek",
+            "score": 1308,
+            "extra": "胜/和/负 17% / 18% / 65% · $0.31 · 10m 48s",
+            "ci": "±9（1299–1317）",
+            "modelId": "deepseek-v4-pro"
+          }
+        ]
+      },
+      {
+        "id": "da-3d",
+        "category": "3d",
+        "title": "单轮 3D 设计",
+        "label": "DesignArena · 3D Design HTML",
+        "source": {
+          "name": "DesignArena",
+          "url": "https://www.designarena.ai/leaderboard/3d-design"
+        },
+        "officialDate": "2026-11-24 01:04 JST",
+        "coverage": "收录官方榜单 15 条",
+        "method": "按单轮 HTML 口径比较模型生成的交互式 3D 作品。 公开榜按用户偏好用 Bradley–Terry 模型计算 Elo。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-6 Astra (max)",
+            "provider": "OpenAI",
+            "score": 1519,
+            "extra": "胜率 75.9% ±3.7%，526 场（399W / 127L）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 2,
+            "name": "Claude Fable 5.2",
+            "provider": "Anthropic",
+            "score": 1511,
+            "extra": "胜率 75.4% ±4.2%，411 场（310W / 101L）",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 3,
+            "name": "Gemini 4 Neon",
+            "provider": "Google",
+            "score": 1492,
+            "extra": "胜率 76.3% ±3.4%，602 场（459W / 143L）",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 4,
+            "name": "GPT-6.2 Sol",
+            "provider": "OpenAI",
+            "score": 1481,
+            "extra": "胜率 73.5% ±5.2%，272 场（200W / 72L）",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 5,
+            "name": "Gemini 4 Carbon",
+            "provider": "Google",
+            "score": 1465,
+            "extra": "胜率 73.7% ±3.0%，848 场（625W / 223L）",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "score": 1448,
+            "extra": "胜率 65.2% ±1.7%，3,009 场（1963W / 1046L）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 7,
+            "name": "Inkling 2 Small",
+            "provider": "Thinking Machines",
+            "score": 1443,
+            "extra": "胜率 70.5% ±3.6%，627 场（442W / 185L）",
+            "modelId": "inkling-2-small"
+          },
+          {
+            "rank": 8,
+            "name": "GPT-6.2 Astra",
+            "provider": "OpenAI",
+            "score": 1424,
+            "extra": "胜率 68.1% ±4.9%，345 场（235W / 110L）",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 9,
+            "name": "Kimi K3.1 Pro",
+            "provider": "Moonshot",
+            "score": 1419,
+            "extra": "胜率 68.0% ±3.9%，547 场（372W / 175L）",
+            "modelId": "kimi-k3.1-pro"
+          },
+          {
+            "rank": 10,
+            "name": "Muse Wonder (max)",
+            "provider": "Meta",
+            "score": 1418,
+            "extra": "胜率 60.7% ±1.9%，2,626 场（1595W / 1031L）",
+            "modelId": "muse-wonder"
+          },
+          {
+            "rank": 11,
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "score": 1413,
+            "extra": "胜率 59.2% ±1.9%，2,544 场（1507W / 1037L）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 12,
+            "name": "Gemini 4 Hydrogen",
+            "provider": "Google",
+            "score": 1398,
+            "extra": "胜率 66.0% ±3.6%，667 场（440W / 227L）",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 13,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1394,
+            "extra": "胜率 56.1% ±2.5%，1,566 场（879W / 687L）",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 14,
+            "name": "Claude Fable 5.1",
+            "provider": "Anthropic",
+            "score": 1374,
+            "extra": "胜率 63.1% ±2.3%，1,677 场（1059W / 618L）",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 15,
+            "name": "Muse Spark 1.3 Max",
+            "provider": "Meta",
+            "score": 1364,
+            "extra": "胜率 63.1% ±1.6%，3,414 场（2155W / 1259L）",
+            "modelId": "muse-spark-1.3"
+          }
+        ]
+      },
+      {
+        "id": "da-blender",
+        "category": "3d",
+        "title": "Blender 设计",
+        "label": "DesignArena · Blender",
+        "source": {
+          "name": "DesignArena",
+          "url": "https://www.designarena.ai/leaderboard?board=blender&section=3d"
+        },
+        "officialDate": "2026-11-23 23:25 JST",
+        "coverage": "收录官方榜单 15 条",
+        "method": "比较用 Blender 制作的 3D 产出。 公开榜按用户偏好用 Bradley–Terry 模型计算 Elo。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Opus 5.5 (max)",
+            "provider": "Anthropic",
+            "score": 1378,
+            "extra": "胜率 71.7% ±3.9%，512 场（367W / 145L）",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-6 Astra (max)",
+            "provider": "OpenAI",
+            "score": 1376,
+            "extra": "胜率 68.8% ±4.1%，481 场（331W / 150L）",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 3,
+            "name": "GPT-6.1 Sol (max)",
+            "provider": "OpenAI",
+            "score": 1348,
+            "extra": "胜率 64.5% ±3.6%，681 场（439W / 242L）",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 4,
+            "name": "Gemini 4 Argon",
+            "provider": "Google",
+            "score": 1339,
+            "extra": "胜率 65.7% ±3.5%，725 场（476W / 249L）",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 5,
+            "name": "Meshy 7.1",
+            "provider": "Meshy",
+            "score": 1334,
+            "extra": "胜率 71.5% ±4.5%，379 场（271W / 108L）",
+            "modelId": "meshy-7.1"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "score": 1231,
+            "extra": "胜率 59.3% ±4.5%，450 场（267W / 183L）",
+            "modelId": "claude-sonnet-5.5"
+          },
+          {
+            "rank": 7,
+            "name": "Gemini 3.8 Flash",
+            "provider": "Google",
+            "score": 1152,
+            "extra": "胜率 47.5% ±4.7%，425 场（202W / 223L）",
+            "modelId": "gemini-3.8-flash"
+          },
+          {
+            "rank": 8,
+            "name": "Tripo H3.1",
+            "provider": "Tripo AI",
+            "score": 1122,
+            "extra": "胜率 42.8% ±4.2%，542 场（232W / 310L）",
+            "modelId": "tripo-h3.1"
+          },
+          {
+            "rank": 9,
+            "name": "Kimi K3",
+            "provider": "Moonshot",
+            "score": 1121,
+            "extra": "胜率 40.4% ±4.2%，537 场（217W / 320L）",
+            "modelId": "kimi-k3"
+          },
+          {
+            "rank": 10,
+            "name": "Muse Wonder (max)",
+            "provider": "Meta",
+            "score": 1119,
+            "extra": "胜率 36.0% ±4.7%，403 场（145W / 258L）",
+            "modelId": "muse-wonder"
+          },
+          {
+            "rank": 11,
+            "name": "Hunyuan 3D v3.1 Pro",
+            "provider": "Tencent",
+            "score": 1117,
+            "extra": "胜率 42.4% ±4.4%，479 场（203W / 276L）",
+            "modelId": "hunyuan-3d-v3.1-pro"
+          },
+          {
+            "rank": 12,
+            "name": "Grok 4.6",
+            "provider": "xAI",
+            "score": 1114,
+            "extra": "胜率 43.0% ±4.7%，433 场（186W / 247L）",
+            "modelId": "grok-4.6"
+          },
+          {
+            "rank": 13,
+            "name": "GPT-5.6 Sol (xhigh)",
+            "provider": "OpenAI",
+            "score": 1107,
+            "extra": "胜率 55.5% ±6.9%，202 场（112W / 90L）",
+            "modelId": "gpt-5.6-sol"
+          },
+          {
+            "rank": 14,
+            "name": "Muse Spark 1.3 (xhigh)",
+            "provider": "Meta",
+            "score": 1098,
+            "extra": "胜率 41.4% ±4.6%，435 场（180W / 255L）",
+            "modelId": "muse-spark-1.3"
+          },
+          {
+            "rank": 15,
+            "name": "Rodin Gen-2.5",
+            "provider": "Hyper3D",
+            "score": 1097,
+            "extra": "胜率 39.3% ±4.5%，445 场（175W / 270L）",
+            "modelId": "rodin-gen-2.5"
+          }
+        ]
+      },
+      {
+        "id": "rapidata-image-3d",
+        "category": "3d",
+        "title": "图生 3D 资产",
+        "label": "Rapidata · 图生 3D 资产",
+        "source": {
+          "name": "Rapidata",
+          "url": "https://www.benchmark.ai/image-to-3d"
+        },
+        "officialDate": "2026-11-23",
+        "coverage": "官方默认展开 12 条（全部 14 条）",
+        "method": "以单张图为输入，统一渲染为转台动画，由评审比较资产的几何与外观还原度。 采用人工两两比较拟合的 Elo，区间为官方 95% Wald 区间。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Hi3D v3.0",
+            "provider": "Hitem3D (Math Magic)",
+            "score": 1387,
+            "ci": "1370–1404",
+            "extra": "9,353 场，胜率 72.2%",
+            "modelId": "hi3d-v3.0"
+          },
+          {
+            "rank": 2,
+            "name": "Meshy v7.1",
+            "provider": "Meshy",
+            "score": 1311,
+            "ci": "1294–1328",
+            "extra": "9,396 场，胜率 68.1%",
+            "modelId": "meshy-v7.1"
+          },
+          {
+            "rank": 3,
+            "name": "Meshy v7",
+            "provider": "Meshy",
+            "score": 1310,
+            "ci": "1293–1327",
+            "extra": "9,404 场，胜率 68.1%",
+            "modelId": "meshy-v7"
+          },
+          {
+            "rank": 4,
+            "name": "Tripo H3.1",
+            "provider": "Tripo AI",
+            "score": 1264,
+            "ci": "1248–1280",
+            "extra": "9,367 场，胜率 65.4%",
+            "modelId": "tripo-h3.1"
+          },
+          {
+            "rank": 5,
+            "name": "Hunyuan3D 3.1 Pro",
+            "provider": "Tencent",
+            "score": 1147,
+            "ci": "1131–1163",
+            "extra": "9,407 场，胜率 58.6%",
+            "modelId": "hunyuan3d-3.1-pro"
+          },
+          {
+            "rank": 6,
+            "name": "Seed3D 2.0",
+            "provider": "ByteDance",
+            "score": 1106,
+            "ci": "1090–1122",
+            "extra": "9,385 场，胜率 56.2%",
+            "modelId": "seed3d-2.0"
+          },
+          {
+            "rank": 7,
+            "name": "TRELLIS.2",
+            "provider": "Microsoft",
+            "score": 1021,
+            "ci": "1005–1037",
+            "extra": "9,377 场，胜率 50.9%",
+            "modelId": "trellis.2"
+          },
+          {
+            "rank": 8,
+            "name": "Rodin Gen-2.5 High",
+            "provider": "Deemos (Hyper3D)",
+            "score": 965,
+            "ci": "949–981",
+            "extra": "9,399 场，胜率 47.4%",
+            "modelId": "rodin-gen-2.5-high"
+          },
+          {
+            "rank": 9,
+            "name": "Pixal3D",
+            "provider": "Tencent",
+            "score": 808,
+            "ci": "792–824",
+            "extra": "9,317 场，胜率 37.9%",
+            "modelId": "pixal3d"
+          },
+          {
+            "rank": 10,
+            "name": "Rodin Gen-2.5 Low",
+            "provider": "Deemos (Hyper3D)",
+            "score": 791,
+            "ci": "775–807",
+            "extra": "9,425 场，胜率 37.0%",
+            "modelId": "rodin-gen-2.5-low"
+          },
+          {
+            "rank": 10,
+            "name": "Idol Max",
+            "provider": "Speridlabs",
+            "score": 791,
+            "ci": "774–808",
+            "extra": "9,029 场，胜率 36.9%",
+            "modelId": "idol-max"
+          },
+          {
+            "rank": 12,
+            "name": "Hunyuan3D 2.1",
+            "provider": "Tencent",
+            "score": 765,
+            "ci": "749–781",
+            "extra": "9,381 场，胜率 35.4%",
+            "modelId": "hunyuan3d-2.1"
+          }
+        ]
+      },
+      {
+        "id": "rapidata-code-3d",
+        "category": "3d",
+        "title": "文字转 Three.js",
+        "label": "Rapidata · 文字转 Three.js",
+        "source": {
+          "name": "Rapidata",
+          "url": "https://www.benchmark.ai/text-to-3d-code"
+        },
+        "officialDate": "2026-11-23",
+        "coverage": "官方默认展开 12 条（全部 34 条）",
+        "method": "语言模型从文字提示编写 Three.js 代码生成物体，由人工比较结果。 采用人工两两比较拟合的 Elo，区间为官方 95% Wald 区间。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "gemini-4-carbon",
+            "provider": "Google",
+            "score": 1722,
+            "ci": "1706–1738",
+            "extra": "17,908 场，胜率 82.9%",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 2,
+            "name": "gemini-4-neon",
+            "provider": "Google",
+            "score": 1707,
+            "ci": "1689–1725",
+            "extra": "13,188 场，胜率 81.9%",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 3,
+            "name": "gpt-6.2-astra",
+            "provider": "OpenAI",
+            "score": 1531,
+            "ci": "1515–1547",
+            "extra": "14,000 场，胜率 75.2%",
+            "modelId": "gpt-6.2-astra"
+          },
+          {
+            "rank": 4,
+            "name": "gemini-4-argon",
+            "provider": "Google",
+            "score": 1499,
+            "ci": "1487–1511",
+            "extra": "27,277 场，胜率 76.2%",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 5,
+            "name": "gpt-6.2-sol",
+            "provider": "OpenAI",
+            "score": 1495,
+            "ci": "1479–1511",
+            "extra": "13,588 场，胜率 73.6%",
+            "modelId": "gpt-6.2-sol"
+          },
+          {
+            "rank": 6,
+            "name": "gpt-6-astra",
+            "provider": "OpenAI",
+            "score": 1448,
+            "ci": "1437–1459",
+            "extra": "32,638 场，胜率 74.9%",
+            "modelId": "gpt-6-astra"
+          },
+          {
+            "rank": 7,
+            "name": "gemini-4-hydrogen",
+            "provider": "Google",
+            "score": 1378,
+            "ci": "1364–1392",
+            "extra": "16,292 场，胜率 68.7%",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 8,
+            "name": "claude-fable-5.2",
+            "provider": "Anthropic",
+            "score": 1359,
+            "ci": "1346–1372",
+            "extra": "19,100 场，胜率 68.1%",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 9,
+            "name": "gpt-6.1-sol",
+            "provider": "OpenAI",
+            "score": 1346,
+            "ci": "1336–1356",
+            "extra": "32,155 场，胜率 70.2%",
+            "modelId": "gpt-6.1-sol"
+          },
+          {
+            "rank": 10,
+            "name": "muse-wonder-full",
+            "provider": "Meta",
+            "score": 1326,
+            "ci": "1313–1339",
+            "extra": "19,740 场，胜率 66.6%",
+            "modelId": "muse-wonder-full"
+          },
+          {
+            "rank": 11,
+            "name": "qwen4-max",
+            "provider": "Alibaba",
+            "score": 1286,
+            "ci": "1272–1300",
+            "extra": "14,428 场，胜率 64.0%",
+            "modelId": "qwen4-max"
+          },
+          {
+            "rank": 12,
+            "name": "kimi-k3.1-pro Open Weights",
+            "provider": "Moonshot",
+            "score": 1215,
+            "ci": "1203–1227",
+            "extra": "20,420 场，胜率 61.3%",
+            "modelId": "kimi-k3.1-pro-open-weights"
+          }
+        ]
+      },
+      {
+        "id": "lmarena-text",
+        "category": "text",
+        "title": "综合文本",
+        "label": "LMArena Text",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/chat/text",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/text_style_control/latest"
+        },
+        "officialDate": "2026-11-22",
+        "coverage": "官方可见前 15 名，非全榜（官方页标注 427 个模型、9,241,799 票）",
+        "method": "日常对话双盲投票，带 style control。下表得分与名次取自 arena.ai 公开页的四舍五入值；95% 置信区间与票数取自 LMArena 官方数据集（leaderboard-dataset，发布日 2026-11-22，overall 分类）。前排名次的区间有重叠。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Gemini 4 Carbon (High)",
+            "provider": "Google",
+            "score": 1527,
+            "ci": "1517–1536",
+            "extra": "4,255 票",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 2,
+            "name": "Gemini 4 Argon (High)",
+            "provider": "Google",
+            "score": 1520,
+            "ci": "1515–1525",
+            "extra": "28,856 票",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 3,
+            "name": "Gemini 4 Neon (High)",
+            "provider": "Google",
+            "score": 1512,
+            "ci": "1504–1521",
+            "extra": "5,611 票",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 4,
+            "name": "Muse Wonder (Max)",
+            "provider": "Meta",
+            "score": 1512,
+            "ci": "1506–1518",
+            "extra": "17,102 票",
+            "modelId": "muse-wonder"
+          },
+          {
+            "rank": 5,
+            "name": "Claude Opus 5.5 (High)",
+            "provider": "Anthropic",
+            "score": 1507,
+            "ci": "1501–1513",
+            "extra": "18,959 票",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Fable 5 (High)",
+            "provider": "Anthropic",
+            "score": 1504,
+            "ci": "1500–1508",
+            "extra": "45,277 票",
+            "modelId": "claude-fable-5"
+          },
+          {
+            "rank": 7,
+            "name": "Claude Opus 4.6 (High)",
+            "provider": "Anthropic",
+            "score": 1503,
+            "ci": "1500–1506",
+            "extra": "84,109 票",
+            "modelId": "claude-opus-4.6"
+          },
+          {
+            "rank": 8,
+            "name": "Claude Fable 5.2 (Max)",
+            "provider": "Anthropic",
+            "score": 1502,
+            "ci": "1494–1511",
+            "extra": "5,842 票",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 9,
+            "name": "Claude Fable 5.1 (Max)",
+            "provider": "Anthropic",
+            "score": 1502,
+            "ci": "1497–1507",
+            "extra": "22,920 票",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 10,
+            "name": "Claude Opus 4.7 (High)",
+            "provider": "Anthropic",
+            "score": 1501,
+            "ci": "1497–1505",
+            "extra": "64,030 票",
+            "modelId": "claude-opus-4.7"
+          },
+          {
+            "rank": 11,
+            "name": "Gemini 3.8 Flash (High)",
+            "provider": "Google",
+            "score": 1498,
+            "ci": "1494–1502",
+            "extra": "76,031 票",
+            "modelId": "gemini-3.8-flash"
+          },
+          {
+            "rank": 12,
+            "name": "Muse Spark 1.3 (Max)",
+            "provider": "Meta",
+            "score": 1498,
+            "ci": "1493–1503",
+            "extra": "31,093 票",
+            "modelId": "muse-spark-1.3"
+          },
+          {
+            "rank": 13,
+            "name": "Claude Opus 4.6",
+            "provider": "Anthropic",
+            "score": 1496,
+            "ci": "1493–1500",
+            "extra": "88,895 票",
+            "modelId": "claude-opus-4.6-default"
+          },
+          {
+            "rank": 14,
+            "name": "Claude Opus 4.7",
+            "provider": "Anthropic",
+            "score": 1494,
+            "ci": "1490–1498",
+            "extra": "65,114 票",
+            "modelId": "claude-opus-4.7-default"
+          },
+          {
+            "rank": 15,
+            "name": "Muse Spark 1.2 (xHigh)",
+            "provider": "Meta",
+            "score": 1493,
+            "ci": "1487–1498",
+            "extra": "18,973 票",
+            "modelId": "muse-spark-1.2"
+          }
+        ],
+        "notes": [
+          "区间与单模型票数来自 Arena 官方数据集。"
+        ]
+      },
+      {
+        "id": "arena-creative-writing",
+        "category": "text",
+        "title": "创意写作",
+        "label": "Arena · 创意写作",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/chat/text/creative-writing",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/text_style_control/latest"
+        },
+        "officialDate": "2026-11-22",
+        "coverage": "官方前 15 名（官方数据集 425 条，网页 1,508,322 票）",
+        "method": "Text Arena 的创意写作任务，人类偏好评分使用风格控制。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Claude Fable 5.2 (Max)",
+            "provider": "Anthropic",
+            "score": 1525,
+            "ci": "1507–1543",
+            "extra": "1,254 票",
+            "modelId": "claude-fable-5.2"
+          },
+          {
+            "rank": 2,
+            "name": "Gemini 4 Argon (High)",
+            "provider": "Google",
+            "score": 1521,
+            "ci": "1512–1530",
+            "extra": "6,772 票",
+            "modelId": "gemini-4-argon"
+          },
+          {
+            "rank": 3,
+            "name": "Claude Opus 5.5 (High)",
+            "provider": "Anthropic",
+            "score": 1518,
+            "ci": "1507–1528",
+            "extra": "4,561 票",
+            "modelId": "claude-opus-5.5"
+          },
+          {
+            "rank": 4,
+            "name": "Gemini 4 Carbon (High)",
+            "provider": "Google",
+            "score": 1518,
+            "ci": "1497–1538",
+            "extra": "1,006 票",
+            "modelId": "gemini-4-carbon"
+          },
+          {
+            "rank": 5,
+            "name": "Gemini 4 Neon (High)",
+            "provider": "Google",
+            "score": 1504,
+            "ci": "1485–1522",
+            "extra": "1,226 票",
+            "modelId": "gemini-4-neon"
+          },
+          {
+            "rank": 6,
+            "name": "Claude Fable 5 (High)",
+            "provider": "Anthropic",
+            "score": 1501,
+            "ci": "1494–1508",
+            "extra": "9,786 票",
+            "modelId": "claude-fable-5"
+          },
+          {
+            "rank": 7,
+            "name": "Claude Opus 4.6 (High)",
+            "provider": "Anthropic",
+            "score": 1498,
+            "ci": "1492–1504",
+            "extra": "15,560 票",
+            "modelId": "claude-opus-4.6"
+          },
+          {
+            "rank": 8,
+            "name": "Gemini 4 Hydrogen (High)",
+            "provider": "Google",
+            "score": 1492,
+            "ci": "1472–1512",
+            "extra": "1,025 票",
+            "modelId": "gemini-4-hydrogen"
+          },
+          {
+            "rank": 9,
+            "name": "Claude Fable 5.1 (Max)",
+            "provider": "Anthropic",
+            "score": 1492,
+            "ci": "1482–1501",
+            "extra": "5,251 票",
+            "modelId": "claude-fable-5.1"
+          },
+          {
+            "rank": 10,
+            "name": "Gemini 3.8 Flash (High)",
+            "provider": "Google",
+            "score": 1490,
+            "ci": "1483–1496",
+            "extra": "17,288 票",
+            "modelId": "gemini-3.8-flash"
+          },
+          {
+            "rank": 11,
+            "name": "Claude Opus 4.7 (High)",
+            "provider": "Anthropic",
+            "score": 1489,
+            "ci": "1483–1496",
+            "extra": "11,536 票",
+            "modelId": "claude-opus-4.7"
+          },
+          {
+            "rank": 12,
+            "name": "Muse Wonder (Max)",
+            "provider": "Meta",
+            "score": 1488,
+            "ci": "1477–1499",
+            "extra": "3,945 票",
+            "modelId": "muse-wonder"
+          },
+          {
+            "rank": 13,
+            "name": "Gemini 3.7 Flash (High)",
+            "provider": "Google",
+            "score": 1487,
+            "ci": "1479–1496",
+            "extra": "7,381 票",
+            "modelId": "gemini-3.7-flash"
+          },
+          {
+            "rank": 14,
+            "name": "Gemini 3 Pro",
+            "provider": "Google",
+            "score": 1484,
+            "ci": "1476–1492",
+            "extra": "6,482 票",
+            "modelId": "gemini-3-pro"
+          },
+          {
+            "rank": 15,
+            "name": "Claude Opus 4.7",
+            "provider": "Anthropic",
+            "score": 1482,
+            "ci": "1475–1489",
+            "extra": "11,777 票",
+            "modelId": "claude-opus-4.7-default"
+          }
+        ]
+      },
+      {
+        "id": "arena-t2i",
+        "category": "image",
+        "title": "文生图总榜",
+        "label": "Arena · 文生图总榜",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/image/text-to-image",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/text_to_image/latest"
+        },
+        "officialDate": "2026-11-21",
+        "coverage": "官方前 15 名（官方数据集 87 条，网页 7,045,110 票）",
+        "method": "文生图各类提示的综合人类偏好。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-Image-2.5 Sunburst",
+            "provider": "OpenAI",
+            "score": 1429,
+            "ci": "1424–1434",
+            "extra": "73,040 票",
+            "modelId": "gpt-image-2.5-sunburst"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-Image-2.6 Sunburst (Medium)",
+            "provider": "OpenAI",
+            "score": 1412,
+            "ci": "1403–1421",
+            "extra": "7,168 票",
+            "modelId": "gpt-image-2.6-sunburst"
+          },
+          {
+            "rank": 3,
+            "name": "GPT-Image-2.5 Flare",
+            "provider": "OpenAI",
+            "score": 1400,
+            "ci": "1395–1405",
+            "extra": "72,202 票",
+            "modelId": "gpt-image-2.5-flare"
+          },
+          {
+            "rank": 4,
+            "name": "MAI-Image-2.7",
+            "provider": "Microsoft",
+            "score": 1385,
+            "ci": "1374–1395",
+            "extra": "4,485 票",
+            "modelId": "mai-image-2.7"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-Image-2 (Medium)",
+            "provider": "OpenAI",
+            "score": 1382,
+            "ci": "1378–1385",
+            "extra": "112,925 票",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 6,
+            "name": "GPT-Image-2.6 Flare (Medium)",
+            "provider": "OpenAI",
+            "score": 1376,
+            "ci": "1367–1385",
+            "extra": "7,042 票",
+            "modelId": "gpt-image-2.6-flare"
+          },
+          {
+            "rank": 7,
+            "name": "MAI-Image-2.6",
+            "provider": "Microsoft",
+            "score": 1329,
+            "ci": "1324–1334",
+            "extra": "43,475 票",
+            "modelId": "mai-image-2.6"
+          },
+          {
+            "rank": 8,
+            "name": "Grok Imagine Image 2.0",
+            "provider": "xAI",
+            "score": 1318,
+            "ci": "1311–1326",
+            "extra": "9,877 票",
+            "modelId": "grok-imagine-image-2.0"
+          },
+          {
+            "rank": 9,
+            "name": "Gemini Nano Banana 2.1",
+            "provider": "Google",
+            "score": 1305,
+            "ci": "1300–1310",
+            "extra": "45,471 票",
+            "modelId": "nano-banana-2.1"
+          },
+          {
+            "rank": 10,
+            "name": "Reve 2.1",
+            "provider": "Reve",
+            "score": 1302,
+            "ci": "1294–1309",
+            "extra": "7,896 票",
+            "modelId": "reve-2.1"
+          },
+          {
+            "rank": 11,
+            "name": "Grok Imagine Image 2.0 (20260801)",
+            "provider": "xAI",
+            "score": 1288,
+            "ci": "1283–1293",
+            "extra": "41,806 票",
+            "modelId": "grok-imagine-image-2.0-20260801"
+          },
+          {
+            "rank": 12,
+            "name": "Reve 2.0",
+            "provider": "Reve",
+            "score": 1268,
+            "ci": "1262–1275",
+            "extra": "15,283 票",
+            "modelId": "reve-2.0"
+          },
+          {
+            "rank": 13,
+            "name": "Muse Image",
+            "provider": "Meta",
+            "score": 1265,
+            "ci": "1261–1270",
+            "extra": "64,207 票",
+            "modelId": "muse-image"
+          },
+          {
+            "rank": 14,
+            "name": "Gemini 3.1 Flash Image (nano-banana-2, Web Search)",
+            "provider": "Google",
+            "score": 1256,
+            "ci": "1253–1260",
+            "extra": "87,077 票",
+            "modelId": "gemini-3.1-flash-image-nano-banana-2-web-search"
+          },
+          {
+            "rank": 15,
+            "name": "Qwen-Image-3.0-Pro",
+            "provider": "Alibaba",
+            "score": 1254,
+            "ci": "1247–1261",
+            "extra": "10,900 票",
+            "modelId": "qwen-image-3.0-pro"
+          }
+        ],
+        "notes": [
+          "官网显示 2026-11-21，官方数据集记录的发布日期为 2026-11-20。"
+        ]
+      },
+      {
+        "id": "lmarena-art",
+        "category": "image",
+        "title": "艺术生图",
+        "label": "LMArena 文生图 · Art",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/image/text-to-image/art",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/text_to_image/latest"
+        },
+        "officialDate": "2026-11-21",
+        "coverage": "官方可见前 15 名，非全榜（官方页标注 87 个模型、936,517 票）",
+        "method": "文生图 Art 分类榜，不是文生图总榜，也不可与改图榜或 Artificial Analysis 生图榜加总。相同得分按官方排序保留，不合并为同一名次。",
+        "notes": [
+          "区间与单模型票数来自 Arena 官方数据集。官网显示 2026-11-21，数据集记录的发布日期为 2026-11-20。"
+        ],
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-Image-2.6 Sunburst (Medium)",
+            "provider": "OpenAI",
+            "score": 1421,
+            "ci": "1400–1443",
+            "extra": "999 票",
+            "modelId": "gpt-image-2.6-sunburst"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-Image-2.5 Sunburst",
+            "provider": "OpenAI",
+            "score": 1418,
+            "ci": "1409–1427",
+            "extra": "10,217 票",
+            "modelId": "gpt-image-2.5-sunburst"
+          },
+          {
+            "rank": 3,
+            "name": "GPT-Image-2.5 Flare",
+            "provider": "OpenAI",
+            "score": 1392,
+            "ci": "1383–1401",
+            "extra": "10,133 票",
+            "modelId": "gpt-image-2.5-flare"
+          },
+          {
+            "rank": 4,
+            "name": "MAI-Image-2.7",
+            "provider": "Microsoft",
+            "score": 1380,
+            "ci": "1358–1402",
+            "extra": "765 票",
+            "modelId": "mai-image-2.7"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-Image-2 (Medium)",
+            "provider": "OpenAI",
+            "score": 1374,
+            "ci": "1368–1381",
+            "extra": "14,811 票",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 6,
+            "name": "GPT-Image-2.6 Flare (Medium)",
+            "provider": "OpenAI",
+            "score": 1373,
+            "ci": "1353–1393",
+            "extra": "1,044 票",
+            "modelId": "gpt-image-2.6-flare"
+          },
+          {
+            "rank": 7,
+            "name": "MAI-Image-2.6",
+            "provider": "Microsoft",
+            "score": 1333,
+            "ci": "1324–1342",
+            "extra": "6,090 票",
+            "modelId": "mai-image-2.6"
+          },
+          {
+            "rank": 8,
+            "name": "Grok Imagine Image 2.0",
+            "provider": "xAI",
+            "score": 1333,
+            "ci": "1315–1350",
+            "extra": "1,173 票",
+            "modelId": "grok-imagine-image-2.0"
+          },
+          {
+            "rank": 9,
+            "name": "Reve 2.1",
+            "provider": "Reve",
+            "score": 1295,
+            "ci": "1278–1312",
+            "extra": "1,129 票",
+            "modelId": "reve-2.1"
+          },
+          {
+            "rank": 10,
+            "name": "Grok Imagine Image 2.0 (20260801)",
+            "provider": "xAI",
+            "score": 1277,
+            "ci": "1268–1286",
+            "extra": "5,520 票",
+            "modelId": "grok-imagine-image-2.0-20260801"
+          },
+          {
+            "rank": 11,
+            "name": "MAI-Image-2.5",
+            "provider": "Microsoft",
+            "score": 1276,
+            "ci": "1269–1284",
+            "extra": "8,605 票",
+            "modelId": "mai-image-2.5"
+          },
+          {
+            "rank": 12,
+            "name": "Gemini Nano Banana 2.1",
+            "provider": "Google",
+            "score": 1275,
+            "ci": "1265–1284",
+            "extra": "6,250 票",
+            "modelId": "nano-banana-2.1"
+          },
+          {
+            "rank": 13,
+            "name": "Seedream 5.0 Pro",
+            "provider": "ByteDance",
+            "score": 1258,
+            "ci": "1252–1265",
+            "extra": "15,851 票",
+            "modelId": "seedream-5.0-pro"
+          },
+          {
+            "rank": 14,
+            "name": "Gemini 3.1 Flash-Lite Image (nano-banana-2-lite)",
+            "provider": "Google",
+            "score": 1258,
+            "ci": "1246–1270",
+            "extra": "2,360 票",
+            "modelId": "nano-banana-2-lite"
+          },
+          {
+            "rank": 15,
+            "name": "Reve 2.0",
+            "provider": "Reve",
+            "score": 1258,
+            "ci": "1245–1271",
+            "extra": "2,061 票",
+            "modelId": "reve-2.0"
+          }
+        ]
+      },
+      {
+        "id": "arena-commercial-image",
+        "category": "image",
+        "title": "商品与品牌生图",
+        "label": "Arena · 商品与品牌生图",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/image/text-to-image/commercial-design",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/text_to_image/latest"
+        },
+        "officialDate": "2026-11-21",
+        "coverage": "官方前 15 名（官方数据集 87 条，网页 2,202,267 票）",
+        "method": "聚焦产品、品牌和商业设计的文生图提示。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-Image-2.5 Sunburst",
+            "provider": "OpenAI",
+            "score": 1420,
+            "ci": "1413–1427",
+            "extra": "23,555 票",
+            "modelId": "gpt-image-2.5-sunburst"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-Image-2.6 Sunburst (Medium)",
+            "provider": "OpenAI",
+            "score": 1397,
+            "ci": "1383–1412",
+            "extra": "2,314 票",
+            "modelId": "gpt-image-2.6-sunburst"
+          },
+          {
+            "rank": 3,
+            "name": "GPT-Image-2 (Medium)",
+            "provider": "OpenAI",
+            "score": 1386,
+            "ci": "1380–1391",
+            "extra": "41,251 票",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 4,
+            "name": "GPT-Image-2.5 Flare",
+            "provider": "OpenAI",
+            "score": 1383,
+            "ci": "1376–1390",
+            "extra": "23,152 票",
+            "modelId": "gpt-image-2.5-flare"
+          },
+          {
+            "rank": 5,
+            "name": "MAI-Image-2.7",
+            "provider": "Microsoft",
+            "score": 1378,
+            "ci": "1362–1394",
+            "extra": "1,617 票",
+            "modelId": "mai-image-2.7"
+          },
+          {
+            "rank": 6,
+            "name": "GPT-Image-2.6 Flare (Medium)",
+            "provider": "OpenAI",
+            "score": 1370,
+            "ci": "1356–1383",
+            "extra": "2,279 票",
+            "modelId": "gpt-image-2.6-flare"
+          },
+          {
+            "rank": 7,
+            "name": "MAI-Image-2.6",
+            "provider": "Microsoft",
+            "score": 1334,
+            "ci": "1327–1341",
+            "extra": "13,247 票",
+            "modelId": "mai-image-2.6"
+          },
+          {
+            "rank": 8,
+            "name": "Grok Imagine Image 2.0",
+            "provider": "xAI",
+            "score": 1326,
+            "ci": "1313–1338",
+            "extra": "2,396 票",
+            "modelId": "grok-imagine-image-2.0"
+          },
+          {
+            "rank": 9,
+            "name": "Gemini Nano Banana 2.1",
+            "provider": "Google",
+            "score": 1318,
+            "ci": "1310–1325",
+            "extra": "13,233 票",
+            "modelId": "nano-banana-2.1"
+          },
+          {
+            "rank": 10,
+            "name": "Reve 2.1",
+            "provider": "Reve",
+            "score": 1316,
+            "ci": "1305–1328",
+            "extra": "2,849 票",
+            "modelId": "reve-2.1"
+          },
+          {
+            "rank": 11,
+            "name": "Grok Imagine Image 2.0 (20260801)",
+            "provider": "xAI",
+            "score": 1289,
+            "ci": "1282–1296",
+            "extra": "12,836 票",
+            "modelId": "grok-imagine-image-2.0-20260801"
+          },
+          {
+            "rank": 12,
+            "name": "Reve 2.0",
+            "provider": "Reve",
+            "score": 1279,
+            "ci": "1271–1288",
+            "extra": "5,915 票",
+            "modelId": "reve-2.0"
+          },
+          {
+            "rank": 13,
+            "name": "Gemini 3.1 Flash Image (nano-banana-2, Web Search)",
+            "provider": "Google",
+            "score": 1266,
+            "ci": "1260–1271",
+            "extra": "28,206 票",
+            "modelId": "gemini-3.1-flash-image-nano-banana-2-web-search"
+          },
+          {
+            "rank": 14,
+            "name": "MAI-Image-2.5",
+            "provider": "Microsoft",
+            "score": 1259,
+            "ci": "1253–1265",
+            "extra": "21,694 票",
+            "modelId": "mai-image-2.5"
+          },
+          {
+            "rank": 15,
+            "name": "Muse Image",
+            "provider": "Meta",
+            "score": 1256,
+            "ci": "1250–1262",
+            "extra": "20,271 票",
+            "modelId": "muse-image"
+          }
+        ],
+        "notes": [
+          "官网显示 2026-11-21，官方数据集记录的发布日期为 2026-11-20。"
+        ]
+      },
+      {
+        "id": "aa-t2i",
+        "category": "image",
+        "title": "生图",
+        "label": "Artificial Analysis 生图（AA-Image-T2I v2.1）",
+        "source": {
+          "name": "Artificial Analysis",
+          "url": "https://artificialanalysis.ai/image/leaderboard/text-to-image"
+        },
+        "coverage": "收录官方榜单 15 条（完整榜 116 条）",
+        "method": "验证评审员双相同提示的出图并投票，拟合 Elo。官方方法论要求公开 serverless API。名次区间与 95% 置信区间见官方表。与 LMArena Art 分榜口径不同，得分不可加总。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT Image 2.6 Sunburst (max)",
+            "provider": "OpenAI",
+            "score": 1263,
+            "rankRange": "1",
+            "ci": "±14（1249–1277）",
+            "extra": "5,421 次比较",
+            "modelId": "gpt-image-2.6-sunburst"
+          },
+          {
+            "rank": 2,
+            "name": "GPT Image 2.5 Sunburst (max)",
+            "provider": "OpenAI",
+            "score": 1230,
+            "rankRange": "2–3",
+            "ci": "±10（1220–1240）",
+            "extra": "13,771 次比较",
+            "modelId": "gpt-image-2.5-sunburst"
+          },
+          {
+            "rank": 3,
+            "name": "GPT Image 2.6 Flare (max)",
+            "provider": "OpenAI",
+            "score": 1226,
+            "rankRange": "2–4",
+            "ci": "±12（1214–1238）",
+            "extra": "7,283 次比较",
+            "modelId": "gpt-image-2.6-flare"
+          },
+          {
+            "rank": 4,
+            "name": "MAI-Image-2.7",
+            "provider": "Microsoft",
+            "score": 1215,
+            "rankRange": "3–5",
+            "ci": "±14（1201–1229）",
+            "extra": "5,091 次比较",
+            "modelId": "mai-image-2.7"
+          },
+          {
+            "rank": 5,
+            "name": "GPT Image 2.5 Flare (max)",
+            "provider": "OpenAI",
+            "score": 1209,
+            "rankRange": "4–5",
+            "ci": "±10（1199–1219）",
+            "extra": "13,123 次比较",
+            "modelId": "gpt-image-2.5-flare"
+          },
+          {
+            "rank": 6,
+            "name": "GPT Image 2 (high)",
+            "provider": "OpenAI",
+            "score": 1194,
+            "rankRange": "6–7",
+            "ci": "±11（1183–1205）",
+            "extra": "13,561 次比较",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 7,
+            "name": "Kling Image 4.0",
+            "provider": "Kuaishou",
+            "score": 1181,
+            "rankRange": "6–9",
+            "ci": "±13（1168–1194）",
+            "extra": "5,626 次比较",
+            "modelId": "kling-image-4.0"
+          },
+          {
+            "rank": 8,
+            "name": "Nano Banana 2.1",
+            "provider": "Google",
+            "score": 1175,
+            "rankRange": "7–10",
+            "ci": "±12（1163–1187）",
+            "extra": "6,867 次比较",
+            "modelId": "nano-banana-2.1"
+          },
+          {
+            "rank": 9,
+            "name": "MAI-Image-2.6",
+            "provider": "Microsoft",
+            "score": 1168,
+            "rankRange": "8–12",
+            "ci": "±11（1157–1179）",
+            "extra": "9,106 次比较",
+            "modelId": "mai-image-2.6"
+          },
+          {
+            "rank": 10,
+            "name": "Grok Imagine Image 2.0",
+            "provider": "xAI",
+            "score": 1167,
+            "rankRange": "8–12",
+            "ci": "±12（1155–1179）",
+            "extra": "8,158 次比较",
+            "modelId": "grok-imagine-image-2.0"
+          },
+          {
+            "rank": 11,
+            "name": "MAI-Image-2.7-Flash",
+            "provider": "Microsoft",
+            "score": 1159,
+            "rankRange": "9–12",
+            "ci": "±12（1147–1171）",
+            "extra": "6,035 次比较",
+            "modelId": "mai-image-2.7-flash"
+          },
+          {
+            "rank": 12,
+            "name": "Canva Craft",
+            "provider": "Canva",
+            "score": 1157,
+            "rankRange": "9–13",
+            "ci": "±12（1145–1169）",
+            "extra": "5,421 次比较",
+            "modelId": "canva-craft"
+          },
+          {
+            "rank": 13,
+            "name": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+            "provider": "Google",
+            "score": 1144,
+            "rankRange": "12–14",
+            "ci": "±10（1134–1154）",
+            "extra": "16,780 次比较",
+            "modelId": "nano-banana-2"
+          },
+          {
+            "rank": 14,
+            "name": "Seedream 5.5",
+            "provider": "ByteDance",
+            "score": 1135,
+            "rankRange": "13–16",
+            "ci": "±12（1123–1147）",
+            "extra": "5,334 次比较",
+            "modelId": "seedream-5.5"
+          },
+          {
+            "rank": 15,
+            "name": "Muse Image",
+            "provider": "Meta",
+            "score": 1126,
+            "rankRange": "14–19",
+            "ci": "±11（1115–1137）",
+            "extra": "9,195 次比较",
+            "modelId": "muse-image"
+          }
+        ]
+      },
+      {
+        "id": "lmarena-edit",
+        "category": "edit",
+        "title": "单图编辑",
+        "label": "LMArena 单图改图",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/image/image-edit/single-image",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/image_edit/latest"
+        },
+        "officialDate": "2026-11-16",
+        "coverage": "官方可见前 15 名，非全榜（官方页标注 64 个模型、32,025,912 票）",
+        "method": "单图编辑对抗榜。官方页日期是 2026-11-16，早于本页其他多数榜单，不能当成与 11 月 21–23 日榜单同一时点的快照。",
+        "notes": [
+          "区间与单模型票数来自 Arena 官方数据集。官网显示 2026-11-16，数据集记录的发布日期为 2026-11-17。"
+        ],
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-Image-2.5 Sunburst",
+            "provider": "OpenAI",
+            "score": 1519,
+            "ci": "1514–1523",
+            "extra": "140,743 票",
+            "modelId": "gpt-image-2.5-sunburst"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-Image-2.5 Flare",
+            "provider": "OpenAI",
+            "score": 1484,
+            "ci": "1479–1488",
+            "extra": "137,820 票",
+            "modelId": "gpt-image-2.5-flare"
+          },
+          {
+            "rank": 3,
+            "name": "GPT-Image-2.6 Sunburst (Medium)",
+            "provider": "OpenAI",
+            "score": 1481,
+            "ci": "1474–1488",
+            "extra": "16,881 票",
+            "modelId": "gpt-image-2.6-sunburst"
+          },
+          {
+            "rank": 4,
+            "name": "MAI-Image-2.7",
+            "provider": "Microsoft",
+            "score": 1475,
+            "ci": "1464–1487",
+            "extra": "3,007 票",
+            "modelId": "mai-image-2.7"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-Image-2 (Medium)",
+            "provider": "OpenAI",
+            "score": 1462,
+            "ci": "1459–1464",
+            "extra": "371,930 票",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 6,
+            "name": "GPT-Image-2.6 Flare (Medium)",
+            "provider": "OpenAI",
+            "score": 1461,
+            "ci": "1454–1467",
+            "extra": "16,830 票",
+            "modelId": "gpt-image-2.6-flare"
+          },
+          {
+            "rank": 7,
+            "name": "Grok Imagine Image 2.0",
+            "provider": "xAI",
+            "score": 1437,
+            "ci": "1432–1443",
+            "extra": "33,908 票",
+            "modelId": "grok-imagine-image-2.0"
+          },
+          {
+            "rank": 8,
+            "name": "MAI-Image-2.6",
+            "provider": "Microsoft",
+            "score": 1427,
+            "ci": "1423–1432",
+            "extra": "82,671 票",
+            "modelId": "mai-image-2.6"
+          },
+          {
+            "rank": 9,
+            "name": "Gemini Nano Banana 2.1",
+            "provider": "Google",
+            "score": 1427,
+            "ci": "1421–1433",
+            "extra": "12,041 票",
+            "modelId": "nano-banana-2.1"
+          },
+          {
+            "rank": 10,
+            "name": "Grok Imagine Image 2.0 (20260801)",
+            "provider": "xAI",
+            "score": 1419,
+            "ci": "1415–1423",
+            "extra": "144,482 票",
+            "modelId": "grok-imagine-image-2.0-20260801"
+          },
+          {
+            "rank": 11,
+            "name": "Krea 3 Ultra",
+            "provider": "Krea",
+            "score": 1412,
+            "ci": "1400–1423",
+            "extra": "2,625 票",
+            "modelId": "krea-3-ultra"
+          },
+          {
+            "rank": 12,
+            "name": "MAI-Image-2.5",
+            "provider": "Microsoft",
+            "score": 1400,
+            "ci": "1397–1404",
+            "extra": "183,259 票",
+            "modelId": "mai-image-2.5"
+          },
+          {
+            "rank": 13,
+            "name": "Muse Image",
+            "provider": "Meta",
+            "score": 1400,
+            "ci": "1396–1404",
+            "extra": "211,112 票",
+            "modelId": "muse-image"
+          },
+          {
+            "rank": 14,
+            "name": "Seedream 5.0 Pro",
+            "provider": "ByteDance",
+            "score": 1392,
+            "ci": "1389–1395",
+            "extra": "358,335 票",
+            "modelId": "seedream-5.0-pro"
+          },
+          {
+            "rank": 15,
+            "name": "Grok Imagine Image (Quality, 20260519)",
+            "provider": "xAI",
+            "score": 1391,
+            "ci": "1386–1397",
+            "extra": "37,096 票",
+            "modelId": "grok-imagine-image-quality-20260519"
+          }
+        ]
+      },
+      {
+        "id": "arena-multi-image-edit",
+        "category": "edit",
+        "title": "多图编辑",
+        "label": "Arena · 多图编辑",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/image/image-edit/multi-image",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/image_edit/latest"
+        },
+        "officialDate": "2026-11-16",
+        "coverage": "官方前 15 名（官方数据集 48 条，网页 9,699,821 票）",
+        "method": "以多张参考图作为输入进行编辑。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "GPT-Image-2.5 Sunburst",
+            "provider": "OpenAI",
+            "score": 1527,
+            "ci": "1522–1532",
+            "extra": "70,812 票",
+            "modelId": "gpt-image-2.5-sunburst"
+          },
+          {
+            "rank": 2,
+            "name": "GPT-Image-2.5 Flare",
+            "provider": "OpenAI",
+            "score": 1475,
+            "ci": "1471–1480",
+            "extra": "69,942 票",
+            "modelId": "gpt-image-2.5-flare"
+          },
+          {
+            "rank": 3,
+            "name": "MAI-Image-2.7",
+            "provider": "Microsoft",
+            "score": 1458,
+            "ci": "1448–1468",
+            "extra": "3,647 票",
+            "modelId": "mai-image-2.7"
+          },
+          {
+            "rank": 4,
+            "name": "GPT-Image-2 (Medium)",
+            "provider": "OpenAI",
+            "score": 1455,
+            "ci": "1452–1458",
+            "extra": "167,372 票",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 5,
+            "name": "GPT-Image-2.6 Flare (Medium)",
+            "provider": "OpenAI",
+            "score": 1442,
+            "ci": "1434–1449",
+            "extra": "10,635 票",
+            "modelId": "gpt-image-2.6-flare"
+          },
+          {
+            "rank": 6,
+            "name": "Gemini Nano Banana 2.1",
+            "provider": "Google",
+            "score": 1432,
+            "ci": "1425–1438",
+            "extra": "9,631 票",
+            "modelId": "nano-banana-2.1"
+          },
+          {
+            "rank": 7,
+            "name": "Krea 3 Ultra",
+            "provider": "Krea",
+            "score": 1431,
+            "ci": "1423–1438",
+            "extra": "11,506 票",
+            "modelId": "krea-3-ultra"
+          },
+          {
+            "rank": 8,
+            "name": "Seedream 5.0 Pro",
+            "provider": "ByteDance",
+            "score": 1412,
+            "ci": "1408–1415",
+            "extra": "119,364 票",
+            "modelId": "seedream-5.0-pro"
+          },
+          {
+            "rank": 9,
+            "name": "Muse Image",
+            "provider": "Meta",
+            "score": 1400,
+            "ci": "1396–1404",
+            "extra": "129,822 票",
+            "modelId": "muse-image"
+          },
+          {
+            "rank": 10,
+            "name": "Gemini 3.1 Flash Image (nano-banana-2, Web Search)",
+            "provider": "Google",
+            "score": 1372,
+            "ci": "1369–1375",
+            "extra": "146,492 票",
+            "modelId": "gemini-3.1-flash-image-nano-banana-2-web-search"
+          },
+          {
+            "rank": 11,
+            "name": "MiniMax H3-Image",
+            "provider": "MiniMax",
+            "score": 1367,
+            "ci": "1358–1375",
+            "extra": "6,296 票",
+            "modelId": "h3-image"
+          },
+          {
+            "rank": 12,
+            "name": "Gemini 3 Pro Image Preview (nano-banana-pro)",
+            "provider": "Google",
+            "score": 1366,
+            "ci": "1362–1370",
+            "extra": "293,627 票",
+            "modelId": "nano-banana-pro"
+          },
+          {
+            "rank": 13,
+            "name": "Gemini 3 Pro Image (nano-banana-pro, 2K)",
+            "provider": "Google",
+            "score": 1364,
+            "ci": "1361–1367",
+            "extra": "278,901 票",
+            "modelId": "gemini-3-pro-image-nano-banana-pro-2k"
+          },
+          {
+            "rank": 14,
+            "name": "ChatGPT Image Latest (High Fidelity, 20251216)",
+            "provider": "OpenAI",
+            "score": 1350,
+            "ci": "1347–1354",
+            "extra": "278,465 票",
+            "modelId": "chatgpt-image-latest-high-fidelity-20251216"
+          },
+          {
+            "rank": 15,
+            "name": "Reve 2.0",
+            "provider": "Reve",
+            "score": 1346,
+            "ci": "1339–1353",
+            "extra": "9,927 票",
+            "modelId": "reve-2.0"
+          }
+        ],
+        "notes": [
+          "官网显示 2026-11-16，官方数据集记录的发布日期为 2026-11-17。"
+        ]
+      },
+      {
+        "id": "aa-edit",
+        "category": "edit",
+        "title": "改图",
+        "label": "Artificial Analysis 改图（AA-Image-Editing v2.1）",
+        "source": {
+          "name": "Artificial Analysis",
+          "url": "https://artificialanalysis.ai/image/leaderboard/editing"
+        },
+        "coverage": "收录官方榜单 17 条（完整榜 86 条）",
+        "method": "按文字指令修改参考图，验证评审双盲投票得 Elo。与生图榜独立计分。名次区间与 95% 置信区间见官方表；前排几名区间重叠较多。",
+        "notes": [
+          "下表另列官方第 24 名 Grok Imagine Image 2.0；第 17–23 名存在于原榜，本页不展开，也不把第 24 名重排为紧接的第 17 名。同榜还有 grok-imagine-image-quality、grok-imagine-image 等变体，不与 2.0 合并。"
+        ],
+        "rows": [
+          {
+            "rank": 1,
+            "name": "MAI-Image-2.7",
+            "provider": "Microsoft",
+            "score": 1215,
+            "rankRange": "1–3",
+            "ci": "±14（1201–1229）",
+            "extra": "5,526 次比较",
+            "modelId": "mai-image-2.7"
+          },
+          {
+            "rank": 2,
+            "name": "GPT Image 2.6 Sunburst (max)",
+            "provider": "OpenAI",
+            "score": 1211,
+            "rankRange": "1–4",
+            "ci": "±13（1198–1224）",
+            "extra": "6,600 次比较",
+            "modelId": "gpt-image-2.6-sunburst"
+          },
+          {
+            "rank": 3,
+            "name": "GPT Image 2.6 Flare (max)",
+            "provider": "OpenAI",
+            "score": 1205,
+            "rankRange": "1–4",
+            "ci": "±13（1192–1218）",
+            "extra": "6,836 次比较",
+            "modelId": "gpt-image-2.6-flare"
+          },
+          {
+            "rank": 4,
+            "name": "GPT Image 2.5 Sunburst (max)",
+            "provider": "OpenAI",
+            "score": 1201,
+            "rankRange": "2–4",
+            "ci": "±11（1190–1212）",
+            "extra": "19,016 次比较",
+            "modelId": "gpt-image-2.5-sunburst"
+          },
+          {
+            "rank": 5,
+            "name": "GPT Image 2.5 Flare (max)",
+            "provider": "OpenAI",
+            "score": 1185,
+            "rankRange": "5–7",
+            "ci": "±11（1174–1196）",
+            "extra": "19,911 次比较",
+            "modelId": "gpt-image-2.5-flare"
+          },
+          {
+            "rank": 6,
+            "name": "Kling Image 4.0",
+            "provider": "Kuaishou",
+            "score": 1183,
+            "rankRange": "5–7",
+            "ci": "±13（1170–1196）",
+            "extra": "5,678 次比较",
+            "modelId": "kling-image-4.0"
+          },
+          {
+            "rank": 7,
+            "name": "MAI-Image-2.7-Flash",
+            "provider": "Microsoft",
+            "score": 1179,
+            "rankRange": "5–7",
+            "ci": "±13（1166–1192）",
+            "extra": "5,929 次比较",
+            "modelId": "mai-image-2.7-flash"
+          },
+          {
+            "rank": 8,
+            "name": "Seedream 5.5",
+            "provider": "ByteDance",
+            "score": 1159,
+            "rankRange": "8–11",
+            "ci": "±14（1145–1173）",
+            "extra": "5,146 次比较",
+            "modelId": "seedream-5.5"
+          },
+          {
+            "rank": 9,
+            "name": "Krea 3 (Ultra)",
+            "provider": "Krea",
+            "score": 1153,
+            "rankRange": "8–13",
+            "ci": "±13（1140–1166）",
+            "extra": "6,233 次比较",
+            "modelId": "krea-3-ultra"
+          },
+          {
+            "rank": 10,
+            "name": "Nano Banana 2.1",
+            "provider": "Google",
+            "score": 1152,
+            "rankRange": "8–13",
+            "ci": "±12（1140–1164）",
+            "extra": "7,654 次比较",
+            "modelId": "nano-banana-2.1"
+          },
+          {
+            "rank": 11,
+            "name": "MAI-Image-2.6",
+            "provider": "Microsoft",
+            "score": 1151,
+            "rankRange": "8–12",
+            "ci": "±12（1139–1163）",
+            "extra": "17,434 次比较",
+            "modelId": "mai-image-2.6"
+          },
+          {
+            "rank": 12,
+            "name": "MAI-Image-2.6-Flash",
+            "provider": "Microsoft",
+            "score": 1145,
+            "rankRange": "9–14",
+            "ci": "±12（1133–1157）",
+            "extra": "11,545 次比较",
+            "modelId": "mai-image-2.6-flash"
+          },
+          {
+            "rank": 13,
+            "name": "GPT Image 2 (high)",
+            "provider": "OpenAI",
+            "score": 1139,
+            "rankRange": "11–16",
+            "ci": "±12（1127–1151）",
+            "extra": "15,295 次比较",
+            "modelId": "gpt-image-2"
+          },
+          {
+            "rank": 14,
+            "name": "H3-Image",
+            "provider": "MiniMax",
+            "score": 1136,
+            "rankRange": "11–20",
+            "ci": "±16（1120–1152）",
+            "extra": "3,310 次比较",
+            "modelId": "h3-image"
+          },
+          {
+            "rank": 15,
+            "name": "H3-Image Highspeed",
+            "provider": "MiniMax",
+            "score": 1133,
+            "rankRange": "12–22",
+            "ci": "±16（1117–1149）",
+            "extra": "3,290 次比较",
+            "modelId": "h3-image-highspeed"
+          },
+          {
+            "rank": 16,
+            "name": "Seedream 5.0 Pro",
+            "provider": "ByteDance",
+            "score": 1132,
+            "rankRange": "13–20",
+            "ci": "±12（1120–1144）",
+            "extra": "14,170 次比较",
+            "modelId": "seedream-5.0-pro"
+          },
+          {
+            "rank": 24,
+            "name": "Grok Imagine Image 2.0",
+            "provider": "xAI",
+            "score": 1117,
+            "rankRange": "19–26",
+            "ci": "±12（1105–1129）",
+            "extra": "9,471 次比较",
+            "modelId": "grok-imagine-image-2.0"
+          }
+        ]
+      },
+      {
+        "id": "arena-t2v",
+        "category": "video",
+        "title": "文生视频",
+        "label": "Arena · 文生视频",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/video/text-to-video",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/text_to_video/latest"
+        },
+        "officialDate": "2026-11-08",
+        "coverage": "官方前 15 名（官方数据集 50 条，网页 891,840 票）",
+        "method": "用文字提示生成视频的用户偏好对抗。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Gemini Omni 1.2 Flash",
+            "provider": "Google",
+            "score": 1540,
+            "ci": "1524–1556",
+            "extra": "1,714 票",
+            "modelId": "gemini-omni-1.2-flash"
+          },
+          {
+            "rank": 2,
+            "name": "Gemini Omni 1.1 Flash",
+            "provider": "Google",
+            "score": 1513,
+            "ci": "1498–1528",
+            "extra": "1,792 票",
+            "modelId": "gemini-omni-1.1-flash"
+          },
+          {
+            "rank": 3,
+            "name": "gemini-omni-flash",
+            "provider": "Google",
+            "score": 1509,
+            "ci": "1501–1518",
+            "extra": "46,707 票",
+            "modelId": "gemini-omni-flash"
+          },
+          {
+            "rank": 4,
+            "name": "FLUX 3 Video",
+            "provider": "Black Forest Labs",
+            "score": 1491,
+            "ci": "1474–1508",
+            "extra": "1,314 票",
+            "modelId": "flux-3-video"
+          },
+          {
+            "rank": 5,
+            "name": "Grok Imagine Video 1.5",
+            "provider": "xAI",
+            "score": 1488,
+            "ci": "1469–1506",
+            "extra": "1,249 票",
+            "modelId": "grok-imagine-video-1.5"
+          },
+          {
+            "rank": 6,
+            "name": "Dreamina Seedance 2.0 (720p)",
+            "provider": "ByteDance",
+            "score": 1483,
+            "ci": "1476–1491",
+            "extra": "72,137 票",
+            "modelId": "dreamina-seedance-2.0-720p"
+          },
+          {
+            "rank": 7,
+            "name": "Dreamina Seedance 2.5 (720p)",
+            "provider": "ByteDance",
+            "score": 1479,
+            "ci": "1471–1488",
+            "extra": "25,421 票",
+            "modelId": "dreamina-seedance-2.5-720p"
+          },
+          {
+            "rank": 8,
+            "name": "Wan 3.0",
+            "provider": "Alibaba",
+            "score": 1476,
+            "ci": "1465–1488",
+            "extra": "3,060 票",
+            "modelId": "wan-3.0"
+          },
+          {
+            "rank": 9,
+            "name": "SkyReels V4",
+            "provider": "Skywork AI",
+            "score": 1459,
+            "ci": "1440–1477",
+            "extra": "1,060 票",
+            "modelId": "skyreels-v4"
+          },
+          {
+            "rank": 10,
+            "name": "Muse Video",
+            "provider": "Meta",
+            "score": 1457,
+            "ci": "1443–1472",
+            "extra": "2,225 票",
+            "modelId": "muse-video"
+          },
+          {
+            "rank": 11,
+            "name": "MiniMax H3",
+            "provider": "MiniMax",
+            "score": 1456,
+            "ci": "1448–1464",
+            "extra": "29,257 票",
+            "modelId": "minimax-h3"
+          },
+          {
+            "rank": 12,
+            "name": "HappyHorse 1.0",
+            "provider": "Aorizon",
+            "score": 1429,
+            "ci": "1416–1441",
+            "extra": "22,896 票",
+            "modelId": "happyhorse-1.0"
+          },
+          {
+            "rank": 13,
+            "name": "Sora 2 Pro",
+            "provider": "OpenAI",
+            "score": 1367,
+            "ci": "1360–1374",
+            "extra": "55,965 票",
+            "modelId": "sora-2-pro"
+          },
+          {
+            "rank": 14,
+            "name": "Veo 3.1 (Audio)",
+            "provider": "Google",
+            "score": 1363,
+            "ci": "1349–1378",
+            "extra": "13,790 票",
+            "modelId": "veo-3.1-audio"
+          },
+          {
+            "rank": 15,
+            "name": "Veo 3.1 (Audio, 1080p)",
+            "provider": "Google",
+            "score": 1363,
+            "ci": "1352–1373",
+            "extra": "25,636 票",
+            "modelId": "veo-3.1-audio-1080p"
+          }
+        ],
+        "notes": [
+          "官网显示 2026-11-08，官方数据集记录的发布日期为 2026-11-09。"
+        ]
+      },
+      {
+        "id": "arena-i2v",
+        "category": "video",
+        "title": "图生视频",
+        "label": "Arena · 图生视频",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/video/image-to-video",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/image_to_video/latest"
+        },
+        "officialDate": "2026-11-08",
+        "coverage": "官方前 15 名（官方数据集 50 条，网页 2,505,296 票）",
+        "method": "从参考图生成视频的用户偏好对抗。官方排名包含标有 Audio 的模型版本，榜页没有按音轨拆分。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Gemini Omni 1.2 Flash",
+            "provider": "Google",
+            "score": 1503,
+            "ci": "1491–1515",
+            "extra": "2,666 票",
+            "modelId": "gemini-omni-1.2-flash"
+          },
+          {
+            "rank": 2,
+            "name": "Dreamina Seedance 2.5 (720p)",
+            "provider": "ByteDance",
+            "score": 1494,
+            "ci": "1486–1502",
+            "extra": "42,724 票",
+            "modelId": "dreamina-seedance-2.5-720p"
+          },
+          {
+            "rank": 3,
+            "name": "MiniMax H3",
+            "provider": "MiniMax",
+            "score": 1493,
+            "ci": "1488–1499",
+            "extra": "121,481 票",
+            "modelId": "minimax-h3"
+          },
+          {
+            "rank": 4,
+            "name": "Gemini Omni 1.1 Flash",
+            "provider": "Google",
+            "score": 1487,
+            "ci": "1476–1498",
+            "extra": "3,725 票",
+            "modelId": "gemini-omni-1.1-flash"
+          },
+          {
+            "rank": 5,
+            "name": "Wan 3.0",
+            "provider": "Alibaba",
+            "score": 1482,
+            "ci": "1471–1493",
+            "extra": "3,437 票",
+            "modelId": "wan-3.0"
+          },
+          {
+            "rank": 6,
+            "name": "Dreamina Seedance 2.0 (720p)",
+            "provider": "ByteDance",
+            "score": 1480,
+            "ci": "1473–1487",
+            "extra": "148,231 票",
+            "modelId": "dreamina-seedance-2.0-720p"
+          },
+          {
+            "rank": 7,
+            "name": "SkyReels V4",
+            "provider": "Skywork AI",
+            "score": 1475,
+            "ci": "1460–1491",
+            "extra": "1,542 票",
+            "modelId": "skyreels-v4"
+          },
+          {
+            "rank": 8,
+            "name": "gemini-omni-flash",
+            "provider": "Google",
+            "score": 1463,
+            "ci": "1457–1468",
+            "extra": "136,190 票",
+            "modelId": "gemini-omni-flash"
+          },
+          {
+            "rank": 9,
+            "name": "HiDream-O1-Video-1.0",
+            "provider": "HiDream",
+            "score": 1458,
+            "ci": "1449–1466",
+            "extra": "25,149 票",
+            "modelId": "hidream-o1-video-1.0"
+          },
+          {
+            "rank": 10,
+            "name": "Grok Imagine Video 1.5 (720p)",
+            "provider": "xAI",
+            "score": 1453,
+            "ci": "1449–1458",
+            "extra": "197,120 票",
+            "modelId": "grok-imagine-video-1.5-720p"
+          },
+          {
+            "rank": 11,
+            "name": "FLUX 3 Video (20260811)",
+            "provider": "Black Forest Labs",
+            "score": 1451,
+            "ci": "1446–1457",
+            "extra": "84,298 票",
+            "modelId": "flux-3-video-20260811"
+          },
+          {
+            "rank": 12,
+            "name": "HappyHorse 1.0",
+            "provider": "Aorizon",
+            "score": 1443,
+            "ci": "1433–1453",
+            "extra": "73,331 票",
+            "modelId": "happyhorse-1.0"
+          },
+          {
+            "rank": 13,
+            "name": "Wan 2.7",
+            "provider": "Alibaba",
+            "score": 1427,
+            "ci": "1421–1433",
+            "extra": "108,756 票",
+            "modelId": "wan-2.7"
+          },
+          {
+            "rank": 14,
+            "name": "Grok Imagine Video (720p)",
+            "provider": "xAI",
+            "score": 1411,
+            "ci": "1407–1415",
+            "extra": "624,829 票",
+            "modelId": "grok-imagine-video-720p"
+          },
+          {
+            "rank": 15,
+            "name": "Veo 3.1 (Audio)",
+            "provider": "Google",
+            "score": 1399,
+            "ci": "1388–1409",
+            "extra": "25,246 票",
+            "modelId": "veo-3.1-audio"
+          }
+        ],
+        "notes": [
+          "官网显示 2026-11-08，官方数据集记录的发布日期为 2026-11-09。"
+        ]
+      },
+      {
+        "id": "aa-t2v",
+        "category": "video",
+        "title": "文生视频 · 有声",
+        "label": "Artificial Analysis · 文生视频 · 有声",
+        "source": {
+          "name": "Artificial Analysis",
+          "url": "https://artificialanalysis.ai/video/leaderboard/text-to-video"
+        },
+        "coverage": "官方前 15 名（当前公开榜共 36 条）",
+        "method": "文字生成带音频的视频。 人类评审逐对比较并计算 Elo，取官方当前默认有音频榜。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Wan 3.0",
+            "provider": "Alibaba",
+            "score": 1174,
+            "rankRange": "1–3",
+            "ci": "±12（1162–1186）",
+            "extra": "8,767 次比较",
+            "modelId": "wan-3.0"
+          },
+          {
+            "rank": 2,
+            "name": "Utopai X",
+            "provider": "Utopai Studios",
+            "score": 1170,
+            "rankRange": "1–3",
+            "ci": "±13（1157–1183）",
+            "extra": "8,146 次比较",
+            "modelId": "utopai-x"
+          },
+          {
+            "rank": 3,
+            "name": "MiniMax H3 (768p)",
+            "provider": "MiniMax",
+            "score": 1163,
+            "rankRange": "2–5",
+            "ci": "±12（1151–1175）",
+            "extra": "8,948 次比较",
+            "modelId": "minimax-h3-768p"
+          },
+          {
+            "rank": 4,
+            "name": "Hyperflow H3",
+            "provider": "Video Rebirth",
+            "score": 1156,
+            "rankRange": "3–8",
+            "ci": "±14（1142–1170）",
+            "extra": "5,588 次比较",
+            "modelId": "hyperflow-h3"
+          },
+          {
+            "rank": 5,
+            "name": "Dreamina Seedance 2.5",
+            "provider": "ByteDance",
+            "score": 1155,
+            "rankRange": "3–8",
+            "ci": "±12（1143–1167）",
+            "extra": "8,841 次比较",
+            "modelId": "seedance-2.5"
+          },
+          {
+            "rank": 6,
+            "name": "Gemini Omni Flash 1.2",
+            "provider": "Google",
+            "score": 1153,
+            "rankRange": "3–9",
+            "ci": "±13（1140–1166）",
+            "extra": "6,319 次比较",
+            "modelId": "gemini-omni-1.2-flash"
+          },
+          {
+            "rank": 7,
+            "name": "FLUX 3 Max",
+            "provider": "Fal",
+            "score": 1150,
+            "rankRange": "4–10",
+            "ci": "±14（1136–1164）",
+            "extra": "5,243 次比较",
+            "modelId": "flux-3-max"
+          },
+          {
+            "rank": 8,
+            "name": "HeyGen Video 1",
+            "provider": "HeyGen",
+            "score": 1148,
+            "rankRange": "4–10",
+            "ci": "±12（1136–1160）",
+            "extra": "7,950 次比较",
+            "modelId": "heygen-video-1"
+          },
+          {
+            "rank": 9,
+            "name": "MiniMax H3 Max",
+            "provider": "Fal",
+            "score": 1144,
+            "rankRange": "5–11",
+            "ci": "±14（1130–1158）",
+            "extra": "5,247 次比较",
+            "modelId": "minimax-h3-max"
+          },
+          {
+            "rank": 10,
+            "name": "FLUX 3",
+            "provider": "Black Forest Labs",
+            "score": 1137,
+            "rankRange": "8–13",
+            "ci": "±12（1125–1149）",
+            "extra": "7,926 次比较",
+            "modelId": "flux-3"
+          },
+          {
+            "rank": 11,
+            "name": "SkyReels V4",
+            "provider": "Skywork AI",
+            "score": 1133,
+            "rankRange": "9–14",
+            "ci": "±13（1120–1146）",
+            "extra": "6,234 次比较",
+            "modelId": "skyreels-v4"
+          },
+          {
+            "rank": 12,
+            "name": "Dreamina Seedance 2.0",
+            "provider": "ByteDance",
+            "score": 1133,
+            "rankRange": "9–14",
+            "ci": "±12（1121–1145）",
+            "extra": "7,913 次比较",
+            "modelId": "seedance-2.0"
+          },
+          {
+            "rank": 13,
+            "name": "P-Video-2-Pro",
+            "provider": "Pruna AI",
+            "score": 1129,
+            "rankRange": "10–15",
+            "ci": "±14（1115–1143）",
+            "extra": "4,825 次比较",
+            "modelId": "p-video-2-pro"
+          },
+          {
+            "rank": 14,
+            "name": "Pika H3 Flex",
+            "provider": "Pika Art",
+            "score": 1124,
+            "rankRange": "11–15",
+            "ci": "±13（1111–1137）",
+            "extra": "5,811 次比较",
+            "modelId": "pika-h3-flex"
+          },
+          {
+            "rank": 15,
+            "name": "Gemini Omni Flash 1.1",
+            "provider": "Google",
+            "score": 1123,
+            "rankRange": "12–15",
+            "ci": "±12（1111–1135）",
+            "extra": "9,214 次比较",
+            "modelId": "gemini-omni-1.1-flash"
+          }
+        ]
+      },
+      {
+        "id": "aa-i2v",
+        "category": "video",
+        "title": "图生视频 · 有声",
+        "label": "Artificial Analysis · 图生视频 · 有声",
+        "source": {
+          "name": "Artificial Analysis",
+          "url": "https://artificialanalysis.ai/video/leaderboard/image-to-video"
+        },
+        "coverage": "官方前 15 名（当前公开榜共 37 条）",
+        "method": "根据参考图生成带音频的视频。 人类评审逐对比较并计算 Elo，取官方当前默认有音频榜。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Dreamina Seedance 2.5",
+            "provider": "ByteDance",
+            "score": 1162,
+            "rankRange": "1–3",
+            "ci": "±14（1148–1176）",
+            "extra": "6,752 次比较",
+            "modelId": "seedance-2.5"
+          },
+          {
+            "rank": 2,
+            "name": "Utopai X",
+            "provider": "Utopai Studios",
+            "score": 1152,
+            "rankRange": "1–4",
+            "ci": "±14（1138–1166）",
+            "extra": "7,168 次比较",
+            "modelId": "utopai-x"
+          },
+          {
+            "rank": 3,
+            "name": "Boreal-H3",
+            "provider": "Creatify",
+            "score": 1151,
+            "rankRange": "1–5",
+            "ci": "±17（1134–1168）",
+            "extra": "3,032 次比较",
+            "modelId": "boreal-h3"
+          },
+          {
+            "rank": 4,
+            "name": "Dreamina Seedance 2.0",
+            "provider": "ByteDance",
+            "score": 1141,
+            "rankRange": "2–5",
+            "ci": "±14（1127–1155）",
+            "extra": "6,820 次比较",
+            "modelId": "seedance-2.0"
+          },
+          {
+            "rank": 5,
+            "name": "MiniMax H3 (768p)",
+            "provider": "MiniMax",
+            "score": 1136,
+            "rankRange": "3–7",
+            "ci": "±14（1122–1150）",
+            "extra": "6,760 次比较",
+            "modelId": "minimax-h3-768p"
+          },
+          {
+            "rank": 6,
+            "name": "HeyGen Video 1",
+            "provider": "HeyGen",
+            "score": 1127,
+            "rankRange": "5–10",
+            "ci": "±14（1113–1141）",
+            "extra": "6,776 次比较",
+            "modelId": "heygen-video-1"
+          },
+          {
+            "rank": 7,
+            "name": "SkyReels V4",
+            "provider": "Skywork AI",
+            "score": 1125,
+            "rankRange": "5–11",
+            "ci": "±14（1111–1139）",
+            "extra": "5,283 次比较",
+            "modelId": "skyreels-v4"
+          },
+          {
+            "rank": 8,
+            "name": "Hyperflow H3",
+            "provider": "Video Rebirth",
+            "score": 1121,
+            "rankRange": "6–11",
+            "ci": "±14（1107–1135）",
+            "extra": "7,026 次比较",
+            "modelId": "hyperflow-h3"
+          },
+          {
+            "rank": 9,
+            "name": "MiniMax H3 Max",
+            "provider": "Fal",
+            "score": 1119,
+            "rankRange": "6–12",
+            "ci": "±14（1105–1133）",
+            "extra": "6,832 次比较",
+            "modelId": "minimax-h3-max"
+          },
+          {
+            "rank": 10,
+            "name": "P-Video-2-Pro",
+            "provider": "Pruna AI",
+            "score": 1117,
+            "rankRange": "6–13",
+            "ci": "±15（1102–1132）",
+            "extra": "4,546 次比较",
+            "modelId": "p-video-2-pro"
+          },
+          {
+            "rank": 11,
+            "name": "Pika H3 Flex",
+            "provider": "Pika Art",
+            "score": 1116,
+            "rankRange": "6–13",
+            "ci": "±15（1101–1131）",
+            "extra": "4,740 次比较",
+            "modelId": "pika-h3-flex"
+          },
+          {
+            "rank": 12,
+            "name": "Wan 3.0",
+            "provider": "Alibaba",
+            "score": 1110,
+            "rankRange": "9–14",
+            "ci": "±14（1096–1124）",
+            "extra": "6,908 次比较",
+            "modelId": "wan-3.0"
+          },
+          {
+            "rank": 13,
+            "name": "Agnes-Video-2.5",
+            "provider": "Sapiens AI",
+            "score": 1104,
+            "rankRange": "10–14",
+            "ci": "±15（1089–1119）",
+            "extra": "4,421 次比较",
+            "modelId": "agnes-video-2.5"
+          },
+          {
+            "rank": 14,
+            "name": "HiDream-O1-Video-1.0",
+            "provider": "HiDream",
+            "score": 1103,
+            "rankRange": "11–14",
+            "ci": "±13（1090–1116）",
+            "extra": "7,135 次比较",
+            "modelId": "hidream-o1-video-1.0"
+          },
+          {
+            "rank": 15,
+            "name": "Gemini Omni Flash 1.2",
+            "provider": "Google",
+            "score": 1086,
+            "rankRange": "15–16",
+            "ci": "±14（1072–1100）",
+            "extra": "5,232 次比较",
+            "modelId": "gemini-omni-1.2-flash"
+          }
+        ]
+      },
+      {
+        "id": "openart-film-video",
+        "category": "video",
+        "title": "影视视频",
+        "label": "OpenArt Arena · 影视视频",
+        "source": {
+          "name": "OpenArt Arena",
+          "url": "https://openart.ai/arena/leaderboard#board-film-video"
+        },
+        "coverage": "官方榜单全部 10 条",
+        "method": "创作者与行业专家按该使用场景作两两偏好评审，采用 OpenArt Arena 公布的分数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Seedance 2.5",
+            "provider": "ByteDance",
+            "score": 1132,
+            "modelId": "seedance-2.5"
+          },
+          {
+            "rank": 2,
+            "name": "Seedance 2.0",
+            "provider": "ByteDance",
+            "score": 1080,
+            "modelId": "seedance-2.0"
+          },
+          {
+            "rank": 3,
+            "name": "Wan 3.0",
+            "provider": "Alibaba",
+            "score": 1039,
+            "modelId": "wan-3.0"
+          },
+          {
+            "rank": 4,
+            "name": "Seedance 2.0 Mini",
+            "provider": "ByteDance",
+            "score": 1038,
+            "modelId": "seedance-2.0-mini"
+          },
+          {
+            "rank": 5,
+            "name": "Google Omni Flash",
+            "provider": "Google",
+            "score": 1015,
+            "modelId": "google-omni-flash"
+          },
+          {
+            "rank": 6,
+            "name": "MiniMax H3",
+            "provider": "MiniMax",
+            "score": 1000,
+            "modelId": "minimax-h3"
+          },
+          {
+            "rank": 7,
+            "name": "Flux 3 Video",
+            "provider": "Black Forest Labs",
+            "score": 991,
+            "modelId": "flux-3-video"
+          },
+          {
+            "rank": 8,
+            "name": "HappyHorse 1.1",
+            "provider": "HappyHorse",
+            "score": 977,
+            "modelId": "happyhorse-1.1"
+          },
+          {
+            "rank": 9,
+            "name": "Kling 3.0 Omni",
+            "provider": "Kuaishou",
+            "score": 946,
+            "modelId": "kling-3.0-omni"
+          },
+          {
+            "rank": 10,
+            "name": "Grok Imagine 1.5",
+            "provider": "xAI",
+            "score": 934,
+            "modelId": "grok-imagine-1.5"
+          }
+        ],
+        "sourceVersion": "v1.0"
+      },
+      {
+        "id": "openart-motion-design-video",
+        "category": "video",
+        "title": "动态设计",
+        "label": "OpenArt Arena · 动态设计",
+        "source": {
+          "name": "OpenArt Arena",
+          "url": "https://openart.ai/arena/leaderboard#board-motion-design-video"
+        },
+        "coverage": "官方榜单全部 10 条",
+        "method": "创作者与行业专家按该使用场景作两两偏好评审，采用 OpenArt Arena 公布的分数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Seedance 2.5",
+            "provider": "ByteDance",
+            "score": 1097,
+            "modelId": "seedance-2.5"
+          },
+          {
+            "rank": 2,
+            "name": "Seedance 2.0",
+            "provider": "ByteDance",
+            "score": 1038,
+            "modelId": "seedance-2.0"
+          },
+          {
+            "rank": 3,
+            "name": "Wan 3.0",
+            "provider": "Alibaba",
+            "score": 1030,
+            "modelId": "wan-3.0"
+          },
+          {
+            "rank": 4,
+            "name": "Seedance 2.0 Mini",
+            "provider": "ByteDance",
+            "score": 1001,
+            "modelId": "seedance-2.0-mini"
+          },
+          {
+            "rank": 5,
+            "name": "MiniMax H3",
+            "provider": "MiniMax",
+            "score": 1000,
+            "modelId": "minimax-h3"
+          },
+          {
+            "rank": 6,
+            "name": "Google Omni Flash",
+            "provider": "Google",
+            "score": 993,
+            "modelId": "google-omni-flash"
+          },
+          {
+            "rank": 7,
+            "name": "Flux 3 Video",
+            "provider": "Black Forest Labs",
+            "score": 950,
+            "modelId": "flux-3-video"
+          },
+          {
+            "rank": 8,
+            "name": "HappyHorse 1.1",
+            "provider": "HappyHorse",
+            "score": 936,
+            "modelId": "happyhorse-1.1"
+          },
+          {
+            "rank": 9,
+            "name": "Grok Imagine 1.5",
+            "provider": "xAI",
+            "score": 913,
+            "modelId": "grok-imagine-1.5"
+          },
+          {
+            "rank": 10,
+            "name": "PixVerse V6",
+            "provider": "PixVerse",
+            "score": 885,
+            "modelId": "pixverse-v6"
+          }
+        ],
+        "sourceVersion": "v1.0"
+      },
+      {
+        "id": "arena-video-edit",
+        "category": "video",
+        "title": "视频编辑",
+        "label": "Arena · 视频编辑",
+        "source": {
+          "name": "LMArena / arena.ai",
+          "url": "https://arena.ai/leaderboard/video/video-edit",
+          "detail": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset/viewer/video_edit/latest"
+        },
+        "officialDate": "2026-11-10",
+        "coverage": "官方前 12 名（官方数据集 12 条，网页 55,880 票）",
+        "method": "以现有视频作为输入，按指令生成修改后的片段。 名次、得分及置信区间取自 Arena 官方数据集，得分四舍五入为整数。",
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Wan 3.0",
+            "provider": "Alibaba",
+            "score": 1424,
+            "ci": "1410–1437",
+            "extra": "2,062 票",
+            "modelId": "wan-3.0"
+          },
+          {
+            "rank": 2,
+            "name": "Dreamina Seedance 2.5 (720p)",
+            "provider": "ByteDance",
+            "score": 1419,
+            "ci": "1407–1431",
+            "extra": "5,227 票",
+            "modelId": "dreamina-seedance-2.5-720p"
+          },
+          {
+            "rank": 3,
+            "name": "Gemini Omni 1.2 Flash",
+            "provider": "Google",
+            "score": 1396,
+            "ci": "1379–1412",
+            "extra": "1,167 票",
+            "modelId": "gemini-omni-1.2-flash"
+          },
+          {
+            "rank": 4,
+            "name": "gemini-omni-flash",
+            "provider": "Google",
+            "score": 1380,
+            "ci": "1369–1392",
+            "extra": "5,052 票",
+            "modelId": "gemini-omni-flash"
+          },
+          {
+            "rank": 5,
+            "name": "MiniMax H3",
+            "provider": "MiniMax",
+            "score": 1378,
+            "ci": "1369–1388",
+            "extra": "8,385 票",
+            "modelId": "minimax-h3"
+          },
+          {
+            "rank": 6,
+            "name": "Dreamina Seedance 2.0 (720p)",
+            "provider": "ByteDance",
+            "score": 1368,
+            "ci": "1357–1379",
+            "extra": "7,388 票",
+            "modelId": "dreamina-seedance-2.0-720p"
+          },
+          {
+            "rank": 7,
+            "name": "SkyReels V4",
+            "provider": "Skywork AI",
+            "score": 1364,
+            "ci": "1343–1385",
+            "extra": "697 票",
+            "modelId": "skyreels-v4"
+          },
+          {
+            "rank": 8,
+            "name": "HappyHorse 1.0",
+            "provider": "Aorizon",
+            "score": 1306,
+            "ci": "1292–1319",
+            "extra": "3,253 票",
+            "modelId": "happyhorse-1.0"
+          },
+          {
+            "rank": 9,
+            "name": "Kling O3 Pro",
+            "provider": "Kuaishou",
+            "score": 1266,
+            "ci": "1257–1274",
+            "extra": "14,611 票",
+            "modelId": "kling-o3-pro"
+          },
+          {
+            "rank": 10,
+            "name": "Grok Imagine Video",
+            "provider": "xAI",
+            "score": 1250,
+            "ci": "1241–1259",
+            "extra": "18,726 票",
+            "modelId": "grok-imagine-video"
+          },
+          {
+            "rank": 11,
+            "name": "Kling O1 Pro",
+            "provider": "Kuaishou",
+            "score": 1190,
+            "ci": "1181–1198",
+            "extra": "17,696 票",
+            "modelId": "kling-o1-pro"
+          },
+          {
+            "rank": 12,
+            "name": "Runway Gen-4 Aleph",
+            "provider": "Runway",
+            "score": 1182,
+            "ci": "1173–1190",
+            "extra": "10,159 票",
+            "modelId": "runway-gen-4-aleph"
+          }
+        ]
+      }
+    ],
+    "overview": {
+      "version": 2,
+      "policy": "每个方向选一张有公开排名、任务明确的代表榜。前端和文本采用各自的综合榜，3D 看交互场景，视频看参考图生成有声片段。前三沿用当期官方排序，分差只在同榜内计算，两项都有置信区间时标注是否重叠。",
+      "revisionNote": "首页选榜 v2：3D 从 Spline 改为 AA-3D 场景，文本从创意写作改为综合文本，视频从文生视频改为有声图生视频。"
+    }
+  },
+  "providers": {
+    "Anthropic": {
+      "asset": "assets/claude-brand.png",
+      "alt": "Claude / Anthropic 品牌标识",
+      "light": "#CC785C",
+      "dark": "#E6A080"
+    },
+    "OpenAI": {
+      "asset": "assets/openai-brand.png",
+      "alt": "OpenAI 品牌标识",
+      "light": "#169B7B",
+      "dark": "#45C6A0"
+    },
+    "Google": {
+      "asset": "assets/gemini-brand.png",
+      "alt": "Google Gemini 品牌标识",
+      "light": "#4285F4",
+      "dark": "#81AAFF"
+    },
+    "Alibaba": {
+      "asset": "assets/qwen-brand.png",
+      "alt": "Qwen / Alibaba 品牌标识",
+      "light": "#7C5CE0",
+      "dark": "#AB96FA"
+    },
+    "xAI": {
+      "asset": "assets/grok-brand.png",
+      "alt": "Grok / xAI 品牌标识",
+      "light": "#65778C",
+      "dark": "#B5C6DD"
+    },
+    "Meta": {
+      "asset": "assets/meta-brand.png",
+      "alt": "Meta 品牌标识",
+      "light": "#3479D9",
+      "dark": "#76B5FF"
+    },
+    "Microsoft": {
+      "asset": "assets/microsoft-brand.png",
+      "alt": "Microsoft 品牌标识",
+      "light": "#D88A17",
+      "dark": "#F1B950"
+    },
+    "ByteDance": {
+      "asset": "assets/bytedance-brand.png",
+      "alt": "ByteDance 品牌标识",
+      "light": "#209EBC",
+      "dark": "#68CEE3"
+    },
+    "DeepSeek": {
+      "asset": "assets/deepseek-brand.png",
+      "alt": "DeepSeek 品牌标识",
+      "light": "#536CEA",
+      "dark": "#92A5FF"
+    },
+    "Moonshot": {
+      "asset": "assets/kimi-brand.png",
+      "alt": "Kimi / Moonshot 品牌标识",
+      "light": "#528E2D",
+      "dark": "#9BC770"
+    },
+    "MiniMax": {
+      "asset": "assets/minimax-brand.png",
+      "alt": "MiniMax 品牌标识",
+      "light": "#CE5B85",
+      "dark": "#F2A1BE"
+    },
+    "Kuaishou": {
+      "asset": "assets/kling-brand.png",
+      "alt": "Kling / Kuaishou 品牌标识",
+      "light": "#638A25",
+      "dark": "#ABD567"
+    },
+    "Krea": {
+      "asset": "assets/krea-brand.png",
+      "alt": "Krea 品牌标识",
+      "light": "#79828B",
+      "dark": "#B7C0C9"
+    }
+  },
+  "history": [
+    {
+      "id": "2026-11-23T16-10Z",
+      "checkedAt": "2026-11-24T01:10+09:00",
+      "checkedBy": "Codex · 官方榜单与数据集核验",
+      "summary": "首份核验快照收录 35 个榜单，覆盖前端、视觉设计、3D、文本、生图、改图和视频。",
+      "baseline": true,
+      "previousId": null,
+      "boardCount": 35,
+      "rowCount": 491,
+      "modelCount": 159,
+      "carriedForwardBoards": [],
+      "newModels": [],
+      "counts": {
+        "board-added": 0,
+        "board-removed": 0,
+        "board-updated": 0,
+        "model-added": 0,
+        "model-removed": 0,
+        "model-moved": 0
+      },
+      "changes": []
+    }
+  ]
+};

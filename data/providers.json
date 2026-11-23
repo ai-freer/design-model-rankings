@@ -1,0 +1,80 @@
+{
+  "Anthropic": {
+    "asset": "assets/claude-brand.png",
+    "alt": "Claude / Anthropic 品牌标识",
+    "light": "#CC785C",
+    "dark": "#E6A080"
+  },
+  "OpenAI": {
+    "asset": "assets/openai-brand.png",
+    "alt": "OpenAI 品牌标识",
+    "light": "#169B7B",
+    "dark": "#45C6A0"
+  },
+  "Google": {
+    "asset": "assets/gemini-brand.png",
+    "alt": "Google Gemini 品牌标识",
+    "light": "#4285F4",
+    "dark": "#81AAFF"
+  },
+  "Alibaba": {
+    "asset": "assets/qwen-brand.png",
+    "alt": "Qwen / Alibaba 品牌标识",
+    "light": "#7C5CE0",
+    "dark": "#AB96FA"
+  },
+  "xAI": {
+    "asset": "assets/grok-brand.png",
+    "alt": "Grok / xAI 品牌标识",
+    "light": "#65778C",
+    "dark": "#B5C6DD"
+  },
+  "Meta": {
+    "asset": "assets/meta-brand.png",
+    "alt": "Meta 品牌标识",
+    "light": "#3479D9",
+    "dark": "#76B5FF"
+  },
+  "Microsoft": {
+    "asset": "assets/microsoft-brand.png",
+    "alt": "Microsoft 品牌标识",
+    "light": "#D88A17",
+    "dark": "#F1B950"
+  },
+  "ByteDance": {
+    "asset": "assets/bytedance-brand.png",
+    "alt": "ByteDance 品牌标识",
+    "light": "#209EBC",
+    "dark": "#68CEE3"
+  },
+  "DeepSeek": {
+    "asset": "assets/deepseek-brand.png",
+    "alt": "DeepSeek 品牌标识",
+    "light": "#536CEA",
+    "dark": "#92A5FF"
+  },
+  "Moonshot": {
+    "asset": "assets/kimi-brand.png",
+    "alt": "Kimi / Moonshot 品牌标识",
+    "light": "#528E2D",
+    "dark": "#9BC770"
+  },
+  "MiniMax": {
+    "asset": "assets/minimax-brand.png",
+    "alt": "MiniMax 品牌标识",
+    "light": "#CE5B85",
+    "dark": "#F2A1BE"
+  },
+  "Kuaishou": {
+    "asset": "assets/kling-brand.png",
+    "alt": "Kling / Kuaishou 品牌标识",
+    "light": "#638A25",
+    "dark": "#ABD567"
+  },
+  "Krea": {
+    "asset": "assets/krea-brand.png",
+    "alt": "Krea 品牌标识",
+    "light": "#79828B",
+    "dark": "#B7C0C9"
+  }
+}

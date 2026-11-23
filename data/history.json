@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "latestId": "2026-11-23T16-10Z",
+  "snapshots": [
+    {
+      "id": "2026-11-23T16-10Z",
+      "checkedAt": "2026-11-24T01:10+09:00",
+      "checkedBy": "Codex · 官方榜单与数据集核验",
+      "summary": "首份核验快照收录 35 个榜单，覆盖前端、视觉设计、3D、文本、生图、改图和视频。",
+      "baseline": true,
+      "previousId": null,
+      "boardCount": 35,
+      "rowCount": 491,
+      "modelCount": 159,
+      "carriedForwardBoards": [],
+      "newModels": [],
+      "counts": {
+        "board-added": 0,
+        "board-removed": 0,
+        "board-updated": 0,
+        "model-added": 0,
+        "model-removed": 0,
+        "model-moved": 0
+      },
+      "changes": []
+    }
+  ]
+}
