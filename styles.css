@@ -103,6 +103,9 @@ select { appearance: none; -webkit-appearance: none; padding-right: 32px !import
 .global-nav a[aria-current] { color: var(--ink); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
 .snapshot-pill { display: flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: 13px; text-decoration: none; white-space: nowrap; }
 .snapshot-pill span { width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px color-mix(in srgb, var(--good) 20%, transparent); }
+.topbar-controls { display: flex; flex: none; align-items: center; gap: 8px; }
+.language-toggle { min-width: 42px; height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 600; }
+.language-toggle:hover { border-color: var(--line-strong); }
 .theme-toggle { position: relative; display: flex; flex: none; align-items: center; gap: 12px; height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); }
 .theme-toggle:hover { border-color: var(--line-strong); }
 .theme-toggle::before { content: ""; position: absolute; left: 3px; top: 3px; width: 26px; height: 24px; border-radius: 999px; background: var(--ink); transition: transform 160ms ease; }
@@ -116,6 +119,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
 .hero::before { content: ""; position: absolute; inset: 0 -28px; z-index: -1; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse 70% 80% at 30% 40%, #000 10%, transparent 75%); mask-image: radial-gradient(ellipse 70% 80% at 30% 40%, #000 10%, transparent 75%); pointer-events: none; }
 .eyebrow { color: var(--muted); font-size: 14px; font-weight: 500; }
 .hero h1 { margin: 18px 0 22px; font-size: clamp(46px, 6.4vw, 84px); line-height: 1.04; font-weight: 750; letter-spacing: -0.045em; }
+:root[lang="en"] .hero h1 { font-size: clamp(32px, 4.5vw, 56px); }
 .title-dot { display: inline-block; width: 0.17em; height: 0.17em; margin-left: 0.08em; border-radius: 50%; background: var(--pick-a); box-shadow: 0 0 0 0.06em color-mix(in srgb, var(--pick-a) 22%, transparent); vertical-align: baseline; }
 .hero-lede { max-width: 520px; color: var(--muted); font-size: 17px; line-height: 1.7; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
@@ -134,7 +138,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
 .spot-head h2 { font-size: 16px; }
 .info-link, .info-icon { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--muted); font: italic 600 12px/1 Georgia, serif; text-decoration: none; }
 .info-link:hover, .row-data summary:hover .info-icon { border-color: var(--ink); color: var(--ink); }
-.spot-head select { height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background-color: var(--surface-muted); color: var(--ink); font: inherit; font-size: 14px; }
+.spot-head select { min-width: 0; max-width: 58%; height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background-color: var(--surface-muted); color: var(--ink); font: inherit; font-size: 14px; }
 .spot-source { display: block; margin-top: 18px; color: var(--muted); font-size: 13px; }
 #spot-content h3 { margin-top: 3px; font-family: var(--font-display); font-size: 24px; line-height: 1.3; letter-spacing: -0.02em; }
 .spot-reason, .spot-reading { color: var(--muted); font-size: 14px; line-height: 1.55; }
@@ -208,7 +212,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
 
 .row-grid {
   display: grid;
-  grid-template-columns: 36px 28px minmax(190px, 1.15fr) minmax(220px, 1.6fr) 84px 62px;
+  grid-template-columns: 36px 28px minmax(190px, 1.15fr) minmax(220px, 1.6fr) 84px 70px;
   grid-template-areas: "rank brand model track score pick";
   gap: 14px;
   align-items: center;
@@ -386,10 +390,14 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
 .noscript { padding: 24px; text-align: center; }
 
 @media (max-width: 1020px) {
+  :root[lang="en"] .topbar-inner { gap: 12px; }
+  :root[lang="en"] .snapshot-pill { display: none; }
+  :root[lang="en"] .global-nav { flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  :root[lang="en"] .global-nav a { white-space: nowrap; }
   .hero { grid-template-columns: 1fr; gap: 36px; padding-top: 52px; }
   .method-grid { grid-template-columns: 1fr; }
   .row-grid {
-    grid-template-columns: 34px 38px minmax(0, 1fr) 76px 58px;
+    grid-template-columns: 34px 38px minmax(0, 1fr) 76px 70px;
     grid-template-areas: "rank brand model score pick" ". . track track track";
     gap: 6px 12px;
   }

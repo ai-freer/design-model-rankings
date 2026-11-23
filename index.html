@@ -10,49 +10,54 @@
   </script>
   <link rel="stylesheet" href="styles.css">
   <script src="data/site-data.js" defer></script>
+  <script src="data/translations.en.js" defer></script>
+  <script src="i18n.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#rankings">跳到榜单</a>
+  <a class="skip-link" href="#rankings" data-i18n="skip">跳到榜单</a>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="#top" aria-label="设计与创作模型榜，回到顶部">
+      <a class="brand" href="#top" data-i18n-label="homeLabel" aria-label="设计与创作模型榜，回到顶部">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="brand-name">创作模型榜</span>
+        <span class="brand-name" data-i18n="brand">创作模型榜</span>
       </a>
-      <nav class="global-nav" aria-label="页面导航">
-        <a href="#rankings">榜单</a>
-        <a href="#compare">对照</a>
-        <a href="#updates">更新记录</a>
-        <a href="#methods">方法<span class="nav-long">与来源</span></a>
+      <nav class="global-nav" data-i18n-label="navLabel" aria-label="页面导航">
+        <a href="#rankings" data-i18n="rankings">榜单</a>
+        <a href="#compare" data-i18n="compare">对照</a>
+        <a href="#updates" data-i18n="updates">更新记录</a>
+        <a href="#methods"><span data-i18n="methods">方法</span><span class="nav-long" data-i18n="sourcesSuffix">与来源</span></a>
       </nav>
       <a class="snapshot-pill" id="snapshot-pill" href="#updates"></a>
-      <button class="theme-toggle" id="theme-toggle" type="button" role="switch" aria-label="深色模式" aria-checked="false" title="切换浅色与深色模式">
-        <svg class="theme-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
-        <svg class="theme-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
-      </button>
+      <div class="topbar-controls">
+        <button class="language-toggle" id="language-toggle" type="button" aria-label="Switch to English" title="Switch to English" hidden><span lang="en">EN</span></button>
+        <button data-i18n-label="darkMode" data-i18n-title="themeHint" class="theme-toggle" id="theme-toggle" type="button" role="switch" aria-label="深色模式" aria-checked="false" title="切换浅色与深色模式">
+          <svg class="theme-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+          <svg class="theme-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
-        <p class="eyebrow">公开榜单快照，定期核验更新</p>
-        <h1 id="page-title">设计与创作<br>模型榜<span class="title-dot" aria-hidden="true"></span></h1>
-        <p class="hero-lede">查阅前端、视觉设计、3D、文本、图像与视频的公开模型榜单。各榜保留来源、核验日期和评测口径。</p>
+        <p class="eyebrow" data-i18n="eyebrow">公开榜单快照，定期核验更新</p>
+        <h1 id="page-title"><span data-i18n="heroTitleFirst">设计与创作</span><br><span data-i18n="heroTitleSecond">模型榜</span><span class="title-dot" aria-hidden="true"></span></h1>
+        <p class="hero-lede" data-i18n="heroLede">查阅前端、视觉设计、3D、文本、图像与视频的公开模型榜单。各榜保留来源、核验日期和评测口径。</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#rankings">查看榜单</a>
-          <a class="button" href="#compare">对照两个模型</a>
+          <a class="button button-primary" href="#rankings" data-i18n="showRankings">查看榜单</a>
+          <a class="button" href="#compare" data-i18n="compareTwo">对照两个模型</a>
         </div>
         <dl class="hero-stats" id="hero-stats"></dl>
       </div>
       <aside class="leader-card" aria-labelledby="leaders-title">
         <div class="spot-head">
           <div class="spot-title">
-            <h2 id="leaders-title">代表榜前三</h2>
-            <a class="info-link" href="#overview-method" aria-label="如何选榜" title="如何选榜">i</a>
+            <h2 id="leaders-title" data-i18n="leaders">代表榜前三</h2>
+            <a class="info-link" data-i18n-label="pickMethod" data-i18n-title="pickMethod" href="#overview-method" aria-label="如何选榜" title="如何选榜">i</a>
           </div>
-          <select id="spot-category" aria-label="选择代表榜方向"></select>
+          <select id="spot-category" data-i18n-label="selectSpot" aria-label="选择代表榜方向"></select>
         </div>
         <div id="spot-content" aria-live="polite"></div>
       </aside>
@@ -60,75 +65,75 @@
 
     <section class="section" id="rankings" aria-labelledby="rankings-title">
       <div class="section-head">
-        <h2 id="rankings-title">榜单</h2>
-        <p>选择一级榜单。同类子榜在下方依次展开，可从任意行加入对照。</p>
+        <h2 id="rankings-title" data-i18n="rankings">榜单</h2>
+        <p data-i18n="rankingIntro">选择一级榜单。同类子榜在下方依次展开，可从任意行加入对照。</p>
       </div>
       <div class="category-bar" id="ranking-nav">
-        <div class="category-tabs" id="category-tabs" role="tablist" aria-label="一级榜单"></div>
+        <div class="category-tabs" id="category-tabs" data-i18n-label="categories" role="tablist" aria-label="一级榜单"></div>
         <div class="subnav" id="subnav"></div>
-        <label class="subnav-picker">子榜单<select id="subnav-select" aria-label="切换子榜单"></select></label>
+        <label class="subnav-picker"><span data-i18n="subboards">子榜单</span><select id="subnav-select" data-i18n-label="switchSubboard" aria-label="切换子榜单"></select></label>
       </div>
       <div class="category-panel" id="category-panel" role="tabpanel" tabindex="-1"></div>
     </section>
 
     <section class="section" id="compare" aria-labelledby="compare-title">
       <div class="section-head">
-        <h2 id="compare-title">模型对照</h2>
-        <p>左右两侧是同一榜单中的官方名次与得分。条长表示该模型在本榜可见分数范围中的位置，榜首为满格。</p>
+        <h2 id="compare-title" data-i18n="compareTitle">模型对照</h2>
+        <p data-i18n="compareIntro">左右两侧是同一榜单中的官方名次与得分。条长表示该模型在本榜可见分数范围中的位置，榜首为满格。</p>
       </div>
       <div class="compare-controls">
         <label class="picker picker-a">
-          <span>模型 A</span>
+          <span data-i18n="modelA">模型 A</span>
           <select id="pick-a"></select>
         </label>
-        <button class="icon-button" id="swap-picks" type="button" aria-label="交换模型 A 和 B">⇄</button>
+        <button class="icon-button" id="swap-picks" data-i18n-label="swap" type="button" aria-label="交换模型 A 和 B">⇄</button>
         <label class="picker picker-b">
-          <span>模型 B</span>
+          <span data-i18n="modelB">模型 B</span>
           <select id="pick-b"></select>
         </label>
-        <button class="button button-quiet" id="clear-picks" type="button">清空</button>
+        <button class="button button-quiet" id="clear-picks" data-i18n="clear" type="button">清空</button>
       </div>
       <div id="butterfly" class="butterfly-wrap" aria-live="polite"></div>
     </section>
 
     <section class="section" id="updates" aria-labelledby="updates-title">
       <div class="section-head">
-        <h2 id="updates-title">更新记录</h2>
-        <p>每次核验保存为一份带时间戳的完整快照。相邻快照之间的新增、移出、名次和得分变化会自动计算。</p>
+        <h2 id="updates-title" data-i18n="updates">更新记录</h2>
+        <p data-i18n="updatesIntro">每次核验保存为一份带时间戳的完整快照。相邻快照之间的新增、移出、名次和得分变化会自动计算。</p>
       </div>
       <ol class="timeline" id="update-timeline"></ol>
     </section>
 
     <section class="section" id="methods" aria-labelledby="methods-title">
       <div class="section-head">
-        <h2 id="methods-title">方法与来源</h2>
-        <p>各榜评测任务、投票人群和计分方式不同。只比较同一榜内的名次和分差。</p>
+        <h2 id="methods-title" data-i18n="methodsTitle">方法与来源</h2>
+        <p data-i18n="methodsIntro">各榜评测任务、投票人群和计分方式不同。只比较同一榜内的名次和分差。</p>
       </div>
       <article id="overview-method" class="method-card"></article>
       <div class="method-grid">
         <article class="method-card">
-          <h3>怎么读排名行</h3>
-          <p>圆点是官方得分，色条从本榜截断横轴起点延伸到得分，虚线对齐榜首。半透明宽带是官方公布的 95% 置信区间，没有公布的区间不补画。</p>
+          <h3 data-i18n="readingTitle">怎么读排名行</h3>
+          <p data-i18n="readingBody">圆点是官方得分，色条从本榜截断横轴起点延伸到得分，虚线对齐榜首。半透明宽带是官方公布的 95% 置信区间，没有公布的区间不补画。</p>
         </article>
         <article class="method-card">
-          <h3>名次与分差</h3>
-          <p>分差是与本榜榜首的算术差，不代表领先概率。置信区间重叠或只差几分时，顺序未必稳固。官方未展开的中间名次保留空档，不重新压缩排序。</p>
+          <h3 data-i18n="gapsTitle">名次与分差</h3>
+          <p data-i18n="gapsBody">分差是与本榜榜首的算术差，不代表领先概率。置信区间重叠或只差几分时，顺序未必稳固。官方未展开的中间名次保留空档，不重新压缩排序。</p>
         </article>
         <article class="method-card">
-          <h3>颜色与标识</h3>
-          <p>行色与品牌标识用于辨认提供商，不表示好坏。本页为独立整理，品牌权利归各自权利人，页面运行时不连接外站。</p>
+          <h3 data-i18n="colorsTitle">颜色与标识</h3>
+          <p data-i18n="colorsBody">行色与品牌标识用于辨认提供商，不表示好坏。本页为独立整理，品牌权利归各自权利人，页面运行时不连接外站。</p>
         </article>
       </div>
       <div id="snapshot-notes" class="snapshot-notes"></div>
-      <h3 class="subhead">官方来源</h3>
+      <h3 class="subhead" data-i18n="officialSources">官方来源</h3>
       <div id="source-list" class="source-list"></div>
-      <p class="credit">品牌素材来自 <a href="https://github.com/lobehub/lobe-icons" target="_blank" rel="noreferrer">Lobe Icons</a> 的 static-svg，已转为本地 PNG。没有可靠标识的提供商显示文字名称。西文标题字体为 Bricolage Grotesque（SIL Open Font License）。</p>
+      <p class="credit"><span data-i18n="creditFirst">品牌素材来自 </span><a href="https://github.com/lobehub/lobe-icons" target="_blank" rel="noreferrer">Lobe Icons</a><span data-i18n="creditLast"> 的 static-svg，已转为本地 PNG。没有可靠标识的提供商显示文字名称。西文标题字体为 Bricolage Grotesque（SIL Open Font License）。</span></p>
     </section>
   </main>
 
   <footer class="footer">
     <span id="footer-snapshot"></span>
-    <a href="#top">回到顶部</a>
+    <a href="#top" data-i18n="backToTop">回到顶部</a>
   </footer>
 
   <a class="compare-tray" id="compare-tray" href="#compare" hidden></a>

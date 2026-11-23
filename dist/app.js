@@ -6,13 +6,13 @@ const latestEntry = snapshotHistory[snapshotHistory.length - 1];
 const byId = (id) => document.getElementById(id);
 
 const FIELD_LABELS = {
-  title: '名称',
-  label: '官方名称',
-  category: '分类',
-  officialDate: '官方日期',
-  sourceVersion: '官方版本',
-  coverage: '覆盖范围',
-  method: '口径说明'
+  title: 'fieldTitle',
+  label: 'fieldLabel',
+  category: 'fieldCategory',
+  officialDate: 'fieldOfficialDate',
+  sourceVersion: 'fieldSourceVersion',
+  coverage: 'fieldCoverage',
+  method: 'fieldMethod'
 };
 
 const categories = snapshot.categories.map((category) => ({
@@ -44,12 +44,28 @@ function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 }
 
+function dataHtml(value) {
+  return escapeHtml(translateData(value));
+}
+
+function officialEnglishBoard(boardId) {
+  return language === 'en' ? window.RANKINGS_OFFICIAL_EN?.[boardId] : undefined;
+}
+
+function boardTitle(board) {
+  return officialEnglishBoard(board.id)?.title ?? board.title;
+}
+
+function sentenceList(sentences) {
+  return sentences.filter(Boolean).join(language === 'en' ? ' ' : '');
+}
+
 function formatNumber(value) {
   return value.toLocaleString('en-US');
 }
 
 function formatCheckedAt(iso, includeTime = true) {
-  const parts = new Intl.DateTimeFormat('zh-CN', {
+  const parts = new Intl.DateTimeFormat(language, {
     timeZone: 'Asia/Tokyo',
     year: 'numeric',
     month: '2-digit',
@@ -60,16 +76,17 @@ function formatCheckedAt(iso, includeTime = true) {
   }).formatToParts(new Date(iso));
   const part = (type) => parts.find((item) => item.type === type).value;
   const date = part('year') + '.' + part('month') + '.' + part('day');
-  return includeTime ? date + ' ' + part('hour') + ':' + part('minute') + ' 日本时间' : date;
+  return includeTime ? date + ' ' + part('hour') + ':' + part('minute') + ' ' + t('timeZone') : date;
 }
 
 function brandMark(provider, size) {
   const brand = providers[provider];
   if (brand) {
-    return '<span class="brandmark brandmark-' + size + '"><img src="' + escapeHtml(brand.asset) + '" alt="' + escapeHtml(brand.alt) + '"></span>';
+    return '<span class="brandmark brandmark-' + size + '"><img src="' + escapeHtml(brand.asset) + '" alt="' + dataHtml(brand.alt) + '"></span>';
   }
-  const initials = provider.split(/\s+/).map((word) => word[0]).join('').slice(0, 2).toUpperCase();
-  return '<span class="brandmark brandmark-' + size + ' brandmark-text" role="img" aria-label="' + escapeHtml(provider) + '" title="' + escapeHtml(provider) + '">' + escapeHtml(initials) + '</span>';
+  const label = translateData(provider);
+  const initials = label.split(/\s+/).map((word) => word[0]).join('').slice(0, 2).toUpperCase();
+  return '<span class="brandmark brandmark-' + size + ' brandmark-text" role="img" aria-label="' + escapeHtml(label) + '" title="' + escapeHtml(label) + '">' + escapeHtml(initials) + '</span>';
 }
 
 function splitName(name) {
@@ -124,23 +141,23 @@ function rowSlot(modelId) {
 
 function sourceDates(board) {
   return [
-    board.officialDate && '官方 ' + board.officialDate,
-    board.sourceVersion && '版本 ' + board.sourceVersion,
-    !board.officialDate && '核验 ' + formatCheckedAt(snapshot.checkedAt, false)
+    board.officialDate && t('officialDate', { date: board.officialDate }),
+    board.sourceVersion && t('version', { version: board.sourceVersion }),
+    !board.officialDate && t('checkedDate', { date: formatCheckedAt(snapshot.checkedAt, false) })
   ].filter(Boolean);
 }
 
 function renderHero() {
   const stats = [
-    ['官方榜单', formatNumber(snapshot.boards.length)],
-    ['模型', formatNumber(models.size)],
-    ['创作方向', formatNumber(categories.length)],
-    ['最近核验', formatCheckedAt(snapshot.checkedAt, false).slice(5)]
+    [t('officialBoards'), formatNumber(snapshot.boards.length)],
+    [t('models'), formatNumber(models.size)],
+    [t('creativeAreas'), formatNumber(categories.length)],
+    [t('latestCheck'), formatCheckedAt(snapshot.checkedAt, false).slice(5)]
   ];
   byId('hero-stats').innerHTML = stats.map(([label, value]) => '<div><dt>' + label + '</dt><dd>' + value + '</dd></div>').join('');
   renderSpotlight();
-  byId('snapshot-pill').innerHTML = '<span aria-hidden="true"></span>已核验 ' + formatCheckedAt(snapshot.checkedAt, false);
-  byId('footer-snapshot').textContent = '当前快照 ' + snapshot.id + ' · ' + snapshot.summary;
+  byId('snapshot-pill').innerHTML = '<span aria-hidden="true"></span>' + t('verified', { date: formatCheckedAt(snapshot.checkedAt, false) });
+  byId('footer-snapshot').textContent = t('currentSnapshot', { id: snapshot.id, summary: translateData(snapshot.summary) });
 }
 
 function renderSpotlight() {
@@ -148,30 +165,28 @@ function renderSpotlight() {
   const board = boardsById.get(category.representativeBoard) || category.boards[0];
   const [first, second] = board.rows;
   const leaders = board.rows.filter((row) => row.rank <= 3);
-  let reading = '';
+  const reading = [];
   if (second) {
     const gap = first.score - second.score;
-    reading = gap === 0 ? '前两项公布得分相同。' : '前两项公布得分相差 ' + formatNumber(Math.abs(gap)) + ' 分。';
+    reading.push(gap === 0 ? t('sameTopScore') : t('topScoreGap', { gap: formatNumber(Math.abs(gap)) }));
     const a = parseCi(first.ci);
     const b = parseCi(second.ci);
-    if (a && b) reading += Math.max(a.low, b.low) <= Math.min(a.high, b.high)
-      ? '两者的置信区间有重叠。' : '两者的置信区间未重叠。';
+    if (a && b) reading.push(t(Math.max(a.low, b.low) <= Math.min(a.high, b.high) ? 'intervalsOverlap' : 'intervalsDistinct'));
   }
-  byId('spot-content').innerHTML = '<small class="spot-source">' + escapeHtml(board.source.name) + '</small>'
-    + '<h3>' + escapeHtml(board.title) + '</h3><p class="spot-reason">' + escapeHtml(category.selectionReason || board.label) + '</p>'
+  byId('spot-content').innerHTML = '<small class="spot-source">' + dataHtml(board.source.name) + '</small>'
+    + '<h3>' + escapeHtml(boardTitle(board)) + '</h3><p class="spot-reason">' + (category.selectionReason ? dataHtml(category.selectionReason) : escapeHtml(boardTitle(board))) + '</p>'
     + '<ol class="spot-rows">' + leaders.slice(0, 3).map((row) =>
       '<li><span class="spot-rank">' + String(row.rank).padStart(2, '0') + '</span>' + brandMark(row.provider, 'sm')
-      + '<strong>' + escapeHtml(row.name) + '</strong><b>' + formatNumber(row.score) + '</b></li>').join('') + '</ol>'
-    + '<p class="spot-reading">' + (board.carriedForward ? '本期沿用上期读数。' : '') + reading
-    + (leaders.length > 3 ? '另有并列，详见完整榜。' : '') + '</p>'
-    + '<a class="button button-primary spot-link" href="#board-' + board.id + '" data-board-link="' + board.id + '">查看完整榜单</a>';
+      + '<strong>' + dataHtml(row.name) + '</strong><b>' + formatNumber(row.score) + '</b></li>').join('') + '</ol>'
+    + '<p class="spot-reading">' + sentenceList([board.carriedForward && t('carriedReading'), ...reading, leaders.length > 3 && t('ties')]) + '</p>'
+    + '<a class="button button-primary spot-link" href="#board-' + board.id + '" data-board-link="' + board.id + '">' + t('fullBoard') + '</a>';
 }
 
 function renderCategoryTabs() {
   byId('category-tabs').innerHTML = categories.map((category) => {
     const active = category.id === state.categoryId;
     return '<button type="button" role="tab" id="tab-' + category.id + '" data-category="' + category.id + '" aria-controls="category-panel" aria-selected="' + active + '" tabindex="' + (active ? 0 : -1) + '">'
-      + '<span>' + escapeHtml(category.label) + '</span><small>' + category.boards.length + '</small></button>';
+      + '<span>' + dataHtml(category.label) + '</span><small>' + category.boards.length + '</small></button>';
   }).join('');
 }
 
@@ -185,26 +200,29 @@ function renderCategoryPanel() {
     groups.get(key).push(board);
   }
   const index = [...groups].map(([label, boards]) => '<div class="index-group">'
-    + (label ? '<strong>' + escapeHtml(label) + '</strong>' : '')
-    + '<nav class="board-index" aria-label="' + escapeHtml(label || category.label) + '榜单导航">'
-    + boards.map((board) => '<a href="#board-' + board.id + '">' + escapeHtml(board.title) + '</a>').join('') + '</nav></div>').join('');
+    + (label ? '<strong>' + dataHtml(label) + '</strong>' : '')
+    + '<nav class="board-index" aria-label="' + escapeHtml(t('boardNavigation', { label: translateData(label || category.label) })) + '">'
+    + boards.map((board) => '<a href="#board-' + board.id + '">' + escapeHtml(boardTitle(board)) + '</a>').join('') + '</nav></div>').join('');
   byId('subnav').innerHTML = category.boards.length > 1 ? index : '';
   byId('subnav').scrollLeft = 0;
   byId('subnav-select').innerHTML = [...groups].map(([label, boards]) => {
-    const options = boards.map((board) => '<option value="board-' + board.id + '">' + escapeHtml(board.title) + '</option>').join('');
-    return label ? '<optgroup label="' + escapeHtml(label) + '">' + options + '</optgroup>' : options;
+    const options = boards.map((board) => '<option value="board-' + board.id + '">' + escapeHtml(boardTitle(board)) + '</option>').join('');
+    return label ? '<optgroup label="' + dataHtml(label) + '">' + options + '</optgroup>' : options;
   }).join('');
   panel.setAttribute('aria-labelledby', 'tab-' + category.id);
-  const legend = '<div class="panel-note"><p>' + escapeHtml(category.description) + '</p>'
-    + '<ul class="legend" aria-label="图例"><li><i class="legend-dot"></i>官方得分</li><li><i class="legend-ci"></i>95% 置信区间</li>'
-    + '<li><i class="legend-leader"></i>榜首</li><li>横轴按各榜可见分数截断</li></ul></div>';
-  panel.innerHTML = legend + [...groups].map(([label, boards]) => (label ? '<h3 class="module-heading">' + escapeHtml(label) + '</h3>' : '')
+  const legend = '<div class="panel-note"><p>' + dataHtml(category.description) + '</p>'
+    + '<ul class="legend" aria-label="' + t('legend') + '"><li><i class="legend-dot"></i>' + t('officialScore') + '</li>'
+    + '<li><i class="legend-ci"></i>' + t('confidenceInterval') + '</li>'
+    + '<li><i class="legend-leader"></i>' + t('leader') + '</li><li>' + t('truncatedAxis') + '</li></ul></div>';
+  panel.innerHTML = legend + [...groups].map(([label, boards]) => (label ? '<h3 class="module-heading">' + dataHtml(label) + '</h3>' : '')
     + '<div class="board-stack">' + boards.map((board) => renderBoard(board, label ? 4 : 3)).join('') + '</div>').join('');
   syncBoardNav();
   updateScrollFades();
 }
 
 function renderBoard(board, headingLevel) {
+  const official = officialEnglishBoard(board.id);
+  const metric = official?.metric ?? t('score');
   const axis = scoreDomain(board);
   const leader = board.rows[0].score;
   const hasCi = board.rows.some((row) => row.ci);
@@ -212,51 +230,52 @@ function renderBoard(board, headingLevel) {
   const rows = board.rows.map((row, index) => {
     const previous = board.rows[index - 1];
     const missing = previous && row.rank - previous.rank > 1
-      ? '<li class="rank-gap">官方第 ' + (previous.rank + 1) + (row.rank - previous.rank > 2 ? '–' + (row.rank - 1) : '') + ' 名未在本页展开</li>'
+      ? '<li class="rank-gap">' + t('rankGap', { ranks: (previous.rank + 1) + (row.rank - previous.rank > 2 ? '–' + (row.rank - 1) : '') }) + '</li>'
       : '';
-    return missing + renderRow(board, row, axis, leader);
+    return missing + renderRow(board, row, axis, leader, metric);
   }).join('');
   const carried = board.carriedForward
-    ? '<p class="board-warning">本期未能重新核对，沿用 ' + escapeHtml(board.carriedForward.from) + ' 的数据：' + escapeHtml(board.carriedForward.reason) + '</p>'
+    ? '<p class="board-warning">' + escapeHtml(t('carriedBoard', { id: board.carriedForward.from, reason: translateData(board.carriedForward.reason) })) + '</p>'
     : '';
-  const notes = (board.notes || []).map((note) => '<p>' + escapeHtml(note) + '</p>').join('');
-  const scope = board.parentBoard ? boardsById.get(board.parentBoard).title + ' · ' + board.role : board.role;
-  const meta = [board.label, ...sourceDates(board), board.coverage, !hasCi && '未公布置信区间'].filter(Boolean);
+  const notes = (board.notes || []).map((note) => '<p>' + dataHtml(note) + '</p>').join('');
+  const parent = boardsById.get(board.parentBoard);
+  const scope = [parent && boardTitle(parent), translateData(board.role)].filter(Boolean).join(' · ');
+  const meta = [!official && board.label, ...sourceDates(board), board.coverage, !hasCi && t('noInterval')].filter(Boolean);
   const heading = 'h' + headingLevel;
   return '<article class="board" id="board-' + board.id + '" aria-labelledby="board-title-' + board.id + '" style="--ticks:' + gridLines(axis) + '">'
     + '<header class="board-head"><div class="board-title">'
-    + '<p class="board-source">' + escapeHtml([board.source.name, scope].filter(Boolean).join(' / ')) + '</p>'
-    + '<' + heading + ' id="board-title-' + board.id + '">' + escapeHtml(board.title) + '</' + heading + '>'
-    + '<p class="board-meta">' + meta.map((item) => '<span>' + escapeHtml(item) + '</span>').join('') + '</p></div>'
-    + '<a class="source-link" href="' + escapeHtml(board.source.url) + '" target="_blank" rel="noreferrer">官方原榜</a></header>'
+    + '<p class="board-source">' + escapeHtml([translateData(board.source.name), scope].filter(Boolean).join(' / ')) + '</p>'
+    + '<' + heading + ' id="board-title-' + board.id + '">' + escapeHtml(boardTitle(board)) + '</' + heading + '>'
+    + '<p class="board-meta">' + meta.map((item) => '<span>' + dataHtml(item) + '</span>').join('') + '</p></div>'
+    + '<a class="source-link" href="' + escapeHtml(board.source.url) + '" target="_blank" rel="noreferrer">' + t('officialBoardLink') + '</a></header>'
     + carried
-    + '<div class="row-grid board-axis" aria-hidden="true"><span>名次</span><span></span><span>模型</span><div class="axis-ticks"><div>' + ticks + '</div></div><span class="axis-score">得分</span><span></span></div>'
-    + '<ol class="rows" aria-label="' + escapeHtml(board.title) + '官方排名">' + rows + '</ol>'
+    + '<div class="row-grid board-axis" aria-hidden="true"><span>' + t('rank') + '</span><span></span><span>' + t('model') + '</span><div class="axis-ticks"><div>' + ticks + '</div></div><span class="axis-score">' + escapeHtml(metric) + '</span><span></span></div>'
+    + '<ol class="rows" aria-label="' + escapeHtml(t('boardRankings', { title: boardTitle(board) })) + '">' + rows + '</ol>'
     + (notes ? '<div class="board-notes">' + notes + '</div>' : '')
-    + '<details class="board-method"><summary>口径说明</summary><p>' + escapeHtml(board.method) + '</p>'
-    + (board.source.detail ? '<p>数据来源补充：' + escapeHtml(board.source.detail) + '</p>' : '') + '</details>'
+    + '<details class="board-method"><summary>' + t('fieldMethod') + '</summary><p>' + escapeHtml(official?.method ?? board.method) + '</p>'
+    + (board.source.detail ? '<p>' + escapeHtml(t('additionalSource', { detail: translateData(board.source.detail) })) + '</p>' : '') + '</details>'
     + '</article>';
 }
 
 function movementBadge(board, row) {
   if (latestEntry.baseline) return '';
-  if (newModelIds.has(row.modelId)) return '<span class="badge badge-new">新模型</span>';
+  if (newModelIds.has(row.modelId)) return '<span class="badge badge-new">' + t('newModel') + '</span>';
   const change = changeByRow.get(board.id + '|' + row.modelId);
   if (!change) return '';
-  if (change.type === 'model-added') return '<span class="badge badge-new">新进</span>';
+  if (change.type === 'model-added') return '<span class="badge badge-new">' + t('newEntry') + '</span>';
   const rankDelta = change.rank.from - change.rank.to;
-  const title = '上期第 ' + change.rank.from + ' 名，' + formatNumber(change.score.from) + ' 分';
+  const title = t('previousResult', { rank: change.rank.from, score: formatNumber(change.score.from) });
   if (rankDelta > 0) return '<span class="badge badge-up" title="' + title + '">↑' + rankDelta + '</span>';
   if (rankDelta < 0) return '<span class="badge badge-down" title="' + title + '">↓' + Math.abs(rankDelta) + '</span>';
   const scoreDelta = change.score.to - change.score.from;
-  return '<span class="badge" title="' + title + '">' + (scoreDelta > 0 ? '+' : '−') + formatNumber(Math.abs(scoreDelta)) + ' 分</span>';
+  return '<span class="badge" title="' + title + '">' + t('points', { score: (scoreDelta > 0 ? '+' : '−') + formatNumber(Math.abs(scoreDelta)) }) + '</span>';
 }
 
-function renderRow(board, row, axis, leader) {
+function renderRow(board, row, axis, leader, metric) {
   const name = splitName(row.name);
   const slot = rowSlot(row.modelId);
   const gap = leader - row.score;
-  const details = [row.ci && '95% CI ' + row.ci, row.rankRange && '名次区间 ' + row.rankRange, row.extra].filter(Boolean);
+  const details = [row.ci && '95% CI ' + row.ci, row.rankRange && t('rankRange', { range: translateData(row.rankRange) }), translateData(row.extra)].filter(Boolean);
   const colors = providers[row.provider] || { light: '#7b808a', dark: '#a6abb5' };
   const classes = ['row', 'row-grid'];
   if (row.rank <= 3) classes.push('row-top');
@@ -266,21 +285,21 @@ function renderRow(board, row, axis, leader) {
   return '<li class="' + classes.join(' ') + '" style="--provider-light:' + colors.light + ';--provider-dark:' + colors.dark + '">'
     + '<span class="row-rank">' + String(row.rank).padStart(2, '0') + '</span>'
     + brandMark(row.provider, 'sm')
-    + '<div class="row-model"><div class="row-name"><span class="model-base">' + escapeHtml(name.base) + '</span>'
-    + (name.effort ? '<span class="effort">' + escapeHtml(name.effort) + '</span>' : '') + movementBadge(board, row) + '</div>'
-    + (details.length ? '<details class="row-data"><summary><span>' + escapeHtml(row.provider) + '</span>'
-      + '<span class="info-icon" aria-hidden="true">i</span><span class="visually-hidden">查看评测数据</span></summary><p>'
-      + escapeHtml(details.join(' · ')) + '</p></details>' : '<div class="row-meta">' + escapeHtml(row.provider) + '</div>')
+    + '<div class="row-model"><div class="row-name"><span class="model-base">' + dataHtml(name.base) + '</span>'
+    + (name.effort ? '<span class="effort">' + dataHtml(name.effort) + '</span>' : '') + movementBadge(board, row) + '</div>'
+    + (details.length ? '<details class="row-data"><summary><span>' + dataHtml(row.provider) + '</span>'
+      + '<span class="info-icon" aria-hidden="true">i</span><span class="visually-hidden">' + t('viewRowData') + '</span></summary><p>'
+      + escapeHtml(details.join(' · ')) + '</p></details>' : '<div class="row-meta">' + dataHtml(row.provider) + '</div>')
     + '</div>'
-    + renderTrack(row, axis, leader)
-    + '<div class="row-score"><strong>' + formatNumber(row.score) + '</strong><span>' + (gap === 0 ? '榜首' : '−' + formatNumber(gap)) + '</span></div>'
-    + '<button class="pick-button" type="button" data-compare="' + escapeHtml(row.modelId) + '" aria-pressed="' + Boolean(slot) + '" aria-label="对照 ' + escapeHtml(row.name) + '">' + (slot || '对照') + '</button>'
+    + renderTrack(row, axis, leader, metric)
+    + '<div class="row-score"><strong>' + formatNumber(row.score) + '</strong><span>' + (gap === 0 ? t('leader') : '−' + formatNumber(gap)) + '</span></div>'
+    + '<button class="pick-button" type="button" data-compare="' + escapeHtml(row.modelId) + '" aria-pressed="' + Boolean(slot) + '" aria-label="' + escapeHtml(t('compareModel', { name: translateData(row.name) })) + '">' + (slot || t('compare')) + '</button>'
     + '</li>';
 }
 
-function renderTrack(row, axis, leader) {
+function renderTrack(row, axis, leader, metric) {
   const ci = row.ci ? parseCi(row.ci) : undefined;
-  const label = '得分 ' + row.score + '，截断横轴 ' + axis.min + ' 至 ' + axis.max + (row.ci ? '，95% 置信区间 ' + row.ci : '');
+  const label = t('trackLabel', { metric, score: row.score, min: axis.min, max: axis.max }) + (row.ci ? t('trackInterval', { interval: row.ci }) : '');
   const band = ci ? '<span class="track-ci" style="--from:' + position(ci.low, axis) + '%;--to:' + position(ci.high, axis) + '%"></span>' : '';
   return '<div class="track" role="img" aria-label="' + escapeHtml(label) + '"><div class="track-area" style="--x:' + position(row.score, axis) + '%;--leader:' + position(leader, axis) + '%">'
     + '<span class="track-fill"></span>' + band + '<span class="track-dot"></span></div></div>';
@@ -290,7 +309,7 @@ function syncPickedRows() {
   for (const button of document.querySelectorAll('[data-compare]')) {
     const slot = rowSlot(button.dataset.compare);
     const row = button.closest('.row');
-    button.textContent = slot || '对照';
+    button.textContent = slot || t('compare');
     button.setAttribute('aria-pressed', String(Boolean(slot)));
     row.classList.toggle('row-picked-a', slot === 'A');
     row.classList.toggle('row-picked-b', slot === 'B');
@@ -299,19 +318,21 @@ function syncPickedRows() {
 
 function modelOptions(placeholder, excludedId) {
   const groups = new Map();
-  const sorted = [...models.values()].sort((first, second) => first.provider.localeCompare(second.provider) || first.name.localeCompare(second.name));
+  const locale = language === 'en' ? 'en' : undefined;
+  const sorted = [...models.values()].sort((first, second) => translateData(first.provider).localeCompare(translateData(second.provider), locale)
+    || translateData(first.name).localeCompare(translateData(second.name), locale));
   for (const model of sorted) {
     if (!groups.has(model.provider)) groups.set(model.provider, []);
     groups.get(model.provider).push(model);
   }
-  return '<option value="none">' + placeholder + '</option>' + [...groups].map(([provider, list]) => '<optgroup label="' + escapeHtml(provider) + '">'
-    + list.map((model) => '<option value="' + escapeHtml(model.modelId) + '"' + (model.modelId === excludedId ? ' disabled' : '') + '>' + escapeHtml(model.name) + '</option>').join('')
+  return '<option value="none">' + placeholder + '</option>' + [...groups].map(([provider, list]) => '<optgroup label="' + dataHtml(provider) + '">'
+    + list.map((model) => '<option value="' + escapeHtml(model.modelId) + '"' + (model.modelId === excludedId ? ' disabled' : '') + '>' + dataHtml(model.name) + '</option>').join('')
     + '</optgroup>').join('');
 }
 
 function renderPickers() {
-  byId('pick-a').innerHTML = modelOptions('选择模型 A', state.pickB);
-  byId('pick-b').innerHTML = modelOptions('选择模型 B', state.pickA);
+  byId('pick-a').innerHTML = modelOptions(t('chooseModel', { slot: 'A' }), state.pickB);
+  byId('pick-b').innerHTML = modelOptions(t('chooseModel', { slot: 'B' }), state.pickA);
   byId('pick-a').value = state.pickA;
   byId('pick-b').value = state.pickB;
   byId('clear-picks').disabled = state.pickA === 'none' && state.pickB === 'none';
@@ -320,28 +341,28 @@ function renderPickers() {
 
 function butterflyModel(modelId, slot) {
   const model = models.get(modelId);
-  if (!model) return '<div class="bf-model bf-model-' + slot.toLowerCase() + ' bf-model-empty"><span class="slot-tag">' + slot + '</span><strong>选择模型 ' + slot + '</strong><span>从上方下拉框或任意排名行加入</span></div>';
+  if (!model) return '<div class="bf-model bf-model-' + slot.toLowerCase() + ' bf-model-empty"><span class="slot-tag">' + slot + '</span><strong>' + t('chooseModel', { slot }) + '</strong><span>' + t('addModelHelp') + '</span></div>';
   return '<div class="bf-model bf-model-' + slot.toLowerCase() + '"><span class="slot-tag">' + slot + '</span>' + brandMark(model.provider, 'md')
-    + '<div><strong>' + escapeHtml(splitName(model.name).base) + '</strong><span>' + escapeHtml(model.provider) + '</span><span class="bf-count">出现在 ' + model.boards + ' 个榜单</span></div></div>';
+    + '<div><strong>' + dataHtml(splitName(model.name).base) + '</strong><span>' + dataHtml(model.provider) + '</span><span class="bf-count">' + t(model.boards === 1 ? 'modelOneBoard' : 'modelBoardCount', { count: model.boards }) + '</span></div></div>';
 }
 
 function butterflySide(item, row, side, lead) {
-  if (!row) return '<div class="bf-side bf-side-' + side + ' bf-missing"><span>本页未收录</span></div>';
+  if (!row) return '<div class="bf-side bf-side-' + side + ' bf-missing"><span>' + t('modelMissing') + '</span></div>';
   const leader = item.board.rows[0].score;
   const ratio = Math.max(0.06, (row.score - item.axis.min) / (leader - item.axis.min));
   const effort = splitName(row.name).effort;
-  return '<div class="bf-side bf-side-' + side + '" title="' + escapeHtml(row.name) + '">'
+  return '<div class="bf-side bf-side-' + side + '" title="' + dataHtml(row.name) + '">'
     + '<div class="bf-value"><strong>#' + row.rank + (lead ? '<b class="bf-lead">+' + formatNumber(lead) + '</b>' : '') + '</strong>'
-    + '<span>' + formatNumber(row.score) + (effort ? ' · ' + escapeHtml(effort) : '') + '</span></div>'
+    + '<span>' + formatNumber(row.score) + (effort ? ' · ' + dataHtml(effort) : '') + '</span></div>'
     + '<span class="bf-bar" style="--r:' + ratio.toFixed(3) + '"></span></div>';
 }
 
 function butterflyCenter(item) {
   let note = '';
-  if (!item.a || !item.b) note = '<span class="verdict">单侧收录</span>';
-  else if (item.a.score === item.b.score) note = '<span class="verdict">同分</span>';
-  return '<div class="bf-center"><a href="#board-' + item.board.id + '" data-board-link="' + item.board.id + '" title="' + escapeHtml(item.board.source.name) + '">'
-    + escapeHtml(item.board.title) + '</a>' + note + '</div>';
+  if (!item.a || !item.b) note = '<span class="verdict">' + t('oneSide') + '</span>';
+  else if (item.a.score === item.b.score) note = '<span class="verdict">' + t('tiedScore') + '</span>';
+  return '<div class="bf-center"><a href="#board-' + item.board.id + '" data-board-link="' + item.board.id + '" title="' + dataHtml(item.board.source.name) + '">'
+    + escapeHtml(boardTitle(item.board)) + '</a>' + note + '</div>';
 }
 
 function butterflyRow(item) {
@@ -353,7 +374,7 @@ function butterflyRow(item) {
 function renderButterfly() {
   const container = byId('butterfly');
   if (state.pickA === 'none' && state.pickB === 'none') {
-    container.innerHTML = '<div class="empty-state"><strong>选择两个模型开始对照</strong><p>在榜单行点击“对照”，或用上方下拉框选择。</p></div>';
+    container.innerHTML = '<div class="empty-state"><strong>' + t('compareEmpty') + '</strong><p>' + t('compareEmptyHelp') + '</p></div>';
     return;
   }
   const items = snapshot.boards.map((board) => ({
@@ -368,7 +389,7 @@ function renderButterfly() {
   const groups = categories.map((category) => {
     const groupItems = items.filter((item) => item.board.category === category.id);
     if (!groupItems.length) return '';
-    return '<div class="bf-group"><p class="bf-group-label">' + escapeHtml(category.label) + '</p>'
+    return '<div class="bf-group"><p class="bf-group-label">' + dataHtml(category.label) + '</p>'
       + groupItems.map(butterflyRow).join('')
       + '</div>';
   }).join('');
@@ -376,39 +397,44 @@ function renderButterfly() {
 
   container.innerHTML = '<div class="butterfly">'
     + '<div class="bf-head">' + butterflyModel(state.pickA, 'A')
-    + '<div class="bf-score"><strong><span class="score-a">' + aHigher + '</span><i>:</i><span class="score-b">' + bHigher + '</span></strong><span>' + (shared.length ? '同时出现的 ' + shared.length + ' 个榜单中得分更高的次数' : '两者没有同时出现的榜单') + '</span></div>'
+    + '<div class="bf-score"><strong><span class="score-a">' + aHigher + '</span><i>:</i><span class="score-b">' + bHigher + '</span></strong><span>' + (shared.length ? t(shared.length === 1 ? 'sharedWin' : 'sharedWins', { count: shared.length }) : t('noSharedBoards')) + '</span></div>'
     + butterflyModel(state.pickB, 'B') + '</div>'
-    + (groups || '<div class="empty-state"><p>所选模型在当前快照中没有收录记录。</p></div>')
-    + '<p class="bf-foot">条长只在同一榜单内可比。数字为官方名次、得分和努力档位，+N 为同榜得分领先幅度。'
-    + (hiddenBoards ? '另有 ' + hiddenBoards + ' 个榜单的可见范围内未收录所选模型，未收录不等于未参评。' : '') + '</p></div>';
+    + (groups || '<div class="empty-state"><p>' + t('neitherIncluded') + '</p></div>')
+    + '<p class="bf-foot">' + sentenceList([t('butterflyFoot'), hiddenBoards && t(hiddenBoards === 1 ? 'unlistedBoard' : 'unlistedBoards', { count: hiddenBoards })]) + '</p></div>';
 }
 
 function renderTray() {
   const tray = byId('compare-tray');
   const picks = [['A', state.pickA], ['B', state.pickB]].filter(([, modelId]) => models.has(modelId));
   tray.hidden = !state.userPicked || state.compareVisible || !picks.length;
-  tray.innerHTML = picks.map(([slot, modelId]) => '<span class="tray-pick tray-pick-' + slot.toLowerCase() + '"><b>' + slot + '</b>' + escapeHtml(splitName(models.get(modelId).name).base) + '</span>').join('')
-    + '<span class="tray-action">查看对照</span>';
+  tray.innerHTML = picks.map(([slot, modelId]) => '<span class="tray-pick tray-pick-' + slot.toLowerCase() + '"><b>' + slot + '</b>' + dataHtml(splitName(models.get(modelId).name).base) + '</span>').join('')
+    + '<span class="tray-action">' + t('viewComparison') + '</span>';
 }
 
 function describeChange(change) {
-  const board = '<b>' + escapeHtml(change.boardTitle) + '</b> ';
-  const name = escapeHtml(change.name || '');
+  const board = '<b>' + escapeHtml(officialEnglishBoard(change.boardId)?.title ?? change.boardTitle) + '</b>';
+  const name = dataHtml(change.name || '');
   switch (change.type) {
     case 'model-added':
-      return board + name + ' 进入第 ' + change.rank + ' 名，' + formatNumber(change.score) + ' 分';
+      return board + ' ' + t('changeEnter', { name, rank: change.rank, score: formatNumber(change.score) });
     case 'model-removed':
-      return board + name + ' 移出本页收录范围，上期第 ' + change.rank + ' 名';
+      return board + ' ' + t('changeLeave', { name, rank: change.rank });
     case 'model-moved':
-      return board + name + ' 第 ' + change.rank.from + ' → ' + change.rank.to + ' 名，' + formatNumber(change.score.from) + ' → ' + formatNumber(change.score.to) + ' 分';
+      return board + ' ' + t('changeMove', {
+        name, beforeRank: change.rank.from, afterRank: change.rank.to,
+        beforeScore: formatNumber(change.score.from), afterScore: formatNumber(change.score.to)
+      });
     case 'board-added':
-      return '新增榜单 ' + board + change.rows + ' 条';
+      return t('changeNewBoard', { board, count: change.rows });
     case 'board-removed':
-      return '移除榜单 ' + board;
+      return t('changeRemovedBoard', { board });
     default:
-      return change.field === 'method'
-        ? board + '口径说明已更新'
-        : board + FIELD_LABELS[change.field] + '：' + escapeHtml(change.from ?? '未标注') + ' → ' + escapeHtml(change.to ?? '未标注');
+      if (change.field === 'method') return board + ' ' + t('changeMethod');
+      return board + ' ' + escapeHtml(t('changeField', {
+        field: t(FIELD_LABELS[change.field]),
+        before: translateData(change.from ?? t('noValue')),
+        after: translateData(change.to ?? t('noValue'))
+      }));
   }
 }
 
@@ -416,38 +442,38 @@ function renderTimeline() {
   byId('update-timeline').innerHTML = snapshotHistory.slice().reverse().map((entry, index) => {
     const counts = entry.counts;
     const chips = entry.baseline
-      ? ['基线快照', entry.boardCount + ' 个榜单', entry.rowCount + ' 条记录', entry.modelCount + ' 个模型']
+      ? [t('baseline'), t('countBoards', { count: entry.boardCount }), t('countRows', { count: entry.rowCount }), t('countModels', { count: entry.modelCount })]
       : [
-        entry.newModels.length && '首次出现 ' + entry.newModels.length + ' 个模型',
-        counts['model-added'] && '进入 ' + counts['model-added'],
-        counts['model-removed'] && '移出 ' + counts['model-removed'],
-        counts['model-moved'] && '名次或得分变化 ' + counts['model-moved'],
-        counts['board-added'] && '新增榜单 ' + counts['board-added'],
-        counts['board-removed'] && '移除榜单 ' + counts['board-removed'],
-        counts['board-updated'] && '榜单信息更新 ' + counts['board-updated'],
-        entry.carriedForwardBoards.length && '沿用上期 ' + entry.carriedForwardBoards.length + ' 个榜单'
+        entry.newModels.length && t('firstModels', { count: entry.newModels.length }),
+        counts['model-added'] && t('addedRows', { count: counts['model-added'] }),
+        counts['model-removed'] && t('removedRows', { count: counts['model-removed'] }),
+        counts['model-moved'] && t('movedRows', { count: counts['model-moved'] }),
+        counts['board-added'] && t('addedBoards', { count: counts['board-added'] }),
+        counts['board-removed'] && t('removedBoards', { count: counts['board-removed'] }),
+        counts['board-updated'] && t('updatedBoards', { count: counts['board-updated'] }),
+        entry.carriedForwardBoards.length && t('carriedBoards', { count: entry.carriedForwardBoards.length })
       ].filter(Boolean);
     const changeList = entry.changes.length
-      ? '<details><summary>查看 ' + entry.changes.length + ' 项变化</summary><ul class="change-list">' + entry.changes.map((change) => '<li>' + describeChange(change) + '</li>').join('') + '</ul></details>'
+      ? '<details><summary>' + t('showChanges', { count: entry.changes.length }) + '</summary><ul class="change-list">' + entry.changes.map((change) => '<li>' + describeChange(change) + '</li>').join('') + '</ul></details>'
       : '';
     return '<li class="timeline-item' + (index === 0 ? ' is-latest' : '') + '"><time datetime="' + escapeHtml(entry.checkedAt) + '">' + formatCheckedAt(entry.checkedAt) + '</time>'
-      + '<div class="timeline-body"><p class="timeline-summary">' + escapeHtml(entry.summary) + '</p>'
-      + '<p class="timeline-by">' + escapeHtml(entry.checkedBy) + ' · ' + escapeHtml(entry.id) + '</p>'
-      + '<div class="chips">' + (chips.length ? chips : ['与上期相比无变化']).map((chip) => '<span>' + escapeHtml(chip) + '</span>').join('') + '</div>'
+      + '<div class="timeline-body"><p class="timeline-summary">' + dataHtml(entry.summary) + '</p>'
+      + '<p class="timeline-by">' + dataHtml(entry.checkedBy) + ' · ' + escapeHtml(entry.id) + '</p>'
+      + '<div class="chips">' + (chips.length ? chips : [t('noChanges')]).map((chip) => '<span>' + escapeHtml(chip) + '</span>').join('') + '</div>'
       + changeList + '</div></li>';
   }).join('');
 }
 
 function renderMethods() {
   const method = snapshot.overview;
-  byId('overview-method').innerHTML = '<h3>首页代表榜' + (method ? ' · 选榜规则 v' + escapeHtml(method.version) : '') + '</h3><p>'
-    + escapeHtml(method ? method.policy : '每个方向展示一张官方榜单的前三名。') + '</p>';
+  byId('overview-method').innerHTML = '<h3>' + t('overview') + (method ? t('selectionRules', { version: method.version }) : '') + '</h3><p>'
+    + dataHtml(method ? method.policy : t('overviewFallback')) + '</p>';
   byId('snapshot-notes').innerHTML = snapshot.notes.length
-    ? '<h3 class="subhead">本期核验备注</h3>' + snapshot.notes.map((note) => '<p>' + escapeHtml(note) + '</p>').join('')
+    ? '<h3 class="subhead">' + t('verificationNotes') + '</h3>' + snapshot.notes.map((note) => '<p>' + dataHtml(note) + '</p>').join('')
     : '';
   byId('source-list').innerHTML = categories.map((category) => category.boards.map((board) => '<a class="source-card" href="' + escapeHtml(board.source.url) + '" target="_blank" rel="noreferrer">'
-    + '<span class="source-category">' + escapeHtml(category.label) + '</span><strong>' + escapeHtml(board.label) + '</strong>'
-    + '<small>' + escapeHtml(board.source.name) + '</small><small>' + escapeHtml(sourceDates(board).join(' · ')) + '</small></a>').join('')).join('');
+    + '<span class="source-category">' + dataHtml(category.label) + '</span><strong>' + escapeHtml(officialEnglishBoard(board.id)?.title ?? board.label) + '</strong>'
+    + '<small>' + dataHtml(board.source.name) + '</small><small>' + escapeHtml(sourceDates(board).join(' · ')) + '</small></a>').join('')).join('');
 }
 
 function syncBoardNav() {
@@ -633,17 +659,60 @@ new IntersectionObserver(([entry]) => {
   renderTray();
 }, { threshold: 0.12 }).observe(byId('compare'));
 
-byId('spot-category').innerHTML = categories.map((c) => '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.label) + '</option>').join('');
-byId('spot-category').addEventListener('change', renderSpotlight);
-renderCategoryTabs();
-renderHero();
-renderCategoryPanel();
-sizeRankingNav();
+const languageToggle = byId('language-toggle');
+const spotCategory = byId('spot-category');
+
+function renderPageLanguage() {
+  document.documentElement.lang = language;
+  document.title = t('pageTitle');
+  document.querySelector('meta[name="description"]').content = t('pageDescription');
+  for (const element of document.querySelectorAll('[data-i18n]')) {
+    element.textContent = t(element.dataset.i18n);
+  }
+  for (const element of document.querySelectorAll('[data-i18n-label]')) {
+    element.setAttribute('aria-label', t(element.dataset.i18nLabel));
+  }
+  for (const element of document.querySelectorAll('[data-i18n-title]')) {
+    element.title = t(element.dataset.i18nTitle);
+  }
+
+  const destination = language === 'en'
+    ? { language: 'zh-Hans', text: '中文', label: '切换到中文' }
+    : { language: 'en', text: 'EN', label: 'Switch to English' };
+  const toggleText = languageToggle.firstElementChild;
+  toggleText.lang = destination.language;
+  toggleText.textContent = destination.text;
+  languageToggle.setAttribute('aria-label', destination.label);
+  languageToggle.title = destination.label;
+  languageToggle.hidden = false;
+
+  const spotId = spotCategory.value;
+  spotCategory.innerHTML = categories.map((category) =>
+    '<option value="' + escapeHtml(category.id) + '">' + dataHtml(category.label) + '</option>').join('');
+  if (spotId) spotCategory.value = spotId;
+
+  const details = [...document.querySelectorAll('#category-panel details, #update-timeline details')];
+  const openDetails = details.map((detail) => detail.open);
+  renderCategoryTabs();
+  renderHero();
+  renderCategoryPanel();
+  renderPickers();
+  renderButterfly();
+  renderTimeline();
+  renderMethods();
+  renderTray();
+  document.querySelectorAll('#category-panel details, #update-timeline details').forEach((detail, index) => {
+    if (openDetails[index]) detail.open = true;
+  });
+  sizeRankingNav();
+  syncGlobalNav();
+  updateScrollFades();
+}
+
+spotCategory.addEventListener('change', renderSpotlight);
+languageToggle.addEventListener('click', () => {
+  setLanguage(language === 'en' ? 'zh-Hans' : 'en');
+  renderPageLanguage();
+});
+renderPageLanguage();
 openLinkedBoard();
-renderButterfly();
-renderPickers();
-renderTimeline();
-renderMethods();
-renderTray();
-syncGlobalNav();
-updateScrollFades();
